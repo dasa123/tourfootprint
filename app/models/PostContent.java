@@ -1,0 +1,28 @@
+package models;
+
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+
+import play.db.jpa.Blob;
+import play.db.jpa.Model;
+
+@Entity
+public class PostContent extends Model
+{
+	public String video;
+	@ElementCollection
+	public List<Blob> pictures;
+	@ElementCollection
+	public List<String> picturesTitles;
+
+	public PostContent(String video, List<Blob> pictures,
+			List<String> picturesTitles)
+	{
+		super();
+		this.video = video;
+		this.pictures = pictures;
+		this.picturesTitles = picturesTitles;
+	}
+}
