@@ -13,11 +13,11 @@ public class PostContent extends Model
 {
 	public String video;
 	@ElementCollection
-	public List<Blob> pictures;
+	public List<Image> pictures;
 	@ElementCollection
 	public List<String> picturesTitles;
 
-	public PostContent(String video, List<Blob> pictures,
+	public PostContent(String video, List<Image> pictures,
 			List<String> picturesTitles)
 	{
 		super();

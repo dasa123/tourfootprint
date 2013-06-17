@@ -5,6 +5,14 @@
 # Home page
 GET     /                                       MainPage.index
 
+# New Post page
+GET     /newPost                            Pages.newPost
+# New Post page
+GET     /editPost                            Pages.editPost
+# New Post page
+GET     /viewPost                            Pages.viewPost
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

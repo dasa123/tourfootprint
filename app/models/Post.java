@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity
@@ -35,13 +36,14 @@ public class Post extends Model
 	public List<Comment> comments;
 
 	public Post(String title, String description, MapLocation mapLocation,
-			Date postingDate, User sender, PostContent content, List<String> tags)
+			Date postingDate, Boolean sharedWithOthers, User sender, PostContent content, List<String> tags)
 	{
 		super();
 		this.title = title;
 		this.description = description;
 		this.mapLocation = mapLocation;
 		this.postingDate = postingDate;
+		this.sharedWithOthers = sharedWithOthers;
 		this.sender = sender;
 		this.content = content;
 		this.tags = tags;

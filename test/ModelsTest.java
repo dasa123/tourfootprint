@@ -40,7 +40,7 @@ public class ModelsTest extends UnitTest
 		
 		
 		//Test post creation
-		Post post1 = new Post("title", "desc", null, new Date(), user1, null, Arrays.asList("post tag1", "post tag2"));
+		Post post1 = new Post("title", "desc", null, new Date(), true, user1, null, Arrays.asList("post tag1", "post tag2"));
 		post1.save();
 		
 		Post testPost1 = Post.all().first();
@@ -50,7 +50,7 @@ public class ModelsTest extends UnitTest
 		assertEquals(testPost1.sender.id, user1.id);
 		assertArrayEquals(testPost1.tags.toArray(), new String[]{"post tag1", "post tag2"});
 		
-		Post post2 = new Post("title2", "desc2", null, new Date(), user1, null, Arrays.asList("post tag1", "post tag2"));
+		Post post2 = new Post("title2", "desc2", null, new Date(), false, user1, null, Arrays.asList("post tag1", "post tag2"));
 		post2.save();
 		
 		//Test user posts
