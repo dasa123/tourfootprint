@@ -18,3 +18,4 @@ III. Relevant Docs
 IV. Useful Tools and Docs
   - Firebug for Firefox: https://addons.mozilla.org/de/firefox/addon/firebug/
   - Html, Css etc.: http://de.selfhtml.org/
+  - Push footer to the bottom of the page (sticky footer): http://ryanfait.com/resources/footer-stick-to-bottom-of-page/
