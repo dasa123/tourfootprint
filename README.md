@@ -14,3 +14,7 @@ III. Relevant Docs
   - Main Doc page: http://www.playframework.com/documentation/1.2.5/home
   - Java API: http://www.playframework.com/documentation/api/1.2.5/index.html
   - JPA: http://www.playframework.com/documentation/1.2.5/jpa
+
+IV. Useful Tools
+  - Firebug for Firefox: https://addons.mozilla.org/de/firefox/addon/firebug/
+  - Development Tools of Chrome: Ctrl + Shift + I
