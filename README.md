@@ -22,3 +22,5 @@ IV. Useful Tools and Docs
   - Howto include snippets of code (html, javascript etc.):
     - http://www.playframework.com/documentation/1.2.5/templates#tags
     - http://www.playframework.com/documentation/1.2.5/tags
+  - Pass variables to template:
+    http://stackoverflow.com/questions/10881068/how-do-i-pass-a-variable-to-a-view-that-is-extended-and-not-called-explicitly
