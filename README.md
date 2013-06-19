@@ -24,3 +24,4 @@ IV. Useful Tools and Docs
     - http://www.playframework.com/documentation/1.2.5/tags
   - Pass variables to template:
     http://stackoverflow.com/questions/10881068/how-do-i-pass-a-variable-to-a-view-that-is-extended-and-not-called-explicitly
+  - Eclipse Webtools: http://download.eclipse.org/webtools/repository/juno/
