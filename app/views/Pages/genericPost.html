@@ -139,10 +139,11 @@
 	#new_post_left_div {width:50%; float:left;}
 	#new_post_right_div {width:50%; float: right;}
 	.postImage{height:50px;}
+	.hidden_input{display: none;}
 </style>
 
 #{if showEditButton}
-<a href="@{Pages.editPost(post.id)}"><button>Edit Post</button></a>
+<a href="@{Pages.editPost(post.id)}"><button>Edit Post</button></a> <br><br>
 #{/if}
 
 <div id="new_post_div">
@@ -222,10 +223,10 @@
      <div id="comments_div">
         <br>
 	    <br>
-		Comments:<br>
+		<b>Comments:</b> <br>
 			#{list items:post.comments, as:'comment'}
 			
-				Comment sent by: #{if comment.sender} ${comment.sender.id.raw()}, ${comment.sender.fullname.raw()} #{/if} <br>
+				Comment sent by: #{if comment.sender} ${comment.sender.fullname.raw()} #{/if} <br>
 				Comment: ${comment.text.raw()}<br>
 				Rating: ${comment.rating.raw()}<br>
 			<br>	
@@ -237,10 +238,10 @@
 				<label for="rating_select">Rating</label>
 				<select name="commentRating" id="rating_select">
 					<option value="5">5</option>
-					<option value="5">4</option>
-					<option value="5">3</option>
-					<option value="5">2</option>
-					<option value="5">1</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
 				</select>
 				<input type="submit" id="comment_button_input" name="postComment" value="Post Comment"/>
 			#{/form}
@@ -252,6 +253,7 @@
     	<div id="newpost-map-canvas" style="height:300px;width:400px"></div>
 		<p>
 	        #{if mode != 'view'}
+	        <br>
 	        <label for="add_tag_input">Tags: </label>
 	        <input type="text" id="add_tag_input"/>
 	        

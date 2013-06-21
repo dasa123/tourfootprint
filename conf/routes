@@ -12,6 +12,8 @@ GET     /editPost                            Pages.editPost
 # New Post page
 GET     /viewPost                            Pages.viewPost
 
+# My Posts page
+GET     /myPosts                            Pages.myPosts
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

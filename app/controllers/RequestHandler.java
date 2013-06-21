@@ -18,28 +18,24 @@ public class RequestHandler extends Controller
 {
 	public static void postComment(Long postId, String commentText, String commentRating)
 	{
-		System.out.println(postId);
-		System.out.println(commentRating);
-		System.out.println(commentText);
 		if (postId != null)
 		{
 			Post post = Post.findById(postId);
 			
 			if (post != null)
 			{
-				System.out.println("GONNA SAVE !");
-				//TODO: User
-				User sender = null;
-				
-				Comment comment = new Comment(commentText, Integer.parseInt(commentRating), sender, post);
-				comment.save();
-				
-				Pages.viewPost(postId);
+				String userId = session.get("userId");
+				if (userId != null)
+				{
+					User sender = User.findById(Long.parseLong(userId));
+					
+					Comment comment = new Comment(commentText, Integer.parseInt(commentRating), sender, post);
+					comment.save();
+				}
 			}
-			//TODO:
 		}
 
-		//TODO:
+		Pages.viewPost(postId);
 	}
 	
 	
@@ -111,9 +107,23 @@ public class RequestHandler extends Controller
 			String video, String shareRadio, String address,
 			String locationLongitude, String locationLatitude, String tags)
 	{
-		// TODO: get the signed in user id
-		User sender = User.all().first();
+		String userId = session.get("userId");
+		if (userId == null)
+		{
+			renderArgs.put("authenticated", "false");
+			render("pages/mainPageNotAuth.html");
+			return;
+		}
+		
+		User sender = User.findById(Long.parseLong(userId));
 
+		if (sender == null)
+		{
+			renderArgs.put("authenticated", "false");
+			render("pages/mainPageNotAuth.html");
+			return;
+		}
+		
 		if (submitAction.equals("post"))
 		{
 			MapLocation mapLocation;
@@ -172,16 +182,13 @@ public class RequestHandler extends Controller
 					shareRadio.equals("yes"), sender, content, tagList);
 			post.save();
 
-			System.out.println("NEW POST ID :" + post.id);
 
 			// redirect to edit post
 			Pages.editPost(post.id);
-			System.out.println("DONE REDIRECTION EDIT POST");
 			return;
 		}
 		else if (submitAction.equals("cancel"))
 		{
-			// TODO: go back to main page or stream or something
 		}
 		else if (submitAction.equals("save"))
 		{
@@ -228,28 +235,28 @@ public class RequestHandler extends Controller
 		}
 		else if (submitAction.equals("delete"))
 		{
-			// TODO: check authentication
 			if (postId != null)
 			{
-				System.out.println("DELETING POST ID :" + postId);
 				Post post = Post.findById(Long.parseLong(postId));
-				if (post != null)
+
+				// check if sender is same !
+				if (post.sender.id == sender.id)
 				{
-					post.delete();
+					if (post != null)
+					{
+						post.delete();
+					}
 				}
 			}
 		}
 
-		//TODO: change this
-		Pages.dummyPage();
+		Pages.myPosts();
 	}
 
 	public static void renderImage(Long imageId)
 	{
-		System.out.println("AT RENDER IMAGE :" + (imageId == null));
 		Image image = Image.findById(imageId);
 		response.setContentTypeIfNotSet(image.imageDate.type());
 		renderBinary(image.imageDate.get());
 	}
-
 }
