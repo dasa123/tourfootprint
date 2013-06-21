@@ -1,0 +1,121 @@
+/*
+	VARIABLES
+*/
+
+// Border
+@default_border_color: #a8a8a8;
+@default_border_style: solid;
+@default_border_width: 2px;
+
+// Font
+@default_font_color: #5d5d5d;
+@default_font_color_blue: #03528a;
+@default_font_size: 14px;
+@default_font_size_big: 16px;
+@default_font_line_height: 21px;
+@default_font_line_height_big: 24px;
+
+// Radius
+@default_radius: 10px;
+
+// Shadow
+@default_shadow_color: #888888;
+
+// Vertical gap between main content items
+@default_vertical_gap: 10px;
+
+// Bottom
+@bottom_height: @default_font_line_height_big + @default_border_width;
+
+/*
+	Items
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: @default_font_color;
+	font-family: 'Droid Sans', sans-serif !important;
+	font-size: @default_font_size;
+	line-height: @default_font_line_height;
+	margin: 0 auto;
+	overflow-y: scroll;
+	width: 960px;
+}
+
+body, html {
+	height: 100%;
+}
+
+a {
+	outline: none;
+}
+
+#top {
+	box-shadow: 0 0 8px @default_shadow_color;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -@bottom_height;
+	padding: 0 5px;
+	min-height: 100%;
+	
+	#content {
+		padding-top: @default_vertical_gap;
+		
+		* {
+			margin-bottom: @default_vertical_gap;
+			
+			* {
+				margin-bottom: 0;
+			}
+		}
+		
+		#navigation_bar {
+			#logo {
+				float: left;
+				padding: 5px 0 0 10px;
+				
+				img {
+					height: 38px;
+				}
+			}
+		
+			background: url("/public/images/navigationBarBackground.jpg");
+			border-radius: @default_radius;
+			height: 50px;
+		}
+	}
+	
+	#push {
+		height: @bottom_height;
+	}
+}
+
+#bottom {
+	height: @bottom_height;
+
+	#footer {
+		border-color: @default_border_color;
+		border-style: @default_border_style;
+		border-width: @default_border_width 0 0;
+		height: @bottom_height - @default_border_width;
+		
+		p {
+			font-size: @default_font_size_big;
+			font-weight: bold;
+			line-height: @default_font_line_height_big;
+			text-align: center;
+			
+			a {
+				color: @default_font_color;
+				
+				&:hover {
+					color: @default_font_color_blue;
+				}
+			}
+		}
+	}
+}

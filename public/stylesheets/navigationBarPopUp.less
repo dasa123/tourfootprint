@@ -1,0 +1,68 @@
+// Import default values
+@import "template.less";
+
+.navigationBarPopUp_button {
+	background: url("/public/images/navigationBarButton.jpg");
+	border-radius: @default_radius;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: @default_font_size_big;
+	line-height: @default_font_line_height_big;
+	text-decoration: none;
+	float:right;
+	height:32px;
+	
+	&:hover {
+		color: @default_font_color_blue;
+	}
+}
+
+.triangle {
+	float:left;
+	width:0px;
+	height:0px;
+	margin:14px 9px 0 0;
+	border-left:5px solid transparent;
+	/* left arrow slant */
+	border-right:5px solid transparent;
+	/* right arrow slant */
+	border-top:5px solid #fff;
+	/* bottom,add background color here */
+	font-size:0px;
+	line-height:0px;
+}
+#login_box {
+	display:none;
+	position:absolute;
+	width:236px;
+	margin:2px 0 0 732px;
+}
+#login_box_content {
+	background:#fff;
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	float:left;
+	width:236px;
+}
+#login_form {
+	margin:9px 0 0 9px;
+}
+#login_form input[type=text],#login_form input[type=password] {
+	border:1px solid #d8d8d8;
+	border-radius:3px;
+	font:italic 14px Georgia,times,sans-serif;
+	height:37px;
+	width:205px;
+	margin-top:10px;
+	padding-left:10px;
+}
+#login_form input[type=submit] {
+	border:none;
+	background:#19677e;
+	color:#fff;
+	float:right;
+	margin:9px 9px 9px 0;
+	width:56px;
+	height: 29px;
+}
