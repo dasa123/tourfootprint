@@ -14,21 +14,21 @@
 	<a href="#">Help</a>
 </div>
 <div id="profile">
-	<a href="#" class="navigationBarPopUp_button register_button">
-		Register
+	<a href="#" class="navigationBarPopUp_button profile_button">
+		Profile
 	</a>
-	<div id="register_box">
+	<div id="profile_box">
 		<div class="triangle">
 		</div>
 		<div class="triangle2">
 		</div>
-    	<div id="register_box_content">
-        	<form id="register_form">
-            	<h2>Give us the deets.</h2>
-            	<input type="text" placeholder="Username" />
-            	<input type="password" placeholder="Password" />
-            	<input type="submit" value="Do it!" />
-        	</form>
+    	<div id="profile_box_content">
+        	#{form @MainPage.logout(), id:'profile_form'}
+            	<input type="submit" value="View Profile" />
+        	#{/form}
+        	#{form @MainPage.logout(), id:'profile_form2'}
+            	<input type="submit" value="Logout" />
+        	#{/form}
     	</div>
 	</div>
 </div>

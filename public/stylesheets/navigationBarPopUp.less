@@ -64,7 +64,7 @@
 	
 #profile_box {
 	.box_mixin;
-	margin: 52px 0 0 614px;
+	margin: 52px 0 0 709px;
 }
 	
 #register_box {
@@ -119,4 +119,64 @@
 
 #register_form {
 	.form_mixin;
+}
+
+
+/*
+	just to get results fast. not nice!
+*/
+
+.link_mixin {
+	padding-top: 13px;
+		
+	a {
+		color: #ffffff;
+		font-size: @default_font_size_big;
+		font-weight: bold;
+		line-height: @default_font_line_height_big;
+		margin-left: 20px;
+		text-decoration: none;
+	}
+}
+
+#nav_search {
+	float: left;
+}
+
+#my_posts, #post_stream, #help {
+	float: left;
+	.link_mixin;
+}
+
+#profile_form {
+	clear: both;
+	float: right;
+	.form_mixin;
+}
+
+#profile_form2 {
+	clear: both;
+	float: right;
+	.form_mixin;
+}
+
+#search {
+	border: 2px solid #A8A8A8;
+    border-radius: 10px 10px 10px 10px;
+    height: 30px;
+    margin: 8px 0 0 20px;
+    padding-left: 10px;
+    width: 227px;
+}
+
+#button {
+	background-color: #EDEDED;
+    border: 2px solid #A8A8A8;
+    border-radius: 10px 10px 10px 10px;
+    color: #777777;
+    font-weight: bold;
+    height: 34px;
+    margin: 8px 0 0 2px;
+    vertical-align: top;
+    width: 70px;
 }

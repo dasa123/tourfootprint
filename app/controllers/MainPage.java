@@ -101,10 +101,9 @@ public class MainPage extends Controller {
         }
     }  
 
-    /*
+    
     public static void logout() {
-        session.clear();
-        index(false);
+        session.put("userId", null);
+        index(false, false, 0, null);
     }
-	*/
 }
