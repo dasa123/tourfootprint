@@ -8,12 +8,12 @@
 		<div class="triangle2">
 		</div>
     	<div id="register_box_content">
-        	<form id="register_form">
-            	<input type="text" placeholder="E-Mail" />
-            	<input type="password" placeholder="Password" />
-            	<input type="password" placeholder="Password Retyped" />
+        	#{form @MainPage.register(), id:'register_form'}
+            	<input type="text" name="email" placeholder="E-Mail" />
+            	<input type="password" name="password" placeholder="Password" />
+            	<input type="password" name="password_retyped" placeholder="Password Retyped" />
             	<input type="submit" value="Register" />
-        	</form>
+        	#{/form}
     	</div>
 	</div>
 </div>
@@ -27,11 +27,11 @@
 		<div class="triangle2">
 		</div>
     	<div id="login_box_content">
-        	<form id="login_form">
-            	<input type="text" placeholder="E-Mail" />
-            	<input type="password" placeholder="Password" />
+    		#{form @MainPage.login(), id:'login_form'}
+            	<input type="text" name="email" placeholder="E-Mail" />
+            	<input type="password" name="password" placeholder="Password" />
             	<input type="submit" value="Login" />
-        	</form>
+        	#{/form}
     	</div>
 	</div>
 </div>
