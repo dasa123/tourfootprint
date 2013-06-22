@@ -1,68 +1,122 @@
 // Import default values
 @import "template.less";
 
+/*
+	Variables
+*/
+@box_width: 236px;
+
+/*
+	Button
+*/
 .navigationBarPopUp_button {
 	background: url("/public/images/navigationBarButton.jpg");
 	border-radius: @default_radius;
 	color: #ffffff;
-	font-weight: bold;
+	float: right;
 	font-size: @default_font_size_big;
+	font-weight: bold;
 	line-height: @default_font_line_height_big;
+	padding: 6px 10px;
+	margin: 7px 14px 0 0;
 	text-decoration: none;
-	float:right;
-	height:32px;
 	
 	&:hover {
 		color: @default_font_color_blue;
 	}
 }
 
+/*
+	Triangle
+*/
+.triangle_mixin(@size; @color) {
+	border-bottom: 14px+@size solid @color;
+	border-left: 14px+@size solid transparent;
+	border-right: 14px+@size solid transparent;
+	margin: -14px-@size 0 0 173px-@size;
+	width: 0;
+}
+
 .triangle {
-	float:left;
-	width:0px;
-	height:0px;
-	margin:14px 9px 0 0;
-	border-left:5px solid transparent;
-	/* left arrow slant */
-	border-right:5px solid transparent;
-	/* right arrow slant */
-	border-top:5px solid #fff;
-	/* bottom,add background color here */
-	font-size:0px;
-	line-height:0px;
+	.triangle_mixin(2px; @default_border_color);
 }
+
+.triangle2 {
+	.triangle_mixin(0px; #ffffff);
+}
+
+/*
+	BOX
+*/
+.box_mixin {
+	border: @default_border_width @default_border_style @default_border_color;
+	border-radius: @default_radius;
+	display: none;
+	position: absolute;
+	width: @box_width;
+	z-index: 1;
+}
+
 #login_box {
-	display:none;
-	position:absolute;
-	width:236px;
-	margin:2px 0 0 732px;
+	.box_mixin;
+	margin: 52px 0 0 606px;
 }
-#login_box_content {
-	background:#fff;
-	border-top-left-radius:5px;
-	border-bottom-left-radius:5px;
-	border-bottom-right-radius:5px;
-	float:left;
-	width:236px;
+	
+#profile_box {
+	.box_mixin;
+	margin: 52px 0 0 614px;
 }
+	
+#register_box {
+	.box_mixin;
+	margin: 52px 0 0 700px;
+}
+
+/*
+	Box content
+*/
+#login_box_content, #profile_box_content, #register_box_content {
+	background: #ffffff;
+	border-radius: @default_radius - @default_border_width;
+	float: left;
+	padding: 0 0 9px 0;
+	width: @box_width;
+}
+
+.form_mixin {
+	margin: 0 0 0 9px;
+
+	input[type=text], input[type=password], input[type=password_retyped] {
+		border: 1px @default_border_style #d8d8d8;
+		border-radius: 3px;
+		font: italic 14px Georgia, times, sans-serif;
+		height: 37px;
+		margin-top: 10px;
+		padding-left: 10px;
+		width: 205px;
+	}
+	
+	input[type=submit] {
+		border: @default_border_width @default_border_style @default_border_color;
+		border-radius: @default_radius;
+		background: #ededed;
+		color: @default_font_color;
+		float: right;
+		font-weight: bold;
+		height: 29px;
+		margin: 9px 9px 9px 0;
+		padding: 0 4px 2px 4px;
+	}
+}
+
 #login_form {
-	margin:9px 0 0 9px;
+	.form_mixin;
 }
-#login_form input[type=text],#login_form input[type=password] {
-	border:1px solid #d8d8d8;
-	border-radius:3px;
-	font:italic 14px Georgia,times,sans-serif;
-	height:37px;
-	width:205px;
-	margin-top:10px;
-	padding-left:10px;
+
+#profile_form {
+	.form_mixin;
 }
-#login_form input[type=submit] {
-	border:none;
-	background:#19677e;
-	color:#fff;
-	float:right;
-	margin:9px 9px 9px 0;
-	width:56px;
-	height: 29px;
+
+#register_form {
+	.form_mixin;
 }
