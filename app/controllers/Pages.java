@@ -13,6 +13,7 @@ public class Pages extends Controller
 {
 	public static void newPost()
 	{
+		renderArgs.put("authenticated", "true");
 		render();
 	}
 
@@ -30,15 +31,26 @@ public class Pages extends Controller
 				{
 					User user = User.findById(Long.parseLong(userId));
 					showEditButton = user != null;
+					renderArgs.put("authenticated", "true");
 				}
-				
+
 				render(post, showEditButton);
 				return;
 			}
 		}
 
-		//wrong post id or no post id provided
-		myPosts();
+		// wrong post id or no post id provided
+		String userId = session.get("userId");
+		if (userId != null)
+		{
+			renderArgs.put("authenticated", "true");
+			myPosts();
+		}
+		else
+		{
+			render("pages/mainPageNotAuth.html");
+		}
+
 	}
 
 	public static void editPost(Long postId)
@@ -49,31 +61,32 @@ public class Pages extends Controller
 		}
 		else
 		{
-			//make sure user authenticaed is allowed to edit
+			// make sure user authenticaed is allowed to edit
 			String userId = session.get("userId");
 			if (userId != null)
 			{
 				User user = User.findById(Long.parseLong(userId));
-				
+
 				if (user != null)
 				{
 					Post post = Post.findById(postId);
 					if (post != null)
 					{
+						renderArgs.put("authenticated", "true");
 						// render edit post
 						render(post);
 						return;
 					}
 				}
+
 			}
-			
-			//if user not authenticated render view post
+
+			// if user not authenticated render view post
 			viewPost(postId);
 			return;
 		}
-		
 
-		//handle case where post was deleted
+		// handle case where post was deleted
 		myPosts();
 	}
 
@@ -89,8 +102,11 @@ public class Pages extends Controller
 			{
 				myPosts = user.posts;
 			}
+			renderArgs.put("authenticated", "true");
+			render(myPosts);
+			return;
 		}
 
-		render(myPosts);
+		render("pages/mainPageNotAuth.html");
 	}
 }

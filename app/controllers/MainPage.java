@@ -14,6 +14,13 @@ import models.*;
 public class MainPage extends Controller {
 	
     public static void register(@Email String email, String password, String password_retyped) {
+    	if(session.get("userId") != null)
+    	{
+    		Pages.myPosts();
+    		return;
+    	}
+    	
+    	
         if(! validation.email(email).ok)
         {
         	index(false, false, 4, null);
@@ -41,6 +48,12 @@ public class MainPage extends Controller {
     }
     
     public static void index(boolean advertisement, boolean authenticated, int error, User user) {
+    	if(session.get("userId") != null)
+    	{
+    		Pages.myPosts();
+    		return;
+    	}
+    	
     	//advertisement is not shown on the main page.
     	renderArgs.put("advertisement", "false");
     	
@@ -71,6 +84,12 @@ public class MainPage extends Controller {
     
     //Login with e-mail address and password. 
     public static void login(String email, String password) {
+    	if(session.get("userId") != null)
+    	{
+    		Pages.myPosts();
+    		return;
+    	}
+    	
         User user = User.find("byEmailAndPassword", email, password).first();
         
         if(user != null) {

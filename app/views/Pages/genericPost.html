@@ -226,7 +226,7 @@
 		<b>Comments:</b> <br>
 			#{list items:post.comments, as:'comment'}
 			
-				Comment sent by: #{if comment.sender} ${comment.sender.fullname.raw()} #{/if} <br>
+				Comment sent by: #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
 				Comment: ${comment.text.raw()}<br>
 				Rating: ${comment.rating.raw()}<br>
 			<br>	

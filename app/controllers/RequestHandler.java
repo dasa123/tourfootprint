@@ -184,11 +184,16 @@ public class RequestHandler extends Controller
 
 
 			// redirect to edit post
-			Pages.editPost(post.id);
+			Pages.myPosts();
 			return;
 		}
 		else if (submitAction.equals("cancel"))
 		{
+			if(postId != null)
+			{
+				Pages.viewPost(Long.parseLong(postId));
+				return;
+			}
 		}
 		else if (submitAction.equals("save"))
 		{
