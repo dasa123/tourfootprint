@@ -40,6 +40,9 @@
 					#{if ( userExists == "true" ) }
 						#{userExists /}
 					#{/if}
+    				#{if ( emailError == "true" ) }
+						#{emailError /}
+					#{/if}
     				#{if ( authenticated == "true" ) }
     					#{navigationBarAuth /}
     				#{/if}
