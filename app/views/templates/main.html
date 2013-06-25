@@ -6,6 +6,12 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         
+        <!-- David added this to get the stuff running (temprary solution) -->
+        <link rel="stylesheet" href="@{'/public/stylesheets/loggedOut.css'}" type="text/css" />
+        <link rel="stylesheet" href="@{'/public/stylesheets/sliderman.css'}" type="text/css" />
+        <script src="@{'/public/javascripts/loginRegister.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/sliderman.1.3.7.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        
         <!-- IMPORTANT!
         Don't paste your javascript/stylesheet in here, if it's only relevant for your page.
         Use play's "moreScript" or "moreStyles" functionality, then.
@@ -45,7 +51,7 @@
     				#{if ( emailError == "true" ) }
 						#{emailError /}
 					#{/if}
-    				#{if ( authenticated == "true" ) }
+    				#{if user}
     					#{navigationBarAuth /}
     				#{/if}
 					#{else}
@@ -54,6 +60,7 @@
     			</div>
     			#{doLayout /}
     		</div>
+    		<div style="clear:both; height: 10px;"></div>
     		<div id="push">
     		</div>
     	</div>

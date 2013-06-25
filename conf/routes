@@ -6,14 +6,14 @@
 GET     /                                       MainPage.index
 
 # New Post page
-GET     /newPost                            Pages.newPost
+GET     /newPost                             	NewPost.page
 # New Post page
-GET     /editPost                            Pages.editPost
-# New Post page
-GET     /viewPost                            Pages.viewPost
+GET     /editPost                            	EditPost.page
+# View Post page
+GET     /viewPost                            	ViewPost.page
 
 # My Posts page
-GET     /myPosts                            Pages.myPosts
+GET     /myPosts                            	MyPosts.page
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

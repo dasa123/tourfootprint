@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -32,7 +33,7 @@ public class Post extends Model
 	@ElementCollection
 	public List<String> tags;
 
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	public List<Comment> comments;
 
 	public Post(String title, String description, MapLocation mapLocation,

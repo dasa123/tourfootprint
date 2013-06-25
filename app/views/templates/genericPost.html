@@ -1,4 +1,4 @@
-#{extends 'template.html'/}
+#{extends 'templates/main.html'/}
 #{if mode == "view"}
 #{set title:'View Post'/}
 #{/if}
@@ -143,13 +143,13 @@
 </style>
 
 #{if showEditButton}
-<a href="@{Pages.editPost(post.id)}"><button>Edit Post</button></a> <br><br>
+<a href="@{EditPost.page(post.id)}"><button>Edit Post</button></a> <br><br>
 #{/if}
 
 <div id="new_post_div">
 <div id="new_post_left_div">
-#{form @RequestHandler.genericPostSubmit(), enctype:"multipart/form-data"}
-	
+
+#{form mode == 'new'? @NewPost.submit(): @EditPost.submit() , enctype:"multipart/form-data"}
 	    <p>
 	        <label for="title_input">Title: </label>
 	        <input type="text" name="title" id="title_input" value="${post?.title}" #{if mode == 'view'}readonly#{/if}/>
@@ -173,8 +173,8 @@
 	        
 	        #{else}
 	        #{list items:post.content.pictures, as:'pic'}
-		        <a href="@{RequestHandler.renderImage(pic.id)}"  target="_new">
-		        	  <img src="@{RequestHandler.renderImage(pic.id)}" class='postImage'>
+		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
+		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
 	        	  </a>
 	        #{/list}
 	        #{/else}
@@ -232,7 +232,7 @@
 			<br>	
 			#{/list}
 			
-			#{form @RequestHandler.postComment(post.id)}
+			#{form @ViewPost.postComment(post.id)}
 				<label for="comment_text_input">Add Comment</label>
 				<input type="text" id="comment_text_input" name="commentText"/><br>
 				<label for="rating_select">Rating</label>

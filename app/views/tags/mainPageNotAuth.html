@@ -1,0 +1,113 @@
+<script type="text/javascript">
+	effectsDemo2 = 'rain,stairs,fade';
+	var demoSlider_2 = Sliderman.slider({
+		container: 'SliderName_2',
+					width: 946,
+					height: 346,
+					effects: effectsDemo2,
+		display: {
+			autoplay: 6000,
+			loading: {
+				background: '#000000',
+				opacity: 0.5,
+				image: '/public/images/sliderman/loading.gif'
+			},
+			buttons: {
+				hide: true,
+				opacity: 1,
+				prev: {
+					className: 'SliderNamePrev_2',
+					label: ''
+				},
+				next: {
+					className: 'SliderNameNext_2',
+					label: ''
+				}
+			},
+			description: {
+				hide: true,
+				background: '#000000',
+				opacity: 0.4,
+				height: 50,
+				position: 'bottom'
+			},
+			navigation: {
+				container: 'SliderNameNavigation_2',
+				label: '<img src="/public/images/sliderman/clear.gif" />'
+			}
+		}
+	});
+</script>
+
+<div id="loggedOut">
+	<div id="logged_out">
+		<div id="slide_show">
+			<div class="content">
+				<div id="slider_container_2">
+					<div id="SliderName_2" class="SliderName_2">
+						<img src="/public/images/slideshow/screenshot01.png" alt="Demo2 first" title="Demo2 first" />
+						<div class="SliderName_2Description">
+							Golem:
+							<strong>
+								Huawei Ascend P6 is nice and thin
+							</strong>
+						</div>
+						<img src="/public/images/slideshow/screenshot02.png" alt="Demo2 second" title="Demo2 second" />
+						<div class="SliderName_2Description">
+							Heise:
+							<strong>
+								Thin, thiner, thinest
+							</strong>
+						</div>
+						<img src="/public/images/slideshow/screenshot03.png" alt="Demo2 third" title="Demo2 third" />
+						<div class="SliderName_2Description">
+							Sueddeutsche:
+							<strong>
+								Obama and the Germans
+							</strong>
+						</div>
+						<img src="/public/images/slideshow/screenshot04.png" alt="Demo2 fourth" title="Demo2 fourth" />
+						<div class="SliderName_2Description">
+							Reuters:
+							<strong>
+								G8 meeting
+							</strong>
+						</div>
+						<img src="/public/images/slideshow/screenshot05.png" alt="Demo2 fourth" title="Demo2 fifth" />
+						<div class="SliderName_2Description">
+							Faz:
+							<strong>
+								Nice picture for Mrs. Merkel
+							</strong>
+						</div>
+					</div>
+					<div id="SliderNameNavigation_2"></div>
+				</div>
+			</div>
+		</div>
+		<div id="search_bar2">
+			<form id="searchBar2" action="">
+				<input id="search2" placeholder="Type in your search terms!" type="text">
+				<input id="button2" type="button" value="Search">
+			</form>
+		</div>
+		<div id="posts">
+			<div id="liked">
+				<div class="infoBox">
+					<p>
+					Most liked: Doris and Michael in Paris
+					</p>
+				</div>
+				<img src="/public/images/most_liked.jpg" alt="most liked" />
+			</div>
+			<div id="newest">
+				<div class="infoBox">
+					<p>
+					Recently finished: The beauty of Africa
+					</p>
+				</div>
+				<img src="/public/images/recently_finished.jpg" alt="recently finished" />
+			</div>
+		</div>
+	</div>
+</div>

@@ -22,7 +22,7 @@ public class User extends Model
 	public String gender;
 	public String religion;
 	public Date birthday;
-	public Blob picture;
+	public Image image;
 
 	@ElementCollection
 	public List<String> tags;
@@ -33,7 +33,7 @@ public class User extends Model
 
 	public User(String email, String password, String fullname, String country,
 			String city, String gender, String religion, Date birthday,
-			Blob picture, List<String> tags)
+			Image image, List<String> tags)
 	{
 		super();
 		this.email = email;
@@ -44,7 +44,7 @@ public class User extends Model
 		this.gender = gender;
 		this.religion = religion;
 		this.birthday = birthday;
-		this.picture = picture;
+		this.image = image;
 		this.tags = tags;
 	}
 }

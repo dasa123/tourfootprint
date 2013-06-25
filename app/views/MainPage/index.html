@@ -1,0 +1,10 @@
+#{extends 'templates/main.html' /}
+
+#{if user == nil}
+#{set title:'TourFootprint - Home'/}
+#{mainPageNotAuth /}
+#{/if}
+
+#{else}
+#{include 'MyPosts/page.html' /}
+#{/else}
