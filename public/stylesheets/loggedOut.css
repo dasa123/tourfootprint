@@ -1,0 +1,64 @@
+#logged_out #slide_show .content {
+	border-color: #a8a8a8;
+	border-style: solid;
+	border-width: 2px;
+	height: 346px;
+}
+
+#SliderName_2 img {
+	height: 346px;
+	width: 946px; 
+}
+
+#logged_out #search_bar2 {
+	clear: both;
+	height: 20px;
+	padding: 4px 0 0;
+}
+
+#logged_out #search2 {
+	border: 2px solid #a8a8a8;
+	border-radius: 10px;
+	height: 30px;
+	padding-left: 10px;
+	width: 861px;
+}
+
+#logged_out #button2 {
+	background-color: #ededed;
+	border: 2px solid #a8a8a8;
+	border-radius: 10px;
+	color: #777777;
+	font-weight: bold;
+	height: 34px;
+	width: 70px;
+	vertical-align: top;
+}
+
+#loggedOut #liked, #loggedOut #newest {
+	border-color: #a8a8a8;
+	border-style: solid;
+	border-width: 2px;
+	float: left;
+	height: 300px;
+	width: 466px;
+}
+
+#loggedOut .infoBox {
+	background: #ffffff;
+	border-bottom: 2px solid #a8a8a8;
+	border-radius: 0 0 10px 0;
+	border-right: 2px solid #a8a8a8;
+	font-size: 14px;
+	line-height: 21px;
+	padding: 0 5px;
+	position: absolute;
+}
+
+#loggedOut #posts {
+	padding: 24px 0 0;
+}
+
+#loggedOut #newest {
+	margin-left: 10px;
+}
