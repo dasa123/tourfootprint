@@ -21,6 +21,8 @@ public class Post extends Model
 	public Date postingDate;
 	public Boolean sharedWithOthers;
 	
+	public Double rating;
+	
 	@OneToOne
 	public MapLocation mapLocation;
 	
@@ -48,5 +50,7 @@ public class Post extends Model
 		this.sender = sender;
 		this.content = content;
 		this.tags = tags;
+		
+		this.rating = 0.0;
 	}
 }

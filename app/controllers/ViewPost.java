@@ -51,6 +51,10 @@ public class ViewPost extends Controller
 						Comment comment = new Comment(commentText,
 								commentRating, sender, post);
 						comment.save();
+						
+						post.refresh();
+						post.rating = new Double(post.rating.doubleValue() + commentRating.intValue());
+						post.save();
 					}
 				}
 			}

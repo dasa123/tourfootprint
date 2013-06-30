@@ -192,6 +192,7 @@
 	    #{/if}
 	    <p>
 	    #{if mode != 'view'}
+	        <label>Share with others:</label><br>
 	        <label for="share_yes_input">Yes </label>
 	        <input type="radio" name="shareRadio" id="share_yes_input" value="yes" #{if mode == 'new'} checked #{/if} #{else}#{if post.sharedWithOthers}checked #{/if} #{/else}/><br>
 	        <label for="share_no_input">No </label>
