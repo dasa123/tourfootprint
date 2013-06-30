@@ -44,6 +44,11 @@
 	width: 466px;
 }
 
+#loggedOut #liked img, #loggedOut #newest img {
+	height: 300px;
+	width: 466px;
+}
+
 #loggedOut .infoBox {
 	background: #ffffff;
 	border-bottom: 2px solid #a8a8a8;

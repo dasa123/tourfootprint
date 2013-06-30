@@ -54,18 +54,18 @@
 			<div id="liked">
 				<div class="infoBox">
 					<p>
-					Most liked: Doris and Michael in Paris
+					Most liked: ${mostLikedPostTitle.raw()}
 					</p>
 				</div>
-				<img src="/public/images/most_liked.jpg" alt="most liked" />
+				<img src="@{MainPage.getPictureOfMostLikedPost(mostLikedPostId)}" alt="most liked" />
 			</div>
 			<div id="newest">
 				<div class="infoBox">
 					<p>
-					Recently finished: The beauty of Africa
+					Recently finished: ${recentlyFinishedPostTitle.raw()}
 					</p>
 				</div>
-				<img src="/public/images/recently_finished.jpg" alt="recently finished" />
+            	<img src="@{MainPage.getPictureOfRecentlyFinishedPost(recentlyFinishedPostId)}" alt="recently finished" />
 			</div>
 		</div>
 	</div>
