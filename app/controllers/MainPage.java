@@ -62,21 +62,22 @@ public class MainPage extends Controller
 	{
 		String userId = session.get("userId");
 
-        Long mostLikedPostId = getIdOfMostLikedPost();
-        Long recentlyFinishedPostId = getIdOfRecentlyFinishedPost();
-        String mostLikedPostTitle = getTitleOfMostLikedPost(mostLikedPostId);
-        String recentlyFinishedPostTitle = getTitleOfRecentlyFinishedPost(recentlyFinishedPostId);
-
 		if (userId != null)
 		{
 			User user = User.findById(Long.parseLong(userId));
 			if (user != null)
 			{
-				render(user, mostLikedPostId, mostLikedPostTitle, recentlyFinishedPostId, recentlyFinishedPostTitle);
+				render(user);
 			}
 		}
 
 		// if no (valid) user authenticated
+
+        Long mostLikedPostId = getIdOfMostLikedPost();
+        Long recentlyFinishedPostId = getIdOfRecentlyFinishedPost();
+        String mostLikedPostTitle = getTitleOfMostLikedPost(mostLikedPostId);
+        String recentlyFinishedPostTitle = getTitleOfRecentlyFinishedPost(recentlyFinishedPostId);
+
 		render(mostLikedPostId, mostLikedPostTitle, recentlyFinishedPostId, recentlyFinishedPostTitle);
 	}
 
@@ -137,7 +138,12 @@ public class MainPage extends Controller
 	public static Long getIdOfRecentlyFinishedPost() {
 		
 		List<Post> posts = Post.findAll();
-		Long postId = posts.get(posts.size() - 1).id;
+		Long postId = null;
+		
+		if (posts.size() > 0)
+		{
+			postId = posts.get(posts.size() - 1).id;
+		}
 
         return postId;
 	}
@@ -146,22 +152,36 @@ public class MainPage extends Controller
 
 		Post post = Post.findById(postId);
 		List<Image> images = post.content.pictures;
-		Random generator = new Random();
-		Long id = images.get(generator.nextInt(images.size())).getId();
-		RequestUtils.renderImage(id);
+		
+		if(images.size() > 0)
+		{
+			Random generator = new Random();
+			Long id = images.get(generator.nextInt(images.size())).getId();
+			RequestUtils.renderImage(id);
+		}
 	}
 	
 	public static String getTitleOfRecentlyFinishedPost(Long postId) {
 		
-		Post post = Post.findById(postId);
-		return post.title;
+		if(postId != null)
+		{
+			Post post = Post.findById(postId);
+			return post.title;
+		}
+		
+		return "";
 	}
 	
 	public static Long getIdOfMostLikedPost() {
 		
 		List<Post> posts = Post.findAll();
 		Random generator = new Random();
-		Long postId = posts.get(generator.nextInt(posts.size() - 1)).id;
+		
+		Long postId = null;
+		if(posts.size() > 0)
+		{
+			postId = posts.get(generator.nextInt(posts.size() - 1)).id;
+		}
 
         return postId;
 	}
@@ -170,14 +190,20 @@ public class MainPage extends Controller
 
 		Post post = Post.findById(postId);
 		List<Image> images = post.content.pictures;
-		Random generator = new Random();
-		Long id = images.get(generator.nextInt(images.size())).getId();
-		RequestUtils.renderImage(id);
+		if(images.size() > 0)
+		{
+			Random generator = new Random();
+			Long id = images.get(generator.nextInt(images.size())).getId();
+			RequestUtils.renderImage(id);
+		}
 	}
 	
 	public static String getTitleOfMostLikedPost(Long postId) {
-		
-		Post post = Post.findById(postId);
-		return post.title;
+		if (postId != null)
+		{
+			Post post = Post.findById(postId);
+			return post.title;
+		}
+		return "";
 	}
 }
