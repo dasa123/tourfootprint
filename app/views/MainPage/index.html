@@ -1,10 +1,20 @@
 #{extends 'templates/main.html' /}
 
+#{set title:'TourFootprint - I was here!'/}
+
 #{if user == nil}
-#{set title:'TourFootprint - Home'/}
-#{mainPageNotAuth /}
+	#{set 'moreStyles'}
+		#{stylesheet 'loggedOut.css' /}
+		#{stylesheet 'sliderman.css' /}
+	#{/set}
+
+	#{set 'moreScripts'}
+		#{script 'sliderman.1.3.7.js'/}
+	#{/set}
+
+	#{include 'MainPage/mainPageNotAuth.html' /}
 #{/if}
 
 #{else}
-#{include 'MyPosts/page.html' /}
+	#{include 'MyPosts/page.html' /}
 #{/else}
