@@ -17,10 +17,10 @@ public class NewPost extends Controller
 
 	public static void page()
 	{
-		Long userId = Long.parseLong(session.get("userId"));
+		String userId = session.get("userId");
 		if (userId != null)
 		{
-			User user = User.findById(userId);
+			User user = User.findById(Long.parseLong(userId));
 
 			if (user != null)
 			{

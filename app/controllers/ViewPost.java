@@ -17,10 +17,10 @@ public class ViewPost extends Controller
 				boolean showEditButton = false;
 				User user = null;
 
-				Long userId = Long.parseLong(session.get("userId"));
+				String userId = session.get("userId");
 				if (userId != null)
 				{
-					user = User.findById(userId);
+					user = User.findById(Long.parseLong(userId));
 					showEditButton = user != null;
 				}
 

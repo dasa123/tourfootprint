@@ -22,10 +22,10 @@ public class EditPost extends Controller
 			if (post != null)
 			{
 				// make sure user authenticated is allowed to edit
-				Long userId = Long.parseLong(session.get("userId"));
+				String userId = session.get("userId");
 				if (userId != null)
 				{
-					User user = User.findById(userId);
+					User user = User.findById(Long.parseLong(userId));
 
 					if (user != null)
 					{
@@ -48,10 +48,10 @@ public class EditPost extends Controller
 			String video, String shareRadio, String address,
 			Double locationLongitude, Double locationLatitude, String tags)
 	{
-		Long userId = Long.parseLong(session.get("userId"));
+		String userId = session.get("userId");
 		if (postId != null && userId != null)
 		{
-			User sender = User.findById(userId);
+			User sender = User.findById(Long.parseLong(userId));
 			Post post = Post.findById(postId);
 
 			if (post != null && sender != null)
