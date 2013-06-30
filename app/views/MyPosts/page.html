@@ -101,7 +101,7 @@ function refreshTags(){
 			    
             #{list items:user.posts, as:'myPost'}
                 <div class="post" >                
-                    <h2 class="post-title" onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
+                    <h2 class="post-title" #{if myPost.mapLocation.latitude} onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})" #{/if}>
                         <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
                     </h2>                    
                     <div class="post-image">
