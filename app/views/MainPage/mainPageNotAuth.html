@@ -58,7 +58,9 @@
 					Most liked: ${mostLikedPostTitle.raw()}
 					</p>
 				</div>
-				<img src="@{MainPage.getPictureOfMostLikedPost(mostLikedPostId)}" alt="most liked" />
+				<a href="@{ViewPost.page(mostLikedPostId)}">
+					<img src="@{MainPage.getPictureOfMostLikedPost(mostLikedPostId)}" alt="most liked" />
+				</a>
 			</div>
 			<div id="newest">
 				<div class="infoBox">
@@ -66,7 +68,9 @@
 					Recently finished: ${recentlyFinishedPostTitle.raw()}
 					</p>
 				</div>
-            	<img src="@{MainPage.getPictureOfRecentlyFinishedPost(recentlyFinishedPostId)}" alt="recently finished" />
+				<a href="@{ViewPost.page(recentlyFinishedPostId)}">
+            		<img src="@{MainPage.getPictureOfRecentlyFinishedPost(recentlyFinishedPostId)}" alt="recently finished" />
+            	</a>
 			</div>
 		</div>
 		#{/if}
