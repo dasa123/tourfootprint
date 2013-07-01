@@ -50,6 +50,7 @@
 				<input id="button2" type="button" value="Search">
 			</form>
 		</div>
+		#{if ( mostLikedPostId != null && recentlyFinishedPostId != null ) }
 		<div id="posts">
 			<div id="liked">
 				<div class="infoBox">
@@ -68,6 +69,7 @@
             	<img src="@{MainPage.getPictureOfRecentlyFinishedPost(recentlyFinishedPostId)}" alt="recently finished" />
 			</div>
 		</div>
+		#{/if}
 	</div>
 </div>
 

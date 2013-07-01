@@ -12,8 +12,7 @@
 
 #logged_out #search_bar2 {
 	clear: both;
-	height: 20px;
-	padding: 4px 0 0;
+	padding: 4px 0 0 0;
 }
 
 #logged_out #search2 {
@@ -61,7 +60,7 @@
 }
 
 #loggedOut #posts {
-	padding: 24px 0 0;
+	margin: 10px 0 0 0;
 }
 
 #loggedOut #newest {
