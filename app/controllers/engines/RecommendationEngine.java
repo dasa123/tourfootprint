@@ -1,9 +1,27 @@
-package engines;
+package controllers.engines;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import models.Post;
 
 public class RecommendationEngine
 {
+	public static void sortRecommendations(final List<Post> posts, final List<String> tags)
+	{
+		Collections.sort(posts, new Comparator<Post>(){
+
+			@Override
+			public int compare(Post o1, Post o2)
+			{
+				double e = estimateMatch(tags, o1.tags) - estimateMatch(tags, o2.tags); 
+				return e > 0? 1 : -1;
+			}
+		});
+	}
+	
 	public static double estimateMatch(Collection<String> tagList1, Collection<String> tagList2)
 	{
 		double estimate = 0;
@@ -22,8 +40,8 @@ public class RecommendationEngine
 	public static double estimateStringMatch(String s1, String s2)
 	{
 		// reduce strings
-		s1 = reduceString(s1);
-		s1 = reduceString(s1);
+		s1 = ReductionUtil.reduceString(s1);
+		s1 = ReductionUtil.reduceString(s1);
 
 		double estimate = 0;
 		
@@ -37,36 +55,4 @@ public class RecommendationEngine
 		estimate /= Math.max(s1.length(), s2.length());
 		return estimate;
 	}
-
-	public static String reduceString(String s)
-	{
-		// String originalAlphabet = "abcdefghijklmnopqrstuvwxyz";
-		String reducedAlphabet = "abcdefghigklnnopqrstuvvxyz";
-		// make lowercase
-		s = s.toLowerCase();
-		
-		//keep only consonents
-		String consontantString = "";
-		for(char c : s.toCharArray())
-		{
-			if(Character.isAlphabetic(c))
-			{
-				consontantString += c;
-			}
-		}
-		
-		//reduce remaining chars
-		String reducedString = "";
-		for(char c : consontantString.toCharArray())
-		{
-			if(Character.isAlphabetic(c))
-			{
-				int charIndex = c - 'a';
-				reducedString += reducedAlphabet.charAt(charIndex);
-			}
-		}
-		
-		return reducedString;
-	}
-
 }
