@@ -235,6 +235,7 @@ public class MainPage extends Controller {
 			}	
 		}
     	
+    	return (User)renderArgs.get("user");
     }
 	
     /*
