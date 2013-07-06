@@ -9,6 +9,13 @@ GET		/facebook								Facebook.FB.Event.subscribe
 
 GET     /channel			         			staticFile:/app/views/templates/channel.html
 
+GET /oauth/access_token?
+     client_id=218973444927818
+    &client_secret=7b58f10f867b06bd6c49404978b4b3f
+    &grant_type=client_credentials
+
+GET /{user-id}/accounts
+
 # New Post page
 GET     /newPost                             	NewPost.page
 # New Post page
