@@ -11,6 +11,7 @@ $(document).ready(function() {
         	if (registerBox.is(":visible"))
             	registerBox.fadeOut("300");
         return false;
+        
     });
     
     $("#login_box").hover(function(){ 

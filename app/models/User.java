@@ -30,6 +30,7 @@ public class User extends Model
 	public List<User> followed;
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
+	public String access_token;
 
 	public User(String email, String password, String fullname, String country,
 			String city, String gender, String religion, Date birthday,

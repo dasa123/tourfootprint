@@ -5,6 +5,10 @@
 # Home page
 GET     /                                       MainPage.index
 
+GET		/facebook								Facebook.FB.Event.subscribe
+
+GET     /channel			         			staticFile:/app/views/templates/channel.html
+
 # New Post page
 GET     /newPost                             	NewPost.page
 # New Post page

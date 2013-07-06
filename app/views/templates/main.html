@@ -38,19 +38,6 @@
     				<div id="logo">
     					<img src="/public/images/tourFootprint_logo.png" />
     				</div>
-    				
-    				#{if ( loginError == "true" ) }
-    					#{loginError /}
-    				#{/if}
-    				#{if ( passError == "true" ) }
-    					#{passError /}
-    				#{/if}
-					#{if ( userExists == "true" ) }
-						#{userExists /}
-					#{/if}
-    				#{if ( emailError == "true" ) }
-						#{emailError /}
-					#{/if}
     				#{if user}
     					#{navigationBarAuth /}
     				#{/if}

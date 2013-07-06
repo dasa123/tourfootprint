@@ -1,10 +1,16 @@
 #{extends 'templates/main.html' /}
 
-#{if user == nil}
-#{set title:'TourFootprint - Home'/}
-#{mainPageNotAuth /}
+#{if user}
+#{include 'MyPosts/page.html' /}
+
 #{/if}
 
 #{else}
-#{include 'MyPosts/page.html' /}
+
+#{set title:'TourFootprint - Home'/}
+#{mainPageNotAuth /}
 #{/else}
+
+#{if me}
+You're ${me.get("name")} on Facebook
+#{/if} #{else} login #{/else}

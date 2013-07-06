@@ -1,3 +1,16 @@
+<div id="fb-root"></div>
+<script src="@{'/public/javascripts/Facebook.js'}" type="text/javascript"></script>
+<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+
+<div id="loginRegisterError">
+ <!-- Claudia added error message to navigation bar. 
+    				 But it should be inside the popup-window. Don't know how it has to look like in JavaScript -->
+    				#{if flash.error}
+    					<p style="color:#c00">
+    						${flash.error}
+    					</p>
+					#{/if}
+</div>
 <div id="register">
 	<a href="#" class="navigationBarPopUp_button register_button">
 		Register
@@ -32,6 +45,22 @@
             	<input type="password" name="password" placeholder="Password" />
             	<input type="submit" value="Login" />
         	#{/form}
+        	<!-- Claudia added links for Google+ and Facebook account. David takes care for the design. -->
+        		<p>
+					Login using Google+ or Facebook account
+				</p> 
+        		<ul class="providers">
+        		<ul>
+					#{form @MainPage.google(), id:'google_form'}
+							<!-- <img alt="google icon" title="google" src="/assets/images/icons/google-48x48.png"></a></li> -->
+							<input type="submit" value="Google+"/>
+					#{/form}
+					#{form @MainPage.facebook(), id:'facebook_form'}
+							<!-- <img alt="facebook icon" title="facebook" src="/assets/images/icons/facebook-48x48.png"></a></li> -->
+							<input type="submit" value="Facebook"/>
+					#{/form}
+				</ul>
+			</ul>
     	</div>
 	</div>
 </div>
