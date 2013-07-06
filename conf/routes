@@ -7,13 +7,17 @@ GET     /                                       MainPage.index
 
 # New Post page
 GET     /newPost                             	NewPost.page
-# New Post page
+# Edit Post page
 GET     /editPost                            	EditPost.page
 # View Post page
 GET     /viewPost                            	ViewPost.page
 
 # My Posts page
 GET     /myPosts                            	MyPosts.page
+
+# Search Results page
+GET     /searchResults                          SearchResults.page
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

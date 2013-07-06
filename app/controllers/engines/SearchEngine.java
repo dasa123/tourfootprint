@@ -10,6 +10,8 @@ public class SearchEngine
 {
 	public static LinkedList<Post> search(String searchString)
 	{
+		searchString = searchString == null? "" : searchString;
+		
 		// reduce string
 		String[] searchWordsArray = searchString.split(" ");
 

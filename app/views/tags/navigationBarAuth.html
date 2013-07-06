@@ -5,10 +5,15 @@
 	<a href="#">Post Stream</a>
 </div>
 <div id="navigation_bar_search">
-	<form id="navigation_bar_search_bar" action="">
-		<input id="navigation_bar_input_search" placeholder="Type in your search terms!" type="text">
-		<input id="navigation_bar_button" type="button" value="Search">
+	#{if searchString == nil}
+	<form id="navigation_bar_search_bar" action="@{SearchResults.page()}">
+	#{/if}
+		<input id="navigation_bar_search_text" placeholder="Type in your search terms!" type="text" name="searchString" value="${searchString?.raw()}">
+		<input id="navigation_bar_search_button" type="button" value="Search">
+	#{if searchString == nil}
 	</form>
+	#{/if}
+	
 </div>
 <div id="navigation_bar_help">
 	<a href="#">Help</a>

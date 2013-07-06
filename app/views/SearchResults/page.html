@@ -1,0 +1,174 @@
+#{extends 'templates/main.html'/}
+#{set title:'SearchResults - ' + searchString /}
+#{if searchString}
+#{set searchString: searchString /}
+#{/if}
+
+<style type="text/css">
+	.postImage{height:50px;}
+</style>
+
+<script>
+var searchResultScope = {};
+
+$(function() {
+   initialize();
+});
+
+
+function initialize() {
+	searchResultScope.resultHtmlIds = {};
+	
+	searchResultScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+	searchResultScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+			searchResultScope.mapOptions);
+	
+	
+	$("#navigation_bar_search_button").click(doSearch);
+		 
+	//updaing search every 1.5 seconds if needed
+	setInterval(function(){
+		var currentString = $("#navigation_bar_search_text").val();
+			
+		currentString = $.trim(currentString);
+		if(currentString != searchResultScope.searchInputString){
+			doSearch();
+		}
+		
+	}, 1500);
+}
+
+function doSearch(){
+	 var doSearchRoute = #{jsRoute @SearchResults.doSearch(':searchString') /} ;
+	 
+	 var ss = $("#navigation_bar_search_text").val();
+	 
+	 $.ajax({
+		    url: doSearchRoute.url({searchString: ss}),
+		    dataType : 'json',
+		    success: function (postsData) {
+		             	viewSearchResults(ss, postsData);
+		            },
+            error: function (xhr, ajaxOptions, thrownError) {
+	                	alert(thrownError);
+            		}
+	 });
+ }
+
+function viewSearchResults(searchInputString, postsData){
+	//remove current results
+	$("#search_results_posts_div").html("");
+	for(var i in searchResultScope.mapMarkers){
+		searchResultScope.mapMarkers[i].setMap(null); 
+	}
+	
+	//update global variables
+	searchResultScope.postsData = postsData;
+	searchResultScope.searchInputString = searchInputString;
+	searchResultScope.resultHtmlIds = {};
+	searchResultScope.mapMarkers = {};
+	
+	//update url
+	document.title = 'SearchResults - ' + searchInputString;
+	var updatedUrl = "/searchResults?searchString=" + searchInputString;
+	//window.history.pushState({"html": $("html").html(), "pageTitle":document.title},"", updatedUrl);
+	if(window.history.pushState){
+		window.history.pushState({},"", updatedUrl);
+	}
+	//update content
+	for(var i = 0; i < postsData.length; i ++){
+		var post = postsData[i];
+		var htmlId = "search_results_post_span_id" + i;
+		
+		searchResultScope.resultHtmlIds[i] = htmlId;
+		
+		var postHtml = "<span id='" + htmlId + "' class='search_results_post_span_class'>" +
+						"<a href=/viewPost?postId="  + post.id + ">" + post.title + "</a><br>" +
+						post.description +
+						"</span><br>";
+		
+		$("#search_results_posts_div").append(postHtml);
+		
+		if(post.longitude){
+			var iMarker = new google.maps.Marker({
+	            map: searchResultScope.map,
+	            position: new google.maps.LatLng(post.latitude, post.longitude),
+	        });
+			
+			searchResultScope.mapMarkers[i] = iMarker; 
+			
+			google.maps.event.addListener(iMarker,"click",function(){ 
+				//window.location = "/viewPost?postId=" + post.id
+						alert("" + i);
+				//iMarker.setAnimation(google.maps.Animation.BOUNCE);
+				});
+		}
+		else{
+			//searchResultScope.mapMarkers[i] = null;
+		}
+	}
+}
+
+function setMarkerPosition(lat, lng){
+	var location = new google.maps.LatLng(lat, lng);
+	
+	searchResultScope.map.panTo(location);
+	searchResultScope.map.setZoom(16);
+   	
+   	if(myPostScope.marker){
+   		searchResultScope.marker.setPosition(location);
+   	}
+   	else{
+   		searchResultScope.marker = new google.maps.Marker({
+	            map: searchResultScope.map,
+	            position: location
+	        });
+   	}
+}
+
+        
+</script>
+
+<h3>Search Results  for : #{if searchString} ${searchString.raw()}  #{/if}</h3>
+<br>
+
+<div id="search_results_upper_div">
+    <div id="newpost-map-canvas" style="height:400px;width:100%">  </div>
+</div>
+
+<div id="search_results_lower_div">
+	<div id="search_results_posts_div">
+        	  
+            #{list items: searchResults, as:'post'}
+                <div class="post" >
+                    <h2 class="post-title" #{if post.mapLocation.latitude} onmouseover="setMarkerPosition(${post.mapLocation.latitude}, ${post.mapLocation.longitude})" #{/if}>
+                        <a href="@{ViewPost.page(post.id)}">${post.title}</a>
+                    </h2>                    
+                    <div class="post-image">
+                    	
+                    </div>
+                    
+                    <div class="post-metadata">
+                        <span class="post-desc">
+                            ${post.description}
+                        </span>
+                   
+                        <span class="post-date">
+
+                        </span>
+                    </div>
+                </div>
+            #{/list}
+            
+            #{else}
+			    <div class="empty">
+			        No results found
+			    </div>
+			#{/else}
+        </div>
+</div>
+

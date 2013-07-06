@@ -1,3 +1,10 @@
+#{if searchString}
+<div id="navigation_bar_search">
+	<input id="navigation_bar_search_text" placeholder="Type in your search terms!" type="text" name="searchString" value="${searchString?.raw()}">
+	<input id="navigation_bar_search_button" type="button" value="Search">
+</div>
+#{/if}
+
 <div id="navigation_bar_register">
 	<a href="#" class="navigation_bar_pop_up_button navigation_bar_register_button">
 		Register

@@ -29,11 +29,10 @@
 	<div id="slider_navigation"></div>
 </div>
 <div id="search_container">
-	<form id="search_form" action="">
-		<input id="search_field" placeholder="Type in your search terms!"
-			type="text"> <input id="search_button" type="button"
-			value="Search">
-	</form>
+	#{form @SearchResults.page(), id:'seach_form'}
+		<input id="search_field" name="searchString" placeholder="Type in your search terms!" type="text"> 
+		<input id="search_button" type="button" value="Search">
+	#{/form}
 </div>
 #{if ( mostLikedPost != null && recentlyFinishedPost != null ) }
 <div id="posts">

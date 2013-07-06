@@ -86,9 +86,10 @@
         
         #{if post}
         newPostScope.address = "${post.mapLocation.address.raw()}";
-        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
-        #{/if}
-        
+	        #{if post.mapLocation.latitude}
+	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+        	#{/if}
+       	#{/if}
         
         //map click callback
         google.maps.event.addListener(newPostScope.map, 'click', function(event) {
@@ -118,7 +119,7 @@
 		setInterval(function(){
 				var address = $("#address_input").val();
 				
-				if(address){
+				//if(address){
 					address = $.trim(address);
 					if(address != newPostScope.address){
 						newPostScope.address = address;
@@ -130,7 +131,7 @@
 					   	      }
 					   	    });
 					}
-				}
+				//}
 		}, 1500);
       }
     </script>
