@@ -12,8 +12,8 @@
 @default_font_color_blue: #03528a;
 @default_font_size: 14px;
 @default_font_size_big: 16px;
-@default_font_line_height: 21px;
-@default_font_line_height_big: 24px;
+@default_line_height: 21px;
+@default_line_height_big: 24px;
 
 // Radius
 @default_radius: 10px;
@@ -25,7 +25,7 @@
 @default_vertical_gap: 10px;
 
 // Bottom
-@bottom_height: @default_font_line_height_big + @default_border_width;
+@bottom_height: @default_line_height_big + @default_border_width;
 
 /*
 	Items
@@ -40,7 +40,7 @@ body {
 	color: @default_font_color;
 	font-family: 'Droid Sans', sans-serif !important;
 	font-size: @default_font_size;
-	line-height: @default_font_line_height;
+	line-height: @default_line_height;
 	margin: 0 auto;
 	overflow-y: scroll;
 	width: 960px;
@@ -106,7 +106,7 @@ a {
 		p {
 			font-size: @default_font_size_big;
 			font-weight: bold;
-			line-height: @default_font_line_height_big;
+			line-height: @default_line_height_big;
 			text-align: center;
 			
 			a {

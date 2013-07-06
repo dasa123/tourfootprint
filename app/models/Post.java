@@ -81,7 +81,7 @@ public class Post extends Model
 	}
 	
 
-	public static Post getfMostLikedWithImages() {
+	public static Post getMostLikedWithImages() {
 		
 		List<Post> chronologicalPosts = Post.findAll();
 		
@@ -100,7 +100,7 @@ public class Post extends Model
 		return null;
 	}
 	
-	public static Post getfMostLiked() {
+	public static Post getMostLiked() {
 		
 		List<Post> chronologicalPosts = Post.findAll();
 		

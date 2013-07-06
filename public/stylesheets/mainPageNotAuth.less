@@ -1,0 +1,110 @@
+// Import default values
+@import "template.less";
+@import "mainPage.less";
+
+#slider_container, #search_field, #search_button {
+	border: @default_border_width @default_border_style @default_border_color;
+}
+
+#slider_container {
+	height: 346px;
+	margin-bottom: 20px !important;
+	width: 946px;
+	
+	#slider_content {
+		float: left;
+		overflow: hidden;
+		
+		img {
+			height: 346px;
+			width: 946px; 
+		}
+		
+		.slider_description {
+			color: #ffffff;
+			font-family: Tahoma,Arial,Helvetica;
+			letter-spacing: 1px;
+			line-height: 30px;
+			padding: 10px;
+			text-align: center;
+			text-shadow: 0 1px 3px #000000;
+		}
+
+		.slider_prev {
+			background: url(/public/images/sliderman/left.png) no-repeat left center;
+			left: 0;
+		}
+
+		.slider_next {
+			background: url(/public/images/sliderman/right.png) no-repeat right center;
+			right: 0;
+		}
+
+		.slider_next, .slider_prev {
+			width: 50px;
+			height: 340px;
+			display: block;
+			position: absolute;
+			top: 0;
+		}
+	}
+	
+	#slider_navigation {
+		text-align: center;
+	
+		a {
+			img {
+				background: url(/public/images/sliderman/bullet.png) no-repeat center center;
+				clear: both;
+				height: 16px;
+				margin-top: 6px;
+				width: 16px;
+			}
+			
+			&.active img {
+				background: url(/public/images/sliderman/bullet_active.png) no-repeat center center;
+			}
+		}
+	}
+}
+
+#search_container {
+	clear: both;
+	padding: 4px 0 0 0;
+	
+	#search_field {
+		border-radius: @default_radius;
+		height: 30px;
+		padding-left: 10px;
+		width: 861px;
+	}
+
+	#search_button {
+		background-color: #ededed;
+		border-radius: @default_radius;
+		color: #777777;
+		font-weight: bold;
+		height: 34px;
+		width: 70px;
+		vertical-align: top;
+	}
+}
+
+#liked, #newest {
+	.bottom_box_mixin();
+	
+	.infoBox {
+		background: #ffffff;
+		border-bottom: @default_border_width @default_border_style @default_border_color;
+		border-radius: 0 0 @default_radius 0;
+		border-right: @default_border_width @default_border_style @default_border_color;
+		font-size: @default_font_size;
+		line-height: @default_line_height;
+		padding: 0 5px;
+		position: absolute;
+	}
+}
+
+#newest {
+	.bottom_right_box_mixin();
+}

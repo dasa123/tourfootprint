@@ -2,10 +2,13 @@
 
 #{set title:'TourFootprint - I was here!'/}
 
+#{set 'moreStyles'}
+	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/mainPage.less'}">
+#{/set}
+
 #{if user == nil}
 	#{set 'moreStyles'}
-		#{stylesheet 'loggedOut.css' /}
-		#{stylesheet 'sliderman.css' /}
+		<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/mainPageNotAuth.less'}">
 	#{/set}
 
 	#{set 'moreScripts'}
@@ -16,5 +19,12 @@
 #{/if}
 
 #{else}
-	#{include 'MyPosts/page.html' /}
+	#{set 'moreStyles'}
+		<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/mainPageAuth.less'}">
+	#{/set}
+
+	#{set 'moreScripts'}
+	#{/set}
+
+	#{include 'MainPage/mainPageAuth.html' /}
 #{/else}

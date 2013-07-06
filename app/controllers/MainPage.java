@@ -59,13 +59,10 @@ public class MainPage extends Controller {
 
 		// if no (valid) user authenticated
 
-		Long mostLikedPostId = getIdOfMostLikedPost();
-		Long recentlyFinishedPostId = getIdOfRecentlyFinishedPost();
-		String mostLikedPostTitle = getTitleOfMostLikedPost(mostLikedPostId);
-		String recentlyFinishedPostTitle = getTitleOfRecentlyFinishedPost(recentlyFinishedPostId);
+		Post mostLikedPost = Post.getMostLikedWithImages();
+		Post recentlyFinishedPost = Post.getMostRecentWithImages();
 
-		render(mostLikedPostId, mostLikedPostTitle, recentlyFinishedPostId,
-				recentlyFinishedPostTitle);
+		render(mostLikedPost, recentlyFinishedPost);
 	}
 
 	// Login with e-mail address and password.
@@ -108,24 +105,9 @@ public class MainPage extends Controller {
 
 		render();
 	}
-
-	public static Long getIdOfRecentlyFinishedPost() {
-
-		List<Post> posts = Post.findAll();
-		Long postId = null;
-
-		for (int i = posts.size() - 1; i >= 0; i--) {
-			if (posts.get(i).content.pictures.size() > 0) {
-				postId = posts.get(i).getId();
-				break;
-			}
-		}
-
-		return postId;
-	}
-
-	public static void getPictureOfRecentlyFinishedPost(Long postId) {
-
+	
+	public static void getRandomPicture(Long postId) {
+		
 		if (postId != null) {
 			Post post = Post.findById(postId);
 			List<Image> images = post.content.pictures;
@@ -133,56 +115,5 @@ public class MainPage extends Controller {
 			Long id = images.get(generator.nextInt(images.size())).getId();
 			RequestUtils.renderImage(id);
 		}
-	}
-
-	public static String getTitleOfRecentlyFinishedPost(Long postId) {
-
-		if (postId != null) {
-			Post post = Post.findById(postId);
-			return post.title;
-		}
-
-		return "";
-	}
-
-	public static Long getIdOfMostLikedPost() {
-		
-		List<Post> chronologicalPosts = Post.findAll();
-		Long postId = null;
-		
-		if (chronologicalPosts.size() > 1) {
-
-			List<Post> posts = Post.find("order by rating desc").fetch();
-			Long mostRecentPostId = chronologicalPosts.get(chronologicalPosts.size() - 1).getId();
-
-			for (int i = 0; i < posts.size() - 1; i++) {
-				if (posts.get(i).content.pictures.size() > 0 && posts.get(i).getId().compareTo(mostRecentPostId) != 0) {
-					postId = posts.get(i).getId();
-					break;
-				}
-			}
-		}
-
-		return postId;
-	}
-
-	public static void getPictureOfMostLikedPost(Long postId) {
-
-		if (postId != null) {
-			Post post = Post.findById(postId);
-			List<Image> images = post.content.pictures;
-			Random generator = new Random();
-			Long id = images.get(generator.nextInt(images.size())).getId();
-			RequestUtils.renderImage(id);
-		}
-	}
-
-	public static String getTitleOfMostLikedPost(Long postId) {
-		if (postId != null) {
-			Post post = Post.findById(postId);
-			return post.title;
-		}
-		
-		return "";
 	}
 }
