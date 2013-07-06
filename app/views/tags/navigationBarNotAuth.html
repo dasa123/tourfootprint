@@ -1,14 +1,14 @@
-<div id="register">
-	<a href="#" class="navigationBarPopUp_button register_button">
+<div id="navigation_bar_register">
+	<a href="#" class="navigation_bar_pop_up_button navigation_bar_register_button">
 		Register
 	</a>
-	<div id="register_box">
-		<div class="triangle">
+	<div id="navigation_bar_register_box">
+		<div class="navigation_bar_triangle">
 		</div>
-		<div class="triangle2">
+		<div class="navigation_bar_triangle2">
 		</div>
-    	<div id="register_box_content">
-        	#{form @MainPage.register(), id:'register_form'}
+    	<div id="navigation_bar_register_box_content">
+        	#{form @MainPage.register(), id:'navigation_bar_register_form'}
             	<input type="text" name="email" placeholder="E-Mail" />
             	<input type="password" name="password" placeholder="Password" />
             	<input type="password" name="password_retyped" placeholder="Password Retyped" />
@@ -17,17 +17,17 @@
     	</div>
 	</div>
 </div>
-<div id="login">
-	<a href="#" class="navigationBarPopUp_button login_button">
+<div id="navigation_bar_login">
+	<a href="#" class="navigation_bar_pop_up_button navigation_bar_login_button">
 		Login
 	</a>
-	<div id="login_box">
-		<div class="triangle">
+	<div id="navigation_bar_login_box">
+		<div class="navigation_bar_triangle">
 		</div>
-		<div class="triangle2">
+		<div class="navigation_bar_triangle2">
 		</div>
-    	<div id="login_box_content">
-    		#{form @MainPage.login(), id:'login_form'}
+    	<div id="navigation_bar_login_box_content">
+    		#{form @MainPage.login(), id:'navigation_bar_login_form'}
             	<input type="text" name="email" placeholder="E-Mail" />
             	<input type="password" name="password" placeholder="Password" />
             	<input type="submit" value="Login" />

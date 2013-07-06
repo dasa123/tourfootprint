@@ -13,7 +13,7 @@
         
         <!-- CSS/Less -->
         #{get 'moreStyles' /}
-        <link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/navigationBarPopUp.less'}">
+        <link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/navigationBar.less'}">
         <link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/template.less'}">
         
         <!-- Javascript -->
@@ -21,15 +21,15 @@
         <script src="@{'/public/javascripts/jquery-1.10.1.min.js'}" type="text/javascript"></script>
         <script src="@{'/public/javascripts/jquery-ui-1.10.3.custom.min.js'}" type="text/javascript"></script>
         <script src="@{'/public/javascripts/less-1.3.3.min.js'}" type="text/javascript"></script>
-        <script src="@{'/public/javascripts/navigationBarPopUp.js'}" type="text/javascript"></script>
+        <script src="@{'/public/javascripts/navigationBar.js'}" type="text/javascript"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR5BqFaXKB9kYMEwy4xzFvuyMEX_P6IPU&sensor=false"></script>
         
     </head>
     <body>
-    	<div id="top">
-    		<div id="content">
-    			<div id="navigation_bar">
-    				<div id="logo">
+    	<div id="template_top">
+    		<div id="template_content">
+    			<div id="template_navigation_bar">
+    				<div id="template_logo">
     					<a href="/">
     						<img src="/public/images/tourFootprint_logo.png" />
     					</a>
@@ -57,11 +57,11 @@
     			#{doLayout /}
     		</div>
     		<div style="clear:both; height: 10px;"></div>
-    		<div id="push">
+    		<div id="template_push">
     		</div>
     	</div>
-    	<div id="bottom">
-    		<div id="footer">
+    	<div id="template_bottom">
+    		<div id="template_footer">
 	    		<p>
 		    		Copyright © 2013 Tour Footprint&nbsp;&nbsp;&nbsp;
 		    		<a href="#">About Us</a>&nbsp;&nbsp;&nbsp;

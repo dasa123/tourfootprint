@@ -9,7 +9,7 @@
 /*
 	Button
 */
-.navigationBarPopUp_button {
+.navigation_bar_pop_up_button {
 	background: url("/public/images/navigationBarButton.jpg");
 	border-radius: @default_radius;
 	color: #ffffff;
@@ -29,7 +29,7 @@
 /*
 	Triangle
 */
-.triangle_mixin(@size; @color) {
+.navigation_bar_triangle_mixin(@size; @color) {
 	border-bottom: 14px+@size solid @color;
 	border-left: 14px+@size solid transparent;
 	border-right: 14px+@size solid transparent;
@@ -37,18 +37,18 @@
 	width: 0;
 }
 
-.triangle {
-	.triangle_mixin(2px; @default_border_color);
+.navigation_bar_triangle {
+	.navigation_bar_triangle_mixin(2px; @default_border_color);
 }
 
-.triangle2 {
-	.triangle_mixin(0px; #ffffff);
+.navigation_bar_triangle2 {
+	.navigation_bar_triangle_mixin(0px; #ffffff);
 }
 
 /*
 	BOX
 */
-.box_mixin {
+.navigation_bar_box_mixin {
 	border: @default_border_width @default_border_style @default_border_color;
 	border-radius: @default_radius;
 	display: none;
@@ -57,25 +57,25 @@
 	z-index: 1;
 }
 
-#login_box {
-	.box_mixin;
+#navigation_bar_login_box {
+	.navigation_bar_box_mixin;
 	margin: 52px 0 0 606px;
 }
 	
-#profile_box {
-	.box_mixin;
+#navigation_bar_profile_box {
+	.navigation_bar_box_mixin;
 	margin: 52px 0 0 709px;
 }
 	
-#register_box {
-	.box_mixin;
+#navigation_bar_register_box {
+	.navigation_bar_box_mixin;
 	margin: 52px 0 0 700px;
 }
 
 /*
 	Box content
 */
-#login_box_content, #profile_box_content, #register_box_content {
+#navigation_bar_login_box_content, #navigation_bar_profile_box_content, #navigation_bar_register_box_content {
 	background: #ffffff;
 	border-radius: @default_radius - @default_border_width;
 	float: left;
@@ -83,7 +83,7 @@
 	width: @box_width;
 }
 
-.form_mixin {
+.navigation_bar_form_mixin {
 	margin: 0 0 0 9px;
 
 	input[type=text], input[type=password], input[type=password_retyped] {
@@ -109,16 +109,16 @@
 	}
 }
 
-#login_form {
-	.form_mixin;
+#navigation_bar_login_form {
+	.navigation_bar_form_mixin;
 }
 
-#profile_form {
-	.form_mixin;
+#navigation_bar_profile_form {
+	.navigation_bar_form_mixin;
 }
 
-#register_form {
-	.form_mixin;
+#navigation_bar_register_form {
+	.navigation_bar_form_mixin;
 }
 
 
@@ -126,7 +126,7 @@
 	just to get results fast. not nice!
 */
 
-.link_mixin {
+.navigation_bar_link_mixin {
 	padding-top: 13px;
 		
 	a {
@@ -139,28 +139,28 @@
 	}
 }
 
-#nav_search {
+#navigation_bar_search {
 	float: left;
 }
 
-#my_posts, #post_stream, #help {
+#navigation_bar_my_posts, #navigation_bar_post_stream, #navigation_bar_help {
 	float: left;
-	.link_mixin;
+	.navigation_bar_link_mixin;
 }
 
-#profile_form {
+#navigation_bar_profile_form {
 	clear: both;
 	float: right;
-	.form_mixin;
+	.navigation_bar_form_mixin;
 }
 
-#profile_form2 {
+#navigation_bar_profile_form2 {
 	clear: both;
 	float: right;
-	.form_mixin;
+	.navigation_bar_form_mixin;
 }
 
-#search {
+#navigation_bar_input_search {
 	border: 2px solid #A8A8A8;
     border-radius: 10px 10px 10px 10px;
     height: 30px;
@@ -169,7 +169,7 @@
     width: 227px;
 }
 
-#button {
+#navigation_bar_button {
 	background-color: #EDEDED;
     border: 2px solid #A8A8A8;
     border-radius: 10px 10px 10px 10px;

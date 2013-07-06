@@ -54,7 +54,7 @@ a {
 	outline: none;
 }
 
-#top {
+#template_top {
 	box-shadow: 0 0 8px @default_shadow_color;
 	height: auto !important;
 	height: 100%;
@@ -62,7 +62,7 @@ a {
 	padding: 0 5px;
 	min-height: 100%;
 	
-	#content {
+	#template_content {
 		padding-top: @default_vertical_gap;
 		
 		* {
@@ -73,8 +73,8 @@ a {
 			}
 		}
 		
-		#navigation_bar {
-			#logo {
+		#template_navigation_bar {
+			#template_logo {
 				float: left;
 				padding: 5px 0 0 10px;
 				
@@ -89,15 +89,15 @@ a {
 		}
 	}
 	
-	#push {
+	#template_push {
 		height: @bottom_height;
 	}
 }
 
-#bottom {
+#template_bottom {
 	height: @bottom_height;
 
-	#footer {
+	#template_footer {
 		border-color: @default_border_color;
 		border-style: @default_border_style;
 		border-width: @default_border_width 0 0;
