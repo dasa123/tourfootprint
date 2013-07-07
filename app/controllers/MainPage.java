@@ -66,7 +66,8 @@ public class MainPage extends Controller {
 			User user = User.findById(Long.parseLong(userId));
 			if (user != null) {
 				List<Post> posts = user.posts;
-				render(user, posts);
+				List<Post> allPostsOrderedByLikes = Post.getAllOrderedByLikes();
+				render(user, posts, allPostsOrderedByLikes);
 			}
 		}
 

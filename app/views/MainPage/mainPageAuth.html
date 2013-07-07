@@ -1,14 +1,25 @@
 <div id="map"></div>
 <div id="posts">
 	<div id="liked">
-		#{list items:posts, as:'post'}
-			<h1>${post.title.raw()}</h1>
-			<p>
-				${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
-			</p>
+		#{list items:allPostsOrderedByLikes, as:'post'}
+			<div class="post">
+				<h1>${post.title.raw()}</h1>
+				<p>
+					${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
+				</p>
+			</div>
 		#{/list}
 	</div>
-	<div id="personalized"></div>
+	<div id="personalized">
+		#{list items:allPostsOrderedByLikes, as:'post'}
+			<div class="post">
+				<h1>${post.title.raw()}</h1>
+				<p>
+					${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
+				</p>
+			</div>
+		#{/list}
+	</div>
 </div>
 <script>
 	function initialize() {
@@ -20,16 +31,15 @@
 		});
 		var infoWindow = new google.maps.InfoWindow();
 		
-		var marker, i;
 		#{list items:posts, as:'post'}  
-		      marker = new google.maps.Marker({
+		      var marker${post.getId()} = new google.maps.Marker({
 		        position: new google.maps.LatLng(${post.mapLocation.latitude}, ${post.mapLocation.longitude}),
 		        map: map,
 		        url: '/viewPost?postId=${post.getId()}'
 		      });
 
-		      google.maps.event.addListener(marker, 'click', function() {
-		    	  window.location.href = marker.url;
+		      google.maps.event.addListener(marker${post.getId()}, 'click', function() {
+		    	  window.location.href = marker${post.getId()}.url;
 		      });
 		#{/list}
 	}

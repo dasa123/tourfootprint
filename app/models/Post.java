@@ -105,13 +105,21 @@ public class Post extends Model
 	
 	public static Post getMostLiked() {
 		
-		List<Post> chronologicalPosts = Post.findAll();
-		
-		if (chronologicalPosts.size() > 1) {
+		if (Post.findAll().size() > 1) {
 
 			List<Post> posts = Post.find("order by rating desc").fetch();
 
 			return posts.get(0);
+		}
+
+		return null;
+	}
+	
+	public static List<Post> getAllOrderedByLikes() {
+		
+		if (Post.findAll().size() > 1) {
+
+			return Post.find("order by rating desc").fetch();
 		}
 
 		return null;
