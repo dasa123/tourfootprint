@@ -17,15 +17,13 @@
 		#{list items:posts, as:'post'}  
 		      marker = new google.maps.Marker({
 		        position: new google.maps.LatLng(${post.mapLocation.latitude}, ${post.mapLocation.longitude}),
-		        map: map
+		        map: map,
+		        url: '/viewPost?postId=${post.getId()}'
 		      });
 
-		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		        return function() {
-		          infoWindow.setContent("${post.mapLocation.address.raw()}");
-		          infoWindow.open(map, marker);
-		        }
-		      })(marker, i));
+		      google.maps.event.addListener(marker, 'click', function() {
+		    	  window.location.href = marker.url;
+		      });
 		#{/list}
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
