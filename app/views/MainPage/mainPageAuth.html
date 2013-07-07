@@ -22,7 +22,7 @@
 
 		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		        return function() {
-		          infoWindow.setContent(locations[i][0]);
+		          infoWindow.setContent("${post.mapLocation.address.raw()}");
 		          infoWindow.open(map, marker);
 		        }
 		      })(marker, i));
