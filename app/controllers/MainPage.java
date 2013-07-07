@@ -65,7 +65,8 @@ public class MainPage extends Controller {
 		if (userId != null) {
 			User user = User.findById(Long.parseLong(userId));
 			if (user != null) {
-				render(user);
+				List<Post> posts = user.posts;
+				render(user, posts);
 			}
 		}
 
