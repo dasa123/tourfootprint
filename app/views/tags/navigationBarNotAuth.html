@@ -1,6 +1,7 @@
 <div id="fb-root"></div>
 <script src="@{'/public/javascripts/Facebook.js'}" type="text/javascript"></script>
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+scope="email"
 
 <div id="loginRegisterError">
  <!-- Claudia added error message to navigation bar. 
@@ -55,7 +56,7 @@
 							<!-- <img alt="google icon" title="google" src="/assets/images/icons/google-48x48.png"></a></li> -->
 							<input type="submit" value="Google+"/>
 					#{/form}
-					#{form @MainPage.facebook(), id:'facebook_form'}
+					#{form @MainPage.auth(), id:'facebook_form'}
 							<!-- <img alt="facebook icon" title="facebook" src="/assets/images/icons/facebook-48x48.png"></a></li> -->
 							<input type="submit" value="Facebook"/>
 					#{/form}

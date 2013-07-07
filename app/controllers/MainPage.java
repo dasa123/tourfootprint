@@ -111,12 +111,9 @@ public class MainPage extends Controller {
 	public static OAuth2 FACEBOOK = new OAuth2(
 			"https://graph.facebook.com/oauth/authorize",
             "https://graph.facebook.com/oauth/access_token",
-            "218973444927818",
-            "7b58f10f867b06bd6c49404978b4b3f");
+            "543391872364338",
+            "18b83f7c912e96e2a47f21f5f32f4939");
 	
-	static{
-	System.out.println("Facebook OAuth2 created.");
-	}
 	
 	/* Original code from play! code samples
 	 * 
@@ -129,19 +126,20 @@ public class MainPage extends Controller {
 	        render(me);
 	    }*/
 	
+	
 	/*
 	 * Modified code by Claudia. Renamed index() function to facebook().
 	 */
-	public static void facebook() {
-    	String userId = session.get("userId");
-    	User u = connected(userId);
-        JsonObject me = null;
-        if (u != null && u.access_token != null) {
-            me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode((String) u.access_token)).get().getJson().getAsJsonObject();
-        }
-        System.out.println("Json me:" + me);
-        //MainPage.index();
-    }
+	
+	
+//	public static void facebook() {
+//    	User u = connected();
+//        me = null;
+//        if (u != null && u.access_token != null) {
+//            me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(u.access_token)).get().getJson().getAsJsonObject();
+//        }
+//        index();
+//    }
 
 	/* Original code from play! code samples
 	 * 
@@ -156,18 +154,35 @@ public class MainPage extends Controller {
         FACEBOOK.retrieveVerificationCode(authURL());
     }*/
 	
+	
 	/*
 	 * Modified code by Claudia. Store userId from the session and give it to connected(userId).
 	 */
-	public static void auth() {
+	public static void auth(){
         if (OAuth2.isCodeResponse()) {
-        	String userId = session.get("userId");
-            User u = connected(userId);
-            OAuth2.Response response = FACEBOOK.retrieveAccessToken(authURL());
-            u.access_token = response.accessToken;
-            u.save();
-            index();
+            User user = connected();
+            
+           if (user != null){
+            	OAuth2.Response response = FACEBOOK.retrieveAccessToken(authURL());
+            	user.access_token = response.accessToken;
+            	user.save();
+            	
+            	JsonObject me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(user.access_token)).get().getJson().getAsJsonObject();
+            	           
+            	String email = me.get("email").toString();
+            	
+            	user.email = email;
+           
+            	System.out.println("auth(): Email: " + email);
+            	index();
+            }
+            else{
+            	flash.error("Login error. Please try to login with your email address and password or register.");
+				index();
+            }
+            
         }
+    	
         FACEBOOK.retrieveVerificationCode(authURL());
     }
 
@@ -191,25 +206,30 @@ public class MainPage extends Controller {
 	/*
 	 * Modified code by Claudia. Modified the creation of a new user. Call of index() function in the end, instead of renderArgs.
 	 *
-	 *@Before*/
+	 */
+	/*@Before
     static void setuser() {
         User user = null;
-        if (session.contains("uid")) {
-            Logger.info("existing user: " + session.get("uid"));
-            user = User.findById(Long.parseLong(session.get("uid")));
+        if (session.contains("userId")) {
+        	String userId = session.get("userId");
+            Logger.info("existing user: " + session.get("userId"));
+            //user = User.get(Long.parseLong(session.get("userId")));
+            //user = User.findById(Long.parseLong(userId));
+            
         }
         if (user == null) {
-        	user = new User(null, null, null, null, null,
+        	newUser = new User(null, null, null, null, null,
 					null, null, null, null, null);
 			user.save();
-            session.put("uid", user.id);
+			
+            session.put("userId", user.id);
         }
         //renderArgs.put("user", user);
-        index();
+        //index();
     }
-    
+    */
     static String authURL() {
-        return play.mvc.Router.getFullUrl("Application.auth");
+        return play.mvc.Router.getFullUrl("MainPage.auth");
     }
 
     /* Original code from play! code samples
@@ -222,21 +242,29 @@ public class MainPage extends Controller {
     /*
 	 * Modified code by Claudia. Check if a session and user exists, put userId to session if true and lead the user to page MyPosts.
 	 */
-    static User connected(String userId) {
+    
+    static User connected() {    	
+    	String userId = session.get("userId");
     	
-    	if (userId != null)
-		{
-			User user = User.findById(Long.parseLong(userId));
+    	if (userId != null){
+				User user = User.findById(Long.parseLong(userId));
 
-			if (user != null) 
-			{
-				session.put("userId", user.id);
-				MyPosts.page();
-			}	
-		}
+				if (user != null) 
+				{
+					return user;
+				}
+    	}
     	
-    	return (User)renderArgs.get("user");
+    	
+    	User newUser = new User(null, null, null, null, null,
+				null, null, null, null, null);
+    	newUser.save();
+    	session.put("userId", newUser.id);
+    	newUser.save();
+
+    	return newUser;
     }
+	
 	
     /*
 	 * Import Google+ account
@@ -247,23 +275,24 @@ public class MainPage extends Controller {
 	}
     
     public static void logout(String value) {
-		session.put("userId", null);
+    	
+    	session.put("userId", null);
 		session.clear();
 		index();
 	}
 	
 	public static void index() {
-		
+			
 		String userId = session.get("userId");
 
-		if (userId != null) {
+		if (userId != null) 
+		{
 			User user = User.findById(Long.parseLong(userId));
 			session.put("userId", user.id);
 			
 			if (user != null) {
 				MyPosts.page();
 				render(user);
-			}
 		}
 
 		// if no (valid) user authenticated
@@ -280,9 +309,6 @@ public class MainPage extends Controller {
 		} else if (error == 4) {
 			renderArgs.put("emailError", "true");
 		}
-
-		renderArgs.put("authenticated", "false");
-
-		render();
-	}*/
+		render();*/
+	}
 }

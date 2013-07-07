@@ -5,21 +5,14 @@
 # Home page
 GET     /                                       MainPage.index
 
-GET		/facebook								Facebook.FB.Event.subscribe
-
-GET     /channel			         			staticFile:/app/views/templates/channel.html
-
-GET /oauth/access_token?
-     client_id=218973444927818
-    &client_secret=7b58f10f867b06bd6c49404978b4b3f
-    &grant_type=client_credentials
-
-GET /{user-id}/accounts
+GET		/oauth/access_token?client_id={543391872364338}&client_secret={18b83f7c912e96e2a47f21f5f32f4939}&grant_type=client_credentials
 
 # New Post page
 GET     /newPost                             	NewPost.page
+
 # New Post page
 GET     /editPost                            	EditPost.page
+
 # View Post page
 GET     /viewPost                            	ViewPost.page
 

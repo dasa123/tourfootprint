@@ -23,6 +23,7 @@ public class User extends Model
 	public String religion;
 	public Date birthday;
 	public Image image;
+	public String access_token;
 
 	@ElementCollection
 	public List<String> tags;
@@ -30,8 +31,7 @@ public class User extends Model
 	public List<User> followed;
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
-	public String access_token;
-
+	
 	public User(String email, String password, String fullname, String country,
 			String city, String gender, String religion, Date birthday,
 			Image image, List<String> tags)
@@ -48,4 +48,5 @@ public class User extends Model
 		this.image = image;
 		this.tags = tags;
 	}
+	
 }
