@@ -1,6 +1,13 @@
 <div id="map"></div>
 <div id="posts">
-	<div id="liked"></div>
+	<div id="liked">
+		#{list items:posts, as:'post'}
+			<h1>${post.title.raw()}</h1>
+			<p>
+				${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
+			</p>
+		#{/list}
+	</div>
 	<div id="personalized"></div>
 </div>
 <script>
