@@ -2,7 +2,7 @@
 #{set title:'Post Stream'/}
 
 <style type="text/css">
-#post_stream_left_div {
+#my_post_left_div {
     width: 500px;
     position: relative;
     top: 10px;
@@ -10,7 +10,7 @@
 }
 
 
-#post_stream_right_div {
+#my_post_right_div {
     width: 200px;
     float:left;
     position: relative;
@@ -22,9 +22,7 @@
 </style>
 
 <script>
-
 var myPostScope = {};
-var newPostAddTagCounter = 0;
 
 $(function() {      
    initialize();
@@ -58,44 +56,51 @@ function setMarkerPosition(lat, lng){
 	        });
    	}
 }
+	
+
 </script>
 
 <div id="my_post_left_div">
 	<div class="myposts">
-	        <h3>Post Stream</h3>
-        	<br>	
-	
-	
-            #{list items:user.followed, as:'usersFriends'}
-            	#list items: usersFriends.posts, as:'usersPost'} 
-                <div class="post" >
-                                
-                    <h2 class="post-title" #{if usersPost.mapLocation.latitude} onmouseover="setMarkerPosition(${usersPost.mapLocation.latitude}, ${usersPost.mapLocation.longitude})" #{/if}>
-                        <a href="@{ViewPost.page(usersPost.id)}">${usersPost.title}</a>
+	        <h3>My posts</h3>
+        	<br>
+        	
+        	#{form @NewPost.page()}
+            	<button>Add New Post </button>
+            #{/form}
+			<br>
+			    
+            #{list items:posts, as:'myPost'}
+                <div class="post" >                
+                    <h2 class="post-title" #{if myPost.mapLocation.latitude} onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})" #{/if}>
+                        <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
                     </h2>                    
                     <div class="post-image">
                     	
                     </div>
                     
                     <div class="post-metadata">
-                        
                         <span class="post-desc">
-                            ${usersPost.description}
+                            ${myPost.description}
                         </span>
                    
                         <span class="post-date">
-							$(usersPost.date)
+
                         </span>
                     </div>
                 </div>
-           
             #{/list}
-            
             #{else}
 			    <div class="empty">
-			        None of your friends published any post.
+			        You havn't publish any post .
 			    </div>
 			#{/else}
-        
         </div>
 </div>
+
+
+
+<div id="my_post_right_div">
+    <div id="newpost-map-canvas" style="height:400px;width:400px">  </div>
+</div>
+

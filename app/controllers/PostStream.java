@@ -1,5 +1,9 @@
 package controllers;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import models.Post;
 import models.User;
 import play.mvc.Controller;
 
@@ -14,7 +18,13 @@ public class PostStream extends Controller{
 			
 			if (user != null)
 			{
-				render(user);
+				//get all posts from all users in a list
+				List<Post> posts = new LinkedList<Post>();
+				
+				//order posts by date
+				
+				//render
+				render(user, posts);
 			}
 		}
 		
