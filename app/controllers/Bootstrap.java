@@ -34,33 +34,42 @@ public class Bootstrap extends Job {
         Fixtures.loadModels("initial-data.yml");
         }
         List<Post> posts = Post.findAll();
+        
         for (Post post: posts) {
           Logger.info("Looking for files for post: [" + post.title + "]");
-          for (int i=0; true; i++) {
-            VirtualFile vf = VirtualFile.fromRelativePath("/tmp/uploads"+ JavaExtensions.camelCase(post.title) + "-" + i + ".jpg");
-            File imageFile = vf.getRealFile();
+          
+          LinkedList<Image> pictures = new LinkedList<Image>();
+          
+          for (int i=0; i < 5; i++) {
+            
+        	
+            String imageFile = "public/uploads/"+ post.title + "-" + i + ".jpg";
 
-            if (imageFile.exists()) {
               try {
-            	LinkedList<Blob> pictures = new LinkedList<Blob>();
-            	LinkedList<String> picturesTitles = new LinkedList<String>();
             	Blob blobImage = new Blob();
-                blobImage.set(new FileInputStream(imageFile), MimeTypes.getContentType(imageFile.getName()));
-                pictures.add(blobImage);
-                picturesTitles.add(imageFile.getName());
-                PostContent content = new PostContent(null,pictures, picturesTitles);
-                content.save();
-                post.addContent(content);
-                post.save();
-                Logger.info("File: [%s] Loaded", imageFile.getAbsolutePath());
+                blobImage.set(new FileInputStream(imageFile), MimeTypes.getContentType(imageFile));
+                Image image = new Image(blobImage, imageFile);
+                image.save();
+                pictures.add(image);
+                
+                Logger.info("File: [%s] Loaded", imageFile);
               } catch (FileNotFoundException e) {
-                System.out.println("No upload files found.");
+            	  Logger.info(e.toString());
+            	  Logger.info("File: [%s] Not Loaded", imageFile);
               }
-            } else {
-              Logger.info("Media Loaded for post [%s]: %d files.", post.title, i);
-              break;
+           
             }
+          PostContent content = new PostContent(null,pictures);
+          
+          content.save();
+          
+          for(Image img: pictures){
+        	  img.content = content;
+        	  img.save();
           }
+        
+          post.addContent(content);
+          post.save();
         }
-      }
     }
+}

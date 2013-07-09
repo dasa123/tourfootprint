@@ -170,7 +170,6 @@
 	        <input type="file" draggable="true" name="photoData3" id="photo_data_3"/> 
 	        <input type="file" draggable="true" name="photoData4" id="photo_data_4"/>
 	        #{/if}	        
-	        
 	        #{else}
 	        #{list items:post.content.pictures, as:'pic'}
 		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">

@@ -59,19 +59,18 @@ public class NewPost extends Controller
 
 					mapLocation.save();
 
-					LinkedList<Blob> imageList = new LinkedList<Blob>();
+					LinkedList<Image> imageList = new LinkedList<Image>();
 					for (Blob pd : Arrays.asList(photoData1, photoData2,
 							photoData3, photoData4))
 					{
 						if (pd != null)
 						{
 							//Blob image = new Image(pd).save();
-							imageList.add(pd);
+							imageList.add(new Image(pd, ""));
 						}
 					}
 
-					PostContent content = new PostContent(video, imageList,
-							(LinkedList<String>) Arrays.asList("", "", "", ""));
+					PostContent content = new PostContent(video, imageList);
 					content.save();
 
 					LinkedList<String> tagList = new LinkedList<String>();

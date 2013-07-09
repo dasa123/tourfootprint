@@ -1,32 +1,25 @@
-User(Claudia):
-        email: ckonopka@leenox.de
-        password: test
-		fullname: Claudia Konopka
-		country: Germany
-		city: Ismaning
-		gender: female
-		religion: rk
-		birthday: 07.09.
-		tags: nature, outdoor, beach, ancient, culture
-		
-			
-		Content(pics):
-		-	pictures: [2008-01-25 05.59.38.jpg, 2013-05-01 17.09.39.jpg, 2013-05-01 18.08.56.jpg]
-		-	titles: [flowers, Alex, me]
-		
-		MapLocation(Claudia_address)
-		-	address: Wasserturmstraße 59b, 85737 Ismaning 
-			longitude: 48.220498
-			latitude: 11.666125
-		
-		Post(test):
-		title: test_title
-		description: test test test test
-		mapLocation: Claudia_address
-		postingDate: 2013-09-07
-		sharedWithOthers: true
-		sender: Claudia
-		content: pics
-		-	tags: [test_tag, test_tag, test_tag]
-		
-		
+User(claudia):
+  email: "ckonopka@leenox.de"
+  password: "password"
+  fullname: "Claudia Konopka"
+  country: "Germany"
+  city: "Ismaning"
+  gender: "female"
+  religion: "rk"
+  birthday: 07.09.
+  tags: [nature, outdoor, beach, ancient, culture]
+  posts: [test]
+  
+MapLocation(claudia_address):
+  address: "Wasserturmstraße 59b, 85737 Ismaning"
+  latitude: 48.220498
+  longitude: 11.666125
+  
+Post(test):
+  title: "test_title"
+  description: "test test test test"
+  mapLocation: claudia_address
+  postingDate: 2013-09-07
+  sharedWithOthers: true
+  sender: claudia
+  tags: [test_tag, test_tag, test_tag]
