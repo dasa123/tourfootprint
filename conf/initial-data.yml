@@ -9,20 +9,24 @@ User(Claudia):
 		birthday: 07.09.
 		tags: nature, outdoor, beach, ancient, culture
 		
-		PostContent()
-		-	pictures: 
-			picturesTitles: 
-		-	pictures: 
-			picturesTitles:
+			
+		Content(pics):
+		-	pictures: [2008-01-25 05.59.38.jpg, 2013-05-01 17.09.39.jpg, 2013-05-01 18.08.56.jpg]
+		-	titles: [flowers, Alex, me]
 		
-		Post(name):
-		title: 
-		description:
-		mapLocation:
-		postingDate:
+		MapLocation(Claudia_address)
+		-	address: Wasserturmstraße 59b, 85737 Ismaning 
+			longitude: 48.220498
+			latitude: 11.666125
+		
+		Post(test):
+		title: test_title
+		description: test test test test
+		mapLocation: Claudia_address
+		postingDate: 2013-09-07
 		sharedWithOthers: true
 		sender: Claudia
-		content:
-		tags:
+		content: pics
+		-	tags: [test_tag, test_tag, test_tag]
 		
 		
