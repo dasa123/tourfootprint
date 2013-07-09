@@ -29,15 +29,15 @@ public class Bootstrap extends Job {
     @Override
     public void doJob() {
       // Check if the database is empty
-      /*if(WebAdministrator.count() == 0) {*/
+      if(User.count() == 0) {
         Logger.info("Loading Initial Data.");
         Fixtures.loadModels("initial-data.yml");
+        }
         List<Post> posts = Post.findAll();
         for (Post post: posts) {
           Logger.info("Looking for files for post: [" + post.title + "]");
           for (int i=0; true; i++) {
-            VirtualFile vf = VirtualFile.fromRelativePath("/conf/initialMedia/"
-                + JavaExtensions.camelCase(post.title) + "-" + i + ".jpg");
+            VirtualFile vf = VirtualFile.fromRelativePath("/tmp/uploads"+ JavaExtensions.camelCase(post.title) + "-" + i + ".jpg");
             File imageFile = vf.getRealFile();
 
             if (imageFile.exists()) {
@@ -64,4 +64,3 @@ public class Bootstrap extends Job {
         }
       }
     }
-//}
