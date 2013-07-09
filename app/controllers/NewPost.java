@@ -65,13 +65,12 @@ public class NewPost extends Controller
 					{
 						if (pd != null)
 						{
-							Image image = new Image(pd).save();
-							imageList.add(image);
+							//Blob image = new Image(pd).save();
+							imageList.add(new Image(pd, ""));
 						}
 					}
 
-					PostContent content = new PostContent(video, imageList,
-							Arrays.asList("", "", "", ""));
+					PostContent content = new PostContent(video, imageList);
 					content.save();
 
 					LinkedList<String> tagList = new LinkedList<String>();

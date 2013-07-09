@@ -36,5 +36,7 @@ GET     /about_us                          		Company.aboutUs
 GET     /privacy_policy                     	Company.privacyPolicy
 GET     /tos			                     	Company.tos
 
+*       /admin                                  module:crud
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

@@ -1,9 +1,11 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
@@ -12,17 +14,14 @@ import play.db.jpa.Model;
 public class PostContent extends Model
 {
 	public String video;
-	@ElementCollection
+	@OneToMany(mappedBy = "content")
 	public List<Image> pictures;
-	@ElementCollection
-	public List<String> picturesTitles;
+	
 
-	public PostContent(String video, List<Image> pictures,
-			List<String> picturesTitles)
+	public PostContent(String video, List<Image> pictures)
 	{
 		super();
 		this.video = video;
 		this.pictures = pictures;
-		this.picturesTitles = picturesTitles;
 	}
 }

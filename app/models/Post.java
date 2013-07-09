@@ -124,4 +124,8 @@ public class Post extends Model
 
 		return null;
 	}
+	
+	public void addContent(PostContent content){
+		this.content = content;
+	}
 }
