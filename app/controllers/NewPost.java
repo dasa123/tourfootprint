@@ -60,13 +60,13 @@ public class NewPost extends Controller
 					mapLocation.save();
 
 					LinkedList<Blob> imageList = new LinkedList<Blob>();
-					for (Blob pd : Arrays.asLinkedList(photoData1, photoData2,
+					for (Blob pd : Arrays.asList(photoData1, photoData2,
 							photoData3, photoData4))
 					{
 						if (pd != null)
 						{
-							Blob image = new Image(pd).save();
-							imageList.add(image);
+							//Blob image = new Image(pd).save();
+							imageList.add(pd);
 						}
 					}
 
