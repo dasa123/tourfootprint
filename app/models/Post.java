@@ -49,4 +49,8 @@ public class Post extends Model
 		this.content = content;
 		this.tags = tags;
 	}
+	
+	public void addContent(PostContent content){
+		this.content = content;
+	}
 }

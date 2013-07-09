@@ -1,5 +1,6 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -13,12 +14,12 @@ public class PostContent extends Model
 {
 	public String video;
 	@ElementCollection
-	public List<Image> pictures;
+	public LinkedList<Blob> pictures;
 	@ElementCollection
-	public List<String> picturesTitles;
+	public LinkedList<String> picturesTitles;
 
-	public PostContent(String video, List<Image> pictures,
-			List<String> picturesTitles)
+	public PostContent(String video, LinkedList<Blob> pictures,
+			LinkedList<String> picturesTitles)
 	{
 		super();
 		this.video = video;

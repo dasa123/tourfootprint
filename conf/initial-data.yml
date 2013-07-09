@@ -1,0 +1,28 @@
+User(Claudia):
+        email: ckonopka@leenox.de
+        password: test
+		fullname: Claudia Konopka
+		country: Germany
+		city: Ismaning
+		gender: female
+		religion: rk
+		birthday: 07.09.
+		tags: nature, outdoor, beach, ancient, culture
+		
+		PostContent()
+		-	pictures: 
+			picturesTitles: 
+		-	pictures: 
+			picturesTitles:
+		
+		Post(name):
+		title: 
+		description:
+		mapLocation:
+		postingDate:
+		sharedWithOthers: true
+		sender: Claudia
+		content:
+		tags:
+		
+		
