@@ -11,6 +11,7 @@ import java.util.*;
 
 import javax.print.attribute.standard.PagesPerMinute;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import models.*;
@@ -169,11 +170,14 @@ public class MainPage extends Controller {
             	
             	JsonObject me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(user.access_token)).get().getJson().getAsJsonObject();
             	           
-            	String email = me.get("email").toString();
+            	JsonElement jsonMe = me.get("email");
+            	if (jsonMe != null) {
+            		String email = jsonMe.toString();
+                	user.email = email;
+                    
+                	System.out.println("auth(): Email: " + email);
+            	}
             	
-            	user.email = email;
-           
-            	System.out.println("auth(): Email: " + email);
             	index();
             }
             else{
@@ -288,9 +292,9 @@ public class MainPage extends Controller {
 		if (userId != null) 
 		{
 			User user = User.findById(Long.parseLong(userId));
-			session.put("userId", user.id);
 			
 			if (user != null) {
+				session.put("userId", user.id);
 				MyPosts.page();
 				render(user);
 		}
