@@ -17,6 +17,8 @@ import java.util.Random;
 
 import models.Image;
 import models.Post;
+import controllers.engines.RecommendationEngine;
+
 import models.User;
 import play.data.validation.Email;
 import play.db.jpa.Blob;
@@ -67,7 +69,9 @@ public class MainPage extends Controller {
 			if (user != null) {
 				List<Post> posts = user.posts;
 				List<Post> allPostsOrderedByLikes = Post.getAllOrderedByLikes();
-				render(user, posts, allPostsOrderedByLikes);
+				List<Post> allPostsOrderedByTags = Post.findAll();
+				RecommendationEngine.sortRecommendations(allPostsOrderedByTags, user.tags);
+				render(user, posts, allPostsOrderedByLikes, allPostsOrderedByTags);
 			}
 		}
 
