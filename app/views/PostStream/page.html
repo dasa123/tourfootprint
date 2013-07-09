@@ -1,0 +1,101 @@
+#{extends 'templates/main.html'/}
+#{set title:'Post Stream'/}
+
+<style type="text/css">
+#post_stream_left_div {
+    width: 500px;
+    position: relative;
+    top: 10px;
+    float: left;
+}
+
+
+#post_stream_right_div {
+    width: 200px;
+    float:left;
+    position: relative;
+    top: 10px;
+}
+
+
+	.postImage{height:50px;}
+</style>
+
+<script>
+
+var myPostScope = {};
+var newPostAddTagCounter = 0;
+
+$(function() {      
+   initialize();
+});
+
+
+function initialize() {
+	myPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+	myPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+			myPostScope.mapOptions);
+}
+
+//setMarkerPosition
+function setMarkerPosition(lat, lng){
+	var location = new google.maps.LatLng(lat, lng);
+	
+   	myPostScope.map.panTo(location);
+   	myPostScope.map.setZoom(16);
+   	
+   	if(myPostScope.marker){
+   		myPostScope.marker.setPosition(location);
+   	}
+   	else{
+   		myPostScope.marker = new google.maps.Marker({
+	            map: myPostScope.map,
+	            position: location
+	        });
+   	}
+}
+</script>
+
+<div id="my_post_left_div">
+	<div class="myposts">
+	        <h3>Post Stream</h3>
+        	<br>	
+	
+	
+            #{list items:user.followed, as:'usersFriends'}
+            	#list items: usersFriends.posts, as:'usersPost'} 
+                <div class="post" >
+                                
+                    <h2 class="post-title" #{if usersPost.mapLocation.latitude} onmouseover="setMarkerPosition(${usersPost.mapLocation.latitude}, ${usersPost.mapLocation.longitude})" #{/if}>
+                        <a href="@{ViewPost.page(usersPost.id)}">${usersPost.title}</a>
+                    </h2>                    
+                    <div class="post-image">
+                    	
+                    </div>
+                    
+                    <div class="post-metadata">
+                        
+                        <span class="post-desc">
+                            ${usersPost.description}
+                        </span>
+                   
+                        <span class="post-date">
+							$(usersPost.date)
+                        </span>
+                    </div>
+                </div>
+           
+            #{/list}
+            
+            #{else}
+			    <div class="empty">
+			        None of your friends published any post.
+			    </div>
+			#{/else}
+        
+        </div>
+</div>

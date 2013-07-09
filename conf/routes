@@ -11,7 +11,8 @@ GET     /newPost                             	NewPost.page
 GET     /editPost                            	EditPost.page
 # View Post page
 GET     /viewPost                            	ViewPost.page
-
+# View Post stream
+GET		/postStream								PostStream.page
 # My Posts page
 GET     /myPosts                            	MyPosts.page
 
