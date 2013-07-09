@@ -282,6 +282,7 @@ public class MainPage extends Controller {
     	
     	session.put("userId", null);
 		session.clear();
+		// Facbook logout
 		index();
 	}
 	

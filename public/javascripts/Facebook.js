@@ -1,6 +1,4 @@
-<html>
-<head></head>
-<body>
+
 <div id="fb-root"></div>
 <script>
   // Additional JS functions here
@@ -79,5 +77,3 @@
 
 	  }
 </script>
-</body>
-</html>
