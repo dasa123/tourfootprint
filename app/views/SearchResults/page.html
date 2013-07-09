@@ -21,7 +21,7 @@ function initialize() {
 	
 	searchResultScope.mapOptions = {
           center: new google.maps.LatLng(0, 0),
-          zoom: 1,
+          zoom: 2,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 	searchResultScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
@@ -75,10 +75,12 @@ function viewSearchResults(searchInputString, postsData){
 	//update url
 	document.title = 'SearchResults - ' + searchInputString;
 	var updatedUrl = "/searchResults?searchString=" + searchInputString;
-	//window.history.pushState({"html": $("html").html(), "pageTitle":document.title},"", updatedUrl);
+	
 	if(window.history.pushState){
-		window.history.pushState({},"", updatedUrl);
+		//window.history.pushState({},"", updatedUrl);
+		window.history.pushState({"html": $("html").html(), "pageTitle":document.title},"", updatedUrl);
 	}
+	
 	//update content
 	for(var i = 0; i < postsData.length; i ++){
 		var post = postsData[i];
@@ -86,7 +88,8 @@ function viewSearchResults(searchInputString, postsData){
 		
 		searchResultScope.resultHtmlIds[i] = htmlId;
 		
-		var postHtml = "<span id='" + htmlId + "' class='search_results_post_span_class'>" +
+		var postHtml = "<span id='" + htmlId + "' class='search_results_post_span_class' "+
+						"onmouseover='startMarkerAnimation(" + i + ");' onmouseout='stopMarkerAnimation(" + i + ");' >" +
 						"<a href=/viewPost?postId="  + post.id + ">" + post.title + "</a><br>" +
 						post.description +
 						"</span><br>";
@@ -99,18 +102,73 @@ function viewSearchResults(searchInputString, postsData){
 	            position: new google.maps.LatLng(post.latitude, post.longitude),
 	        });
 			
-			searchResultScope.mapMarkers[i] = iMarker; 
+			searchResultScope.mapMarkers[i] = iMarker;
 			
-			google.maps.event.addListener(iMarker,"click",function(){ 
-				//window.location = "/viewPost?postId=" + post.id
-						alert("" + i);
-				//iMarker.setAnimation(google.maps.Animation.BOUNCE);
-				});
+			addMarkerListeners(iMarker, post.id, post.title, post.description);
+						
 		}
 		else{
 			//searchResultScope.mapMarkers[i] = null;
 		}
 	}
+	
+	//adjust map
+	adjustMapToMarkers();
+}
+
+
+function adjustMapToMarkers(){
+	
+	if(Object.keys(searchResultScope.mapMarkers).length > 0){
+		//get bounds of map
+		var latLngBounds = new google.maps.LatLngBounds();
+		
+		for(var key in searchResultScope.mapMarkers){
+			var markerPosition = searchResultScope.mapMarkers[key].getPosition();
+			latLngBounds.extend(markerPosition);
+		}
+		
+		//change camera of map
+		searchResultScope.map.fitBounds(latLngBounds);
+	}
+	else{
+		//just show the whole world
+		searchResultScope.map.setZoom(2);
+		searchResultScope.map.setPosition(new google.maps.LatLng(0,0));
+	}
+}
+
+function startMarkerAnimation(idx){
+	searchResultScope.mapMarkers[idx].setAnimation(google.maps.Animation.BOUNCE);
+}
+
+function stopMarkerAnimation(idx){
+	searchResultScope.mapMarkers[idx].setAnimation(null);
+}
+
+function addMarkerListeners(marker, postId, postTitle, postDescription){
+	/*
+	google.maps.event.addListener(marker,"click",function(){ 
+		//window.location = "/viewPost?postId=" + post.id
+				//alert("" + i);
+		marker.setAnimation(google.maps.Animation.BOUNCE);
+		});
+	*/
+	
+	var postHtml = "<span>" +
+					"<a href=/viewPost?postId="  + postId + ">" + postTitle + "</a><br>" +
+					postDescription +
+					"</span><br>";
+		
+	var infowindow = new google.maps.InfoWindow({
+	      content: postHtml
+	  });
+	
+	google.maps.event.addListener(marker,"click",function(){ 
+		infowindow.open(searchResultScope.map,marker);
+	});
+	
+	
 }
 
 function setMarkerPosition(lat, lng){
