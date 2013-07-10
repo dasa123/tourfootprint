@@ -1,7 +1,17 @@
 package controllers;
 
+import play.*;
+import play.data.validation.Email;
+import play.mvc.*;
+
+import java.io.PrintWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Random;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Random;
 
@@ -37,20 +47,6 @@ public class MainPage extends Controller {
 				User newUser = new User(email, password, null, null, null,
 						null, null, null, null, null);
 
-				Blob userImageBlob = new Blob();
-				try
-				{
-					userImageBlob.set(new FileInputStream("public/images/defaultUserImage.jpg"), "jpg");
-				}
-				catch (FileNotFoundException e)
-				{
-					e.printStackTrace();
-				}
-				
-				newUser.image = new Image(userImageBlob);
-				newUser.image.save();
-				System.out.println("imageId: " + newUser.image.getId());
-				
 				newUser.save();
 				// render("pages/myPosts.html");
 				session.put("userId", newUser.id);
@@ -101,6 +97,18 @@ public class MainPage extends Controller {
 	}
 
 	public static void logout() {
+		
+		if(session.contains("googleAccessToken")) {
+			String token = session.get("googleAccessToken");
+			System.out.println("logout: Google access token :" + token);
+		try {
+			new URL("https://accounts.google.com/o/oauth2/revoke?token=" + token).openConnection().getInputStream();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	
 		// session.put("userId", null);
 		session.clear();
 		index();
@@ -131,5 +139,25 @@ public class MainPage extends Controller {
 			Long id = images.get(generator.nextInt(images.size())).getId();
 			RequestUtils.renderImage(id);
 		}
+	}
+	
+	public static void google(String email, String fullname, String accessToken) {
+		System.out.println("google callback: " + fullname + " " + email);
+		
+		User user = User.find("byEmail", email).first();
+		
+		if (user == null) {
+			user = new User(email, null, fullname, null, null,
+					null, null, null, null, null);
+			user.save();
+			// render("pages/myPosts.html");
+			
+			System.out.println("asdf");
+		}
+		
+		session.put("userId", user.id);
+		System.out.println("new token: " + accessToken);
+		session.put("googleAccessToken", accessToken);
+		MyPosts.page();
 	}
 }
