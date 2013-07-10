@@ -31,6 +31,8 @@ public class PostStream extends Controller{
 				for (int i = 0; i < allPosts.size(); i++) {
 					Post currentPost = allPosts.get(i);
 					
+					System.out.println(currentPost.postingDate.toString());
+					
 					if ( followedUsers.contains(currentPost.sender) ) {
 						posts.add(currentPost);
 					}
