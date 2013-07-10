@@ -38,19 +38,17 @@ public class MainPage extends Controller {
 						null, null, null, null, null);
 
 				Blob userImageBlob = new Blob();
-				try
-				{
-					userImageBlob.set(new FileInputStream("public/images/defaultUserImage.jpg"), "jpg");
-				}
-				catch (FileNotFoundException e)
-				{
+				try {
+					userImageBlob.set(new FileInputStream(
+							"public/images/defaultUserImage.jpg"), "jpg");
+				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				
+
 				newUser.image = new Image(userImageBlob);
 				newUser.image.save();
 				System.out.println("imageId: " + newUser.image.getId());
-				
+
 				newUser.save();
 				// render("pages/myPosts.html");
 				session.put("userId", newUser.id);
@@ -121,9 +119,9 @@ public class MainPage extends Controller {
 
 		render();
 	}
-	
+
 	public static void getRandomPicture(Long postId) {
-		
+
 		if (postId != null) {
 			Post post = Post.findById(postId);
 			List<Image> images = post.content.pictures;

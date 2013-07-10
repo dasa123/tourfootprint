@@ -44,114 +44,86 @@ input.w {
 </style>
 
 <script>
-var profileScope = {};
 var profileAddTagCounter = 0;
 
-$(function() {      
-   initialize();   
+$(function() {
+   initialize("profile-map-canvas");   
+   setMarkers();
 });
 
-function initialize() {
-	profileScope.mapOptions = {
+
+function initialize(div) {
+	mapOptions = {
           center: new google.maps.LatLng(0, 0),
           zoom: 1,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-	profileScope.map = new google.maps.Map(document.getElementById("profile-map-canvas"),
-											profileScope.mapOptions);
-	
-	profileScope.tags = {};
+	map = new google.maps.Map(document.getElementById(div),
+			mapOptions);
 }
+
 
 //setMarkerPosition
 function setMarkerPosition(lat, lng){
 	var location = new google.maps.LatLng(lat, lng);
-
-   	profileScope.map.panTo(location);
-   	profileScope.map.setZoom(16);
+	
+   	map.panTo(location);
+   	map.setZoom(16);
    	
-   	if(profileScope.marker){
-   		profileScope.marker.setPosition(location);
-   	}
-   	else{
-   		profileScope.marker = new google.maps.Marker({
-	            map: profileScope.map,
+   	var marker = new google.maps.Marker({
+	            map: map,
 	            position: location
 	        });
-   	}
-   	
-   	//
-   	var southWest = new google.maps.LatLng(-31.203405, 125.244141);
-    var northEast = new google.maps.LatLng(-25.363882, 131.044922);
 
-    var bounds = new google.maps.LatLngBounds(southWest, northEast);
-    map.fitBounds(bounds);
-
-    var lngSpan = northEast.lng() - southWest.lng();
-    var latSpan = northEast.lat() - southWest.lat();
-
-    for (var i = 0; i < 5; i++) {
-        var position = new google.maps.LatLng(
-            southWest.lat() + latSpan * Math.random(),
-            southWest.lng() + lngSpan * Math.random());
-        var marker = new google.maps.Marker({
-          position: position,
-          map: map
-        });
-
-        marker.setTitle((i + 1).toString());
-      }
-    //
-   	
-}
-function addTag(newTagText){
-	//ajax for add
-	var newElementID = "tag_span_id" + profileAddTagCounter;
-	var newRemoveButtonID = "tag_remove_button_id" + profileAddTagCounter; 
-	var newElementHTML = "<span id='" + newElementID + "'>" 
-	+newTagText 
-	+ "</span><br>";
-
-	$("#added_tags_div").append(newElementHTML);
-
-	profileScope.tags[newElementID] = newTagText;
-
-	refreshTags();
-
-	$("#" + newRemoveButtonID).click(function(){
-		$("#" + newElementID).remove();
-		delete profileScope.tags[newElementID];
-		//ajax for remove
-		refreshTags();
-	});
-
-	profileAddTagCounter = profileAddTagCounter + 1;
 }
 
-function refreshTags(){
-	tagString = "";
-	for(var key in profileScope.tags){
-		tagString += ";" + profileScope.tags[key];
-	}
-	$("#tags_hidden_input").val(tagString);
+
+// Add all markers related to the current user to the map
+function setMarkers(){
+		  #{list items:user.posts, as:'myPost'}
+			var lati = ${myPost.mapLocation.latitude} ;
+		    var longi = ${myPost.mapLocation.longitude} ;
+
+			var location = new google.maps.LatLng(lati, longi);
+			map.panTo(location);
+			map.setZoom(1);		  
+			
+		   	var position = new google.maps.LatLng(lati, longi);
+			var marker = new google.maps.Marker({
+		      position: position,
+		      map: map
+		    });
+		  #{/list}
 }
 
-function deleteImage(elementId, idx){
-	$("#" + elementId).remove();
-	$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
-}
 
-$(function(){
+		  function addTag(newTagText){
+				var newElementID = "tag_span_id" + profileAddTagCounter;
+				var newElementHTML = "<span id='" 
+				+ newElementID + "'>" 
+				+newTagText 
+				+ "</span><br>";
+
+				$("#added_tags_div").append(newElementHTML);
+				profileAddTagCounter = profileAddTagCounter + 1;
+			}
+
+
+//Execute these jquery code after the documnet is loaded
+$(function() {
+//$(document).ready(function(){
 #{if mode == "myProfile"}
 
-	$("p.edit").mouseover(function(){
+	  //mouse ation of user's info
+	  $("p.edit").mouseover(function(){
 	  	$(this).css("background-color","#E9E9E4");
 	  });
+	  
 	  $("p.edit").mouseout(function(){
 	    $(this).css("background-color","white");
 	  });
 	  
-
+	  //click ation of user's info
 	  $("input.r").click(function(){
 		 $(this).removeAttr("readonly");
 		 $(this).attr("class", "t");
@@ -164,12 +136,14 @@ $(function(){
 			 $("input.w").css("display","none");
 	  });
 	  
+	  //click ation of user's image
 	  $(".userimage").click(function(){
 			 $("#photo").click();
 			 $("input.w").css("display","inline");
 	  });
 	  
 	  
+	  //mouse ation of tags
 	  $("div.tag").mouseover(function(){
 		  	$(this).css("background-color","#E9E9E4");
 			}
@@ -179,8 +153,7 @@ $(function(){
 			}
 	  );
 	  
-	  
-	  
+	  //click ation to trigger delete button
 	  $("div.tag").click(function(){
 			$(this).attr("class", "tag_to_be_del");
 			//var newElementHTML = "<button id=\"del_tag_button\" >Del</button>";	
@@ -189,9 +162,8 @@ $(function(){
 			}
 	  );
 	  
-	  
-	  
-	  $("#add_tag_button").click(function(){		  
+	  //click ation of add tags 
+	  $("#add_tag_button").click(function(){	  
 		    var tag = "${tagString}";
 			var newTagText = $("#add_tag_input").val();
 			newTagText = $.trim(newTagText);
@@ -199,21 +171,20 @@ $(function(){
 			
 			if(newTagText != ""){
 				tag = tag+";"+newTagText;
-				//$("#tags").attr("value",tags);
-				//alert(tags);
 				$.post("@{MyProfile.submit()}",
 						  {
 							tags:tag
 						  },
-						  function(data){
-							  //$("#added_tags_div").reload();
+						  function(){
 							  //alert(data);
 								addTag(newTagText);
+								//alert("${tagString}");
 						  } 
 				);
 			}
 	  });
 	  
+	  //click ation of delete tags 
 	  $("#del_tag_button").click(function(){
 		  var deltag = $(".tag_to_be_del").text();
 		  $.post("@{MyProfile.submit()}",
@@ -225,14 +196,14 @@ $(function(){
 						  $(".tag_to_be_del").remove();	
 						  $("#del_tag_button").css("display","none");
 					  }
-				);
-		  
+				);  
 	  });
 
 #{/if}
 
 
 #{if mode == "viewProfile"}
+	//check the user you view is followed or not
     var tag = ${followed};
     if(tag == true){
     	$("#follow").css("display","none");
@@ -243,6 +214,8 @@ $(function(){
     	$("#followed").css("display","none");
         $(".unfollow").css("display","none");
     }
+    
+    //follow click action
 	$("#follow").click(function(){
 		$.post("@{MyProfile.submit()}",
 			  {
@@ -259,7 +232,7 @@ $(function(){
 		);
 	});	
 	
-	
+    //unfollow click action
 	$(".unfollow").click(function(){
 		$.post("@{MyProfile.submit()}",
 			  {
@@ -278,19 +251,16 @@ $(function(){
 	
 #{/if}
 
-
-
-
 });
 </script>
 
 
 <div id="my_profile_left_div">
-
 	#{if mode == "viewProfile"}
 	<h3>${user.fullname}</h3>
 	<input type="image" id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> </br> </br>
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <br>
+	<br>
 	<div class="follow">
 		<button id="follow">Follow ${user.fullname}</button>
 
@@ -302,10 +272,10 @@ $(function(){
 	#{/if} #{form @MyProfile.submit(), enctype:"multipart/form-data"} #{if
 	mode == "myProfile"}
 	<h3>${user.fullname}</h3>
-	</br> <img id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" />
-	<input type="file" id="photo" class="photo" name="photoData"
-		style="display: none;"> </input> </br>
+	<br> <img id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
+		type="file" id="photo" class="photo" name="photoData"
+		style="display: none;" /> <br>
 
 
 	<h3>Followed</h3>
@@ -331,30 +301,29 @@ $(function(){
 
 	<p class="edit">
 		Name: <input class="r" name="fullname" value="${user.fullname}"
-			readonly="true" />
+			readonly />
 	</p>
-	</br>
+	<br>
 	<p class="edit">
-		gender: <input class="r" name="gender" value="${user.gender}"
-			readonly="true" />
+		gender: <input class="r" name="gender" value="${user.gender}" readonly />
 	</p>
-	</br>
+	<br>
 	<p class="edit">
 		birthday: <input class="r" name="birthday" value="${user.birthday} "
-			readonly="true" />
+			readonly />
 	</p>
-	</br>
+	<br>
 	<p class="edit">
-		location: <input class="r" name="city" value="${user.city}"
-			readonly="true" />
+		location: <input class="r" name="city" value="${user.city}" readonly />
 	</p>
-	</br>
+	<br>
 	<p class="edit">
 		religion: <input class="r" name="religion" value="${user.religion}"
-			readonly="true" />
+			readonly />
 	</p>
-	</br> <input class="w" type="submit" value="save" style="display: none;" />
-	#{/form} </br> </br> #{if mode == "myProfile"}
+	<br> <input class="w" type="submit" value="save"
+		style="display: none;" /> #{/form} <br> <br> #{if mode ==
+	"myProfile"}
 	<h3>My tags:</h3>
 	<br> <label for="add_tag_input">Tags: </label> <input type="text"
 		name="tag" id="add_tag_input" />
@@ -363,13 +332,8 @@ $(function(){
 	         -->
 	<button id="add_tag_button">Add Tag</button>
 	<button id="del_tag_button" style="display: none;">Del Tag</button>
-
-
-
-
-
 	<div id="added_tags_div">
-		</br> #{list items:user.tags, as:'tag'}
+		<br> #{list items:user.tags, as:'tag'}
 		<div class="mytags">
 			<div class="tag">${tag}</div>
 		</div>

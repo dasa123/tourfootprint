@@ -14,10 +14,8 @@ import play.data.validation.Required;
 import play.db.jpa.Blob;
 import play.mvc.Controller;
 
-public class RequestUtils extends Controller
-{
-	public static void renderImage(Long imageId)
-	{
+public class RequestUtils extends Controller {
+	public static void renderImage(Long imageId) {
 		Image image = Image.findById(imageId);
 		response.setContentTypeIfNotSet(image.imageDate.type());
 		renderBinary(image.imageDate.get());

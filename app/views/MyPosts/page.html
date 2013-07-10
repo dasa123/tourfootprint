@@ -34,77 +34,61 @@
 </style>
 
 <script>
-var myPostScope = {};
-var newPostAddTagCounter = 0;
-
 $(function() {      
-   initialize();
+   initialize("mypost-map-canvas");
+   setMarkers();
 });
 
 
-function initialize() {
-	myPostScope.mapOptions = {
+function initialize(div) {
+	mapOptions = {
           center: new google.maps.LatLng(0, 0),
           zoom: 1,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-	myPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
-			myPostScope.mapOptions);
+	map = new google.maps.Map(document.getElementById(div),
+			mapOptions);
 }
 
+//setMarkerPosition
 function setMarkerPosition(lat, lng){
 	var location = new google.maps.LatLng(lat, lng);
 	
-   	myPostScope.map.panTo(location);
-   	myPostScope.map.setZoom(16);
+   	map.panTo(location);
+   	map.setZoom(16);
    	
-   	if(myPostScope.marker){
-   		myPostScope.marker.setPosition(location);
-   	}
-   	else{
-   		myPostScope.marker = new google.maps.Marker({
-	            map: myPostScope.map,
+   	var marker = new google.maps.Marker({
+	            map: map,
 	            position: location
 	        });
-   	}
 }
 
+//Add all markers related to the current user to the map
+function setMarkers(){
+		  #{list items:user.posts, as:'myPost'}
+			var lati = ${myPost.mapLocation.latitude} ;
+		    var longi = ${myPost.mapLocation.longitude} ;
 
-function addTag(newTagText){
-	var newElementID = "tag_span_id" + newPostAddTagCounter;
-	var newRemoveButtonID = "tag_remove_button_id" + newPostAddTagCounter; 
-	var newElementHTML = "<span id='" + newElementID + "'>" +newTagText #{if mode != 'view'}+ "<button id='" + newRemoveButtonID + "'>Remove</button>"#{/if} + "</span><br>";
-	
-	$("#added_tags_div").append(newElementHTML);
-	
-	myPostScope.tags[newElementID] = newTagText;
-	
-	refreshTags();
-	
-	$("#" + newRemoveButtonID).click(function(){
-		$("#" + newElementID).remove();
-		delete newPostScope.tags[newElementID];
-		
-		refreshTags();
-	});
-	
-	newPostAddTagCounter = newPostAddTagCounter + 1;
+			var location = new google.maps.LatLng(lati, longi);
+			map.panTo(location);
+			map.setZoom(1);		  
+			
+		   	var position = new google.maps.LatLng(lati, longi);
+			var marker = new google.maps.Marker({
+		      position: position,
+		      map: map
+		    });
+		  #{/list}
 }
 
-function refreshTags(){
-		tagString = "";
-		for(var key in myPostScope.tags){
-			tagString += ";" + myPostScope.tags[key];
-		}
-}
         
 </script>
 
 <div id="my_post_left_div">
 	<h3>${user.fullname}</h3>
-	</br> <input type="image" class="postimage"
+	<br> <input type="image" class="postimage"
 		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
-		type="file" id="photo" name="photoData" style="display: none;" /> </br>
+		type="file" id="photo" name="photoData" style="display: none;" /> <br>
 
 
 	<h3>Followed</h3>
@@ -169,9 +153,7 @@ function refreshTags(){
         </div>
 </div>
 
-
-
 <div id="my_post_right_div">
-    <div id="newpost-map-canvas" style="height:400px;width:400px">  </div>
+    <div id="mypost-map-canvas" style="height:400px;width:400px">  </div>
 </div>
 

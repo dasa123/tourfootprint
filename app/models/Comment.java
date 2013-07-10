@@ -8,8 +8,7 @@ import javax.persistence.ManyToOne;
 import play.db.jpa.Model;
 
 @Entity
-public class Comment extends Model
-{
+public class Comment extends Model {
 	@Column(name = "textContent")
 	public String text;
 	public Integer rating;
@@ -20,8 +19,7 @@ public class Comment extends Model
 	@ManyToOne
 	public Post post;
 
-	public Comment(String text, Integer rating, User sender, Post post)
-	{
+	public Comment(String text, Integer rating, User sender, Post post) {
 		super();
 		this.text = text;
 		this.rating = rating;

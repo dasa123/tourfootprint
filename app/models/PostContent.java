@@ -9,8 +9,7 @@ import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity
-public class PostContent extends Model
-{
+public class PostContent extends Model {
 	public String video;
 	@ElementCollection
 	public List<Image> pictures;
@@ -18,8 +17,7 @@ public class PostContent extends Model
 	public List<String> picturesTitles;
 
 	public PostContent(String video, List<Image> pictures,
-			List<String> picturesTitles)
-	{
+			List<String> picturesTitles) {
 		super();
 		this.video = video;
 		this.pictures = pictures;

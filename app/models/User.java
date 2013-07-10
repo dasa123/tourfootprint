@@ -12,8 +12,7 @@ import javax.persistence.OneToOne;
 import play.db.jpa.Model;
 
 @Entity(name = "user_table")
-public class User extends Model
-{
+public class User extends Model {
 	public String email;
 	public String password;
 	public String fullname;
@@ -22,7 +21,7 @@ public class User extends Model
 	public String gender;
 	public String religion;
 	public Date birthday;
-	
+
 	@OneToOne
 	public Image image;
 
@@ -35,8 +34,7 @@ public class User extends Model
 
 	public User(String email, String password, String fullname, String country,
 			String city, String gender, String religion, Date birthday,
-			Image image, List<String> tags)
-	{
+			Image image, List<String> tags) {
 		super();
 		this.email = email;
 		this.password = password;

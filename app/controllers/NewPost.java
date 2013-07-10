@@ -12,18 +12,14 @@ import models.User;
 import play.db.jpa.Blob;
 import play.mvc.Controller;
 
-public class NewPost extends Controller
-{
+public class NewPost extends Controller {
 
-	public static void page()
-	{
+	public static void page() {
 		String userId = session.get("userId");
-		if (userId != null)
-		{
+		if (userId != null) {
 			User user = User.findById(Long.parseLong(userId));
 
-			if (user != null)
-			{
+			if (user != null) {
 				render(user);
 			}
 		}
@@ -35,25 +31,18 @@ public class NewPost extends Controller
 			String description, Blob photoData1, Blob photoData2,
 			Blob photoData3, Blob photoData4, String video, String shareRadio,
 			String address, Double locationLongitude, Double locationLatitude,
-			String tags)
-	{
+			String tags) {
 		String userId = session.get("userId");
-		if (userId != null)
-		{
+		if (userId != null) {
 			User sender = User.findById(Long.parseLong(userId));
 
-			if (sender != null)
-			{
-				if (submitAction.equals("post"))
-				{
+			if (sender != null) {
+				if (submitAction.equals("post")) {
 					MapLocation mapLocation;
-					try
-					{
+					try {
 						mapLocation = new MapLocation(address,
 								locationLongitude, locationLatitude);
-					}
-					catch (Exception e)
-					{
+					} catch (Exception e) {
 						mapLocation = new MapLocation(address, 0.0, 0.0);
 					}
 
@@ -61,10 +50,8 @@ public class NewPost extends Controller
 
 					LinkedList<Image> imageList = new LinkedList<Image>();
 					for (Blob pd : Arrays.asList(photoData1, photoData2,
-							photoData3, photoData4))
-					{
-						if (pd != null)
-						{
+							photoData3, photoData4)) {
+						if (pd != null) {
 							Image image = new Image(pd).save();
 							imageList.add(image);
 						}
@@ -75,11 +62,9 @@ public class NewPost extends Controller
 					content.save();
 
 					LinkedList<String> tagList = new LinkedList<String>();
-					for (String t : tags.split(";"))
-					{
+					for (String t : tags.split(";")) {
 						t = t.trim();
-						if (t.length() > 0)
-						{
+						if (t.length() > 0) {
 							tagList.add(t);
 						}
 					}
@@ -88,9 +73,7 @@ public class NewPost extends Controller
 							new Date(), shareRadio.equals("yes"), sender,
 							content, tagList);
 					post.save();
-				}
-				else if (submitAction.equals("cancel"))
-				{
+				} else if (submitAction.equals("cancel")) {
 				}
 
 				// redirect to edit post
