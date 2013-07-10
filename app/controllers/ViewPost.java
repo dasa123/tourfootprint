@@ -21,7 +21,7 @@ public class ViewPost extends Controller
 				if (userId != null)
 				{
 					user = User.findById(Long.parseLong(userId));
-					showEditButton = user != null;
+					showEditButton = user != null && user.id == post.sender.id;
 				}
 
 				render(post, user, showEditButton);

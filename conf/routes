@@ -14,6 +14,8 @@ GET     /viewPost                            	ViewPost.page
 
 # My Posts page
 GET     /myPosts                            	MyPosts.page
+# Post Stream page
+GET     /postStream                            	PostStream.page
 
 # Search Results page
 GET     /searchResults                          SearchResults.page
