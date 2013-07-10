@@ -61,6 +61,8 @@ function initialize() {
 											profileScope.mapOptions);
 	
 	profileScope.tags = {};
+	
+	setMarkers();
 }
 
 //setMarkerPosition
@@ -70,40 +72,32 @@ function setMarkerPosition(lat, lng){
    	profileScope.map.panTo(location);
    	profileScope.map.setZoom(16);
    	
-   	if(profileScope.marker){
-   		profileScope.marker.setPosition(location);
-   	}
-   	else{
-   		profileScope.marker = new google.maps.Marker({
-	            map: profileScope.map,
-	            position: location
-	        });
-   	}
-   	
-   	//
-   	var southWest = new google.maps.LatLng(-31.203405, 125.244141);
-    var northEast = new google.maps.LatLng(-25.363882, 131.044922);
-
-    var bounds = new google.maps.LatLngBounds(southWest, northEast);
-    map.fitBounds(bounds);
-
-    var lngSpan = northEast.lng() - southWest.lng();
-    var latSpan = northEast.lat() - southWest.lat();
-
-    for (var i = 0; i < 5; i++) {
-        var position = new google.maps.LatLng(
-            southWest.lat() + latSpan * Math.random(),
-            southWest.lng() + lngSpan * Math.random());
-        var marker = new google.maps.Marker({
-          position: position,
-          map: map
-        });
-
-        marker.setTitle((i + 1).toString());
-      }
-    //
-   	
+	profileScope.marker = new google.maps.Marker({
+         map: profileScope.map,
+         position: location
+     });
 }
+
+//Add all markers related to the current user to the map
+function setMarkers(){
+		  #{list items:user.posts, as:'myPost'}
+			var lati = ${myPost.mapLocation.latitude} ;
+		    var longi = ${myPost.mapLocation.longitude} ;
+
+			var location = new google.maps.LatLng(lati, longi);
+			profileScope.map.panTo(location);
+			profileScope.map.setZoom(1);		  
+			
+		   	var position = new google.maps.LatLng(lati, longi);
+			var marker = new google.maps.Marker({
+		      position: position,
+		      map: profileScope.map
+		    });
+		  #{/list}
+}
+
+
+
 function addTag(newTagText){
 	//ajax for add
 	var newElementID = "tag_span_id" + profileAddTagCounter;
