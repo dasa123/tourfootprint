@@ -98,41 +98,15 @@ function setMarkers(){
 
 
 
-function addTag(newTagText){
-	//ajax for add
+ function addTag(newTagText){
 	var newElementID = "tag_span_id" + profileAddTagCounter;
-	var newRemoveButtonID = "tag_remove_button_id" + profileAddTagCounter; 
-	var newElementHTML = "<span id='" + newElementID + "'>" 
+	var newElementHTML = "<span id='" 
+	+ newElementID + "'>" 
 	+newTagText 
 	+ "</span><br>";
 
 	$("#added_tags_div").append(newElementHTML);
-
-	profileScope.tags[newElementID] = newTagText;
-
-	refreshTags();
-
-	$("#" + newRemoveButtonID).click(function(){
-		$("#" + newElementID).remove();
-		delete profileScope.tags[newElementID];
-		//ajax for remove
-		refreshTags();
-	});
-
 	profileAddTagCounter = profileAddTagCounter + 1;
-}
-
-function refreshTags(){
-	tagString = "";
-	for(var key in profileScope.tags){
-		tagString += ";" + profileScope.tags[key];
-	}
-	$("#tags_hidden_input").val(tagString);
-}
-
-function deleteImage(elementId, idx){
-	$("#" + elementId).remove();
-	$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
 }
 
 $(function(){
@@ -193,15 +167,11 @@ $(function(){
 			
 			if(newTagText != ""){
 				tag = tag+";"+newTagText;
-				//$("#tags").attr("value",tags);
-				//alert(tags);
 				$.post("@{MyProfile.submit()}",
 						  {
 							tags:tag
 						  },
 						  function(data){
-							  //$("#added_tags_div").reload();
-							  //alert(data);
 								addTag(newTagText);
 						  } 
 				);
