@@ -7,8 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity(name = "user_table")
@@ -22,6 +22,8 @@ public class User extends Model
 	public String gender;
 	public String religion;
 	public Date birthday;
+	
+	@OneToOne
 	public Image image;
 
 	@ElementCollection

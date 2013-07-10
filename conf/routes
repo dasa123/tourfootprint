@@ -18,6 +18,11 @@ GET     /myPosts                            	MyPosts.page
 # Search Results page
 GET     /searchResults                          SearchResults.page
 
+# My Profle page
+GET     /myProfile                            	MyProfile.page
+# View Profle page
+GET     /viewProfile                            ViewProfile.page
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

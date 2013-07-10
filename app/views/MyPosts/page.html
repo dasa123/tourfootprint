@@ -3,22 +3,34 @@
 
 <style type="text/css">
 #my_post_left_div {
-    width: 500px;
-    position: relative;
-    top: 10px;
-    float: left;
+	border: 1px solid #A9C9E2;
+	width: 150px;
+	position: relative;
+	top: 10px;
+	float: left;
 }
 
+#my_post_middle_div {
+	border: 1px solid #A90000;
+	width: 380px;
+	position: relative;
+	top: 10px;
+	float: left;
+}
 
 #my_post_right_div {
-    width: 200px;
-    float:left;
-    position: relative;
-    top: 10px;
+	border: 1px solid #F9B3D5;
+	width: 400px;
+	float: left;
+	position: relative;
+	top: 10px;
 }
 
-
-	.postImage{height:50px;}
+.postimage {
+	max-width: 100px;
+	max-height: 100px;
+	overflow: hidden;
+}
 </style>
 
 <script>
@@ -89,6 +101,29 @@ function refreshTags(){
 </script>
 
 <div id="my_post_left_div">
+	<h3>${user.fullname}</h3>
+	</br> <input type="image" class="postimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
+		type="file" id="photo" name="photoData" style="display: none;" /> </br>
+
+
+	<h3>Followed</h3>
+	#{list items:user.followed, as:'followed'}
+	<div class="followed">
+		<h2 class="myfollowed-fullname">
+			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
+		</h2>
+		<div>
+			<img class="postimage"
+				src="@{RequestUtils.renderImage(user.image.id)}">
+		</div>
+		<a href="@{ViewProfile.page(followed.id)}">more</a>
+	</div>
+	#{/list}
+</div>
+
+
+<div id="my_post_middle_div">
 	<div class="myposts">
 	        <h3>My posts</h3>
         	<br>
@@ -103,9 +138,17 @@ function refreshTags(){
                     <h2 class="post-title" #{if myPost.mapLocation.latitude} onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})" #{/if}>
                         <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
                     </h2>                    
-                    <div class="post-image">
-                    	
-                    </div>
+                    <div>
+						<span class="post-date"> Posted at: ${myPost.postingDate} </span>
+					</div>
+
+					#{list items:myPost.content.pictures, as:'picutre'}
+					<div class="post-image">
+						<input type="image" class="postimage"
+							src="@{RequestUtils.renderImage(picutre.id)}" alt="Edit Pic" />
+					</div>
+					#{/list}
+
                     
                     <div class="post-metadata">
                         <span class="post-desc">

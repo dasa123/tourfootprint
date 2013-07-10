@@ -27,16 +27,17 @@ public class EditPost extends Controller
 				{
 					User user = User.findById(Long.parseLong(userId));
 
-					if (user != null)
+					if (user != null && user.id == post.sender.id)
 					{
 						// render edit post
 						render(user, post);
 					}
 				}
+
+				// if user not authenticated render view post
+				ViewPost.page(postId);
 			}
 
-			// if user not authenticated render view post
-			ViewPost.page(postId);
 		}
 
 		// handle case where post was deleted

@@ -1,15 +1,16 @@
 package controllers;
 
-import play.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Random;
+
+import models.Image;
+import models.Post;
+import models.User;
 import play.data.validation.Email;
-import play.mvc.*;
-
-import java.io.PrintWriter;
-import java.util.*;
-
-import javax.print.attribute.standard.PagesPerMinute;
-
-import models.*;
+import play.db.jpa.Blob;
+import play.mvc.Controller;
 
 public class MainPage extends Controller {
 
@@ -35,6 +36,21 @@ public class MainPage extends Controller {
 			if (password.equals(password_retyped) && password.length() != 0) {
 				User newUser = new User(email, password, null, null, null,
 						null, null, null, null, null);
+
+				Blob userImageBlob = new Blob();
+				try
+				{
+					userImageBlob.set(new FileInputStream("public/images/defaultUserImage.jpg"), "jpg");
+				}
+				catch (FileNotFoundException e)
+				{
+					e.printStackTrace();
+				}
+				
+				newUser.image = new Image(userImageBlob);
+				newUser.image.save();
+				System.out.println("imageId: " + newUser.image.getId());
+				
 				newUser.save();
 				// render("pages/myPosts.html");
 				session.put("userId", newUser.id);
