@@ -1,0 +1,78 @@
+// Import default values
+@import "template.less";
+
+.hidden_input{display: none;}
+
+#new_post_left_div {
+	float: left;
+	width: 140px;
+		
+	border: @default_border_width @default_border_style @default_border_color;
+	float: left;
+	margin-left: 10px;
+	width: 526px;
+	padding: 5px;
+	
+	#comment_button_input, button {
+		background-color: #EDEDED;
+	    border: 2px solid #A8A8A8;
+	    border-radius: 10px 10px 10px 10px;
+	    color: #777777;
+	    font-weight: bold;
+	    height: 34px;
+	    margin: 8px 0 0 2px;
+	    vertical-align: top;
+	    width: 80px;
+	}
+	
+	#comment_button_input {
+		width: 120px;
+	}
+	
+	input, textarea {
+		border: 1px @default_border_style @default_border_color;
+		float: right;
+		width: 300px;
+	}
+	
+	p {
+		clear: both;
+		padding-bottom: 10px;
+	}
+	
+	#photo_data_2, #photo_data_3, #photo_data_4 {
+		margin-top: 5px;
+	}
+	
+	#photo_data_4 {
+		margin-bottom: 5px;
+	}
+	
+	#share_yes_input, #share_no_input {
+		margin-right: 285px;
+	}
+	
+	.postImage {
+		width: 60px;
+	}
+	
+	a {
+		float: right;
+		margin-left: 10px;
+	}
+	
+	iframe {
+		width: 526px;
+	}
+}
+
+#new_post_right_div {
+	border: @default_border_width @default_border_style @default_border_color;
+	float: right;
+	height: 386px;
+	width: 386x;
+	
+	#added_tags_div {
+		margin-top: 10px;
+	}
+}

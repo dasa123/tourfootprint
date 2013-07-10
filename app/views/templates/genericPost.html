@@ -9,6 +9,10 @@
 #{set title:'New Post'/}
 #{/else}
 
+#{set 'moreStyles'}
+	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/genericPost.less'}">
+#{/set}
+
 <script>
 
 	var newPostAddTagCounter = 0;
@@ -136,13 +140,6 @@
       }
     </script>
     
-<style type="text/css">
-	#new_post_left_div {width:50%; float:left;}
-	#new_post_right_div {width:50%; float: right;}
-	.postImage{height:50px;}
-	.hidden_input{display: none;}
-</style>
-
 #{if showEditButton}
 <a href="@{EditPost.page(post.id)}"><button>Edit Post</button></a> <br><br>
 #{/if}
@@ -163,8 +160,9 @@
 	        <label for="description_input">Description: </label>
 	        <textarea name="description" id="description_input" #{if mode == 'view'}readonly#{/if}>${post?.description}</textarea>
 	    </p>
-	     <p>
-	        <label>Photos</label><br>
+	     <p> 
+	    <br>
+	        <label>Photos</label>
 	        #{if mode == 'new'}
 	        <input type="file" draggable="true" name="photoData1" id="photo_data_1"/> 
 	        <input type="file" draggable="true" name="photoData2" id="photo_data_2"/> 
@@ -182,6 +180,7 @@
 	    </p>
         <p>
 	        #{if mode != 'view'}
+	        	<br>
 	        	<label for="video_input">Video: </label>
 				<input type="text" name="video" id="video_input" value="${post?.content?.video}"/>
 	        #{/if}
@@ -223,8 +222,6 @@
      #{/form}
      #{if mode != 'new'}
      <div id="comments_div">
-        <br>
-	    <br>
 		<b>Comments:</b> <br>
 			#{list items:post.comments, as:'comment'}
 			
@@ -252,7 +249,7 @@
     </div>
 
     <div id="new_post_right_div">
-    	<div id="newpost-map-canvas" style="height:300px;width:400px"></div>
+    	<div id="newpost-map-canvas" style="height:386px;width:386px"></div>
 		<p>
 	        #{if mode != 'view'}
 	        <br>
@@ -262,6 +259,7 @@
 	        <button id="add_tag_button">Add</button>
 	        #{/if}
 	    </p>
+	    <br>
 	    Added Tags:
         <div id="added_tags_div"></div>
 	</div>
