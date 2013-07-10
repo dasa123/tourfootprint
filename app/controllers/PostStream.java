@@ -18,10 +18,23 @@ public class PostStream extends Controller{
 			
 			if (user != null)
 			{
-				//get all posts from all users in a list
+				// Empty bucket, where posts of users, I follow, are put in
 				List<Post> posts = new LinkedList<Post>();
 				
-				//order posts by date
+				// All posts ordered by date
+				List<Post> allPosts = Post.find("order by postingDate desc").fetch();
+				
+				// Users I follow
+				List<User> followedUsers = user.followed;
+				
+				// Put the posts of users, who I follow, in the bucket
+				for (int i = 0; i < allPosts.size(); i++) {
+					Post currentPost = allPosts.get(i);
+					
+					if ( followedUsers.contains(currentPost.sender) ) {
+						posts.add(currentPost);
+					}
+				}
 				
 				//render
 				render(user, posts);
