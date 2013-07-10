@@ -13,7 +13,7 @@ public class ReductionUtil
 		String consontantString = "";
 		for (char c : s.toCharArray())
 		{
-			if (Character.isAlphabetic(c))
+			if (isAlphabetic(c))
 			{
 				consontantString += c;
 			}
@@ -23,7 +23,7 @@ public class ReductionUtil
 		String reducedString = "";
 		for (char c : consontantString.toCharArray())
 		{
-			if (Character.isAlphabetic(c))
+			if (isAlphabetic(c))
 			{
 				int charIndex = c - 'a';
 				reducedString += reducedAlphabet.charAt(charIndex);
@@ -31,5 +31,10 @@ public class ReductionUtil
 		}
 
 		return reducedString;
+	}
+	
+	private static boolean isAlphabetic(char c)
+	{
+		return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 	}
 }

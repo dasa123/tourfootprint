@@ -60,12 +60,12 @@ public class SearchResults extends Controller
 	
 	private static List<HashMap<String,String>> postListToCollections(List<Post> posts)
 	{
-		List<HashMap<String,String>> result = new LinkedList<>();
+		List<HashMap<String,String>> result = new LinkedList<HashMap<String,String>>();
 		
 		for(Post post : posts)
 		{
 			
-			HashMap postMap = new HashMap<>();
+			HashMap postMap = new HashMap();
 			postMap.put("id", post.id);
 			postMap.put("title", post.title);
 			postMap.put("description", post.description);
