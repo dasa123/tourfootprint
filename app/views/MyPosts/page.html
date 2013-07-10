@@ -74,10 +74,11 @@ function refreshTags(){
 
 <div id="my_post_left_div">
 	<h3>${user.fullname}</h3>
-	</br> <input type="image" class="postimage"
+	<div class="image">
+	<input type="image" class="postimage"
 		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
-		type="file" id="photo" name="photoData" style="display: none;" /> </br>
-
+		type="file" id="photo" name="photoData" style="display: none;" />
+	</div>
 
 	<h3>Followed</h3>
 	#{list items:user.followed, as:'followed'}
@@ -98,7 +99,6 @@ function refreshTags(){
 <div id="my_post_middle_div">
 	<div class="myposts">
 	        <h3>My posts</h3>
-        	<br>
         	
         	#{form @NewPost.page()}
             	<button>Add New Post </button>
@@ -144,6 +144,6 @@ function refreshTags(){
 
 
 <div id="my_post_right_div">
-    <div id="newpost-map-canvas" style="height:400px;width:400px">  </div>
+    <div id="newpost-map-canvas" style="height:386px;width:386px">  </div>
 </div>
 
