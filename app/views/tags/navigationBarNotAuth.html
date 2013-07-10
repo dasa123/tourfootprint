@@ -1,3 +1,48 @@
+#{if searchString}
+<div id="navigation_bar_search">
+	<input id="navigation_bar_search_text" placeholder="Type in your search terms!" type="text" name="searchString" value="${searchString?.raw()}">
+	<input id="navigation_bar_search_button" type="button" value="Search">
+</div>
+#{/if}
+
+<div id="navigation_bar_register">
+	<a href="#" class="navigation_bar_pop_up_button navigation_bar_register_button">
+		Register
+	</a>
+	<div id="navigation_bar_register_box">
+		<div class="navigation_bar_triangle">
+		</div>
+		<div class="navigation_bar_triangle2">
+		</div>
+    	<div id="navigation_bar_register_box_content">
+        	#{form @MainPage.register(), id:'navigation_bar_register_form'}
+            	<input type="text" name="email" placeholder="E-Mail" />
+            	<input type="password" name="password" placeholder="Password" />
+            	<input type="password" name="password_retyped" placeholder="Password Retyped" />
+            	<input type="submit" value="Register" />
+        	#{/form}
+    	</div>
+	</div>
+</div>
+<div id="navigation_bar_login">
+	<a href="#" class="navigation_bar_pop_up_button navigation_bar_login_button">
+		Login
+	</a>
+	<div id="navigation_bar_login_box">
+		<div class="navigation_bar_triangle">
+		</div>
+		<div class="navigation_bar_triangle2">
+		</div>
+    	<div id="navigation_bar_login_box_content">
+    		#{form @MainPage.login(), id:'navigation_bar_login_form'}
+            	<input type="text" name="email" placeholder="E-Mail" />
+            	<input type="password" name="password" placeholder="Password" />
+            	<input type="submit" value="Login" />
+        	#{/form}
+    	</div>
+	</div>
+</div>
+
 <span id="signinButton">
   <span
     class="g-signin"
@@ -48,49 +93,3 @@ function signinCallback(authResult) {
 	  }
 	}
 </script>
-
-
-#{if searchString}
-<div id="navigation_bar_search">
-	<input id="navigation_bar_search_text" placeholder="Type in your search terms!" type="text" name="searchString" value="${searchString?.raw()}">
-	<input id="navigation_bar_search_button" type="button" value="Search">
-</div>
-#{/if}
-
-<div id="navigation_bar_register">
-	<a href="#" class="navigation_bar_pop_up_button navigation_bar_register_button">
-		Register
-	</a>
-	<div id="navigation_bar_register_box">
-		<div class="navigation_bar_triangle">
-		</div>
-		<div class="navigation_bar_triangle2">
-		</div>
-    	<div id="navigation_bar_register_box_content">
-        	#{form @MainPage.register(), id:'navigation_bar_register_form'}
-            	<input type="text" name="email" placeholder="E-Mail" />
-            	<input type="password" name="password" placeholder="Password" />
-            	<input type="password" name="password_retyped" placeholder="Password Retyped" />
-            	<input type="submit" value="Register" />
-        	#{/form}
-    	</div>
-	</div>
-</div>
-<div id="navigation_bar_login">
-	<a href="#" class="navigation_bar_pop_up_button navigation_bar_login_button">
-		Login
-	</a>
-	<div id="navigation_bar_login_box">
-		<div class="navigation_bar_triangle">
-		</div>
-		<div class="navigation_bar_triangle2">
-		</div>
-    	<div id="navigation_bar_login_box_content">
-    		#{form @MainPage.login(), id:'navigation_bar_login_form'}
-            	<input type="text" name="email" placeholder="E-Mail" />
-            	<input type="password" name="password" placeholder="Password" />
-            	<input type="submit" value="Login" />
-        	#{/form}
-    	</div>
-	</div>
-</div>
