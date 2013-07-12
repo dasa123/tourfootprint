@@ -50,9 +50,14 @@
 	
 	function addTag(newTagText){
 		var newElementID = "tag_span_id" + newPostAddTagCounter;
-		var newRemoveButtonID = "tag_remove_button_id" + newPostAddTagCounter; 
-		var newElementHTML = "<span id='" + newElementID + "'>" +newTagText #{if mode != 'view'}+ "<button id='" + newRemoveButtonID + "'>Remove</button>"#{/if} + "</span><br>";
-		
+		var newRemoveButtonID = "tag_remove_button_id" + newPostAddTagCounter;
+		#{if mode == 'view'}
+			var newElementHTML = "<span id='" + newElementID + "'>" +newTagText + "</span><br>";
+		#{/if}
+		#{else}
+			var newElementHTML = "<button id='" + newRemoveButtonID + "'><span id='" + newElementID + "'>" +newTagText + "</span></button>";
+		#{/else}
+			
 		$("#added_tags_div").append(newElementHTML);
 		
 		newPostScope.tags[newElementID] = newTagText;
@@ -61,6 +66,7 @@
 		
 		$("#" + newRemoveButtonID).click(function(){
 			$("#" + newElementID).remove();
+			$("#" + newRemoveButtonID).remove();
 			delete newPostScope.tags[newElementID];
 			
 			refreshTags();

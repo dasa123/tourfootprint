@@ -84,9 +84,27 @@
 	border: @default_border_width @default_border_style @default_border_color;
 	float: right;
 	height: 386px;
-	width: 386x;
+	width: 386px;
+	word-wrap: break-word;
 	
 	#added_tags_div {
 		margin-top: 10px;
+	}
+	
+	#added_tags_div button, #add_tag_button {
+		background-color: #EDEDED;
+		border: 2px solid #A8A8A8;
+		border-radius: 10px 10px 10px 10px;
+		clear: both;
+		color: #777777;
+		font-weight: bold;
+		height: 24px;
+		margin-right: 5px;
+		padding: 0 5px;
+		vertical-align: top;
+	}
+	
+	#added_tags_div button {
+		margin-bottom: 5px;
 	}
 }
