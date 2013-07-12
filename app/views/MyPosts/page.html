@@ -75,8 +75,15 @@ function refreshTags(){
 <div id="my_post_left_div">
 	<h3>${user.fullname}</h3>
 	<div class="image">
+	#{if user.image.id != null }
 	<input type="image" class="postimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" />
+	#{/if}
+	#{else}
+	<input type="image" class="postimage"
+		src="/public/images/defaultUserImage.jpg" alt="Edit Pic" />
+	#{/else}
+	 <input
 		type="file" id="photo" name="photoData" style="display: none;" />
 	</div>
 

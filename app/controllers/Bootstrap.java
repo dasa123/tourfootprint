@@ -31,9 +31,13 @@ public class Bootstrap extends Job {
       // Check if the database is empty
       if(User.count() == 0) {
         Logger.info("Loading Initial Data.");
-        Fixtures.loadModels("initial-data.yml");
+        Fixtures.loadModels("initial-data2.yml");
         }
         List<Post> posts = Post.findAll();
+        
+        for (Post post: posts) {
+            Logger.info("Looking for files for post: [" + post.title + "]");
+        }
         
         for (Post post: posts) {
           Logger.info("Looking for files for post: [" + post.title + "]");
@@ -42,7 +46,6 @@ public class Bootstrap extends Job {
           
           for (int i=0; i < 5; i++) {
             
-        	
             String imageFile = "public/uploads/"+ post.title + "-" + i + ".jpg";
 
               try {
@@ -51,6 +54,7 @@ public class Bootstrap extends Job {
                 Image image = new Image(blobImage, imageFile);
                 image.save();
                 pictures.add(image);
+                System.out.println("asdfasfweafaewdfasfads: " + image.getId().toString());
                 
                 Logger.info("File: [%s] Loaded", imageFile);
               } catch (FileNotFoundException e) {
@@ -77,39 +81,21 @@ public class Bootstrap extends Job {
 		for (User user: users) {
 	          Logger.info("Looking for files for user: [" + user.email + "]");
 	          
-	          LinkedList<Image> pictures = new LinkedList<Image>();
-	          
-	          for (int i=0; i < pictures.size(); i++) {
 	            
-	            String imageFile = "public/uploads/user"+ user.email + "-" + i + ".jpg";
+	            String imageFile = "public/uploads/user"+ user.email + ".jpg";
 
 	              try {
 	            	Blob blobImage = new Blob();
 	                blobImage.set(new FileInputStream(imageFile), MimeTypes.getContentType(imageFile));
-	                Image image = new Image(blobImage, imageFile);
-	                image.save();
-	                pictures.add(image);
+	                user.image = new Image(blobImage, imageFile);
+	                user.image.save();
+	                user.save();
 	                
 	                Logger.info("File: [%s] Loaded", imageFile);
 	              } catch (FileNotFoundException e) {
 	            	  Logger.info(e.toString());
 	            	  Logger.info("File: [%s] Not Loaded", imageFile);
 	              }
-	           
-	            }
-	          
-	          PostContent content = new PostContent(null,pictures);
-	          
-	          content.save();
-	          
-	          for(Image img: pictures){
-	        	  
-	        	  img.content = content;
-	        	  img.save();
-	        	  }
-	          
-	          user.addContent(content);
-	          user.save();
 		}
     }
 }

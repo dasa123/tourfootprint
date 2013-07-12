@@ -29,8 +29,8 @@ public class User extends Model
 	public String religion;
 	public Date birthday;
 
-	//@OneToOne
-	//public Image image;
+	@OneToOne
+	public Image image;
 	@OneToOne
 	public PostContent content;
 
@@ -42,8 +42,7 @@ public class User extends Model
 	public List<Post> posts;
 
 	public User(String email, String password, String fullname, String country,
-			String city, String gender, String religion, Date birthday,
-			/*Image image*/PostContent content, List<String> tags)
+			String city, String gender, String religion, Date birthday,Image image, List<String> tags)
 	{
 		super();
 		this.email = email;
@@ -54,8 +53,7 @@ public class User extends Model
 		this.gender = gender;
 		this.religion = religion;
 		this.birthday = birthday;
-		//this.image = image;
-		this.content = content;
+		this.image = image;
 		this.tags = tags;
 
 		
@@ -80,7 +78,7 @@ public class User extends Model
 		}*/
 	}
 	
-	public void addContent(PostContent content){
-		this.content = content;
+	public void addImage(Image image){
+		this.image = image;
 	}
 }

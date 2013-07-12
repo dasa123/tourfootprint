@@ -42,16 +42,16 @@
   religion: "orthodox"
   birthday: 31.08.
   tags: [hiking,sailing,windsurfing,bike&hike,mountains]
-  posts: [Garda]
+  posts: [garda_2012]
   
   MapLocation(vova_address):
   address: "Kyiv, Ukraine"
-  latitude: 50,443640 
+  latitude: 50,443640
   longitude: 30,546270
   
   MapLocation(garda_loc):
   address: "Malcesine, Veneto, Italy"
-  latitude: 45,7852, 
+  latitude: 45,7852
   longitude: 10,8216
   
   Post(garda_2012):
@@ -265,7 +265,7 @@
   longitude: 100.043439
   
   Post(grandmother&grandvater):
-  title: "Grandmother&Grandvater"
+  title: "Grandmother & Grandvater"
   description: "Hin Ta (Grandpa) and Hin Yai (Grandma) are rock formations on Koh Samui’s south coast. A local story tells of an old couple whose ship was wrecked in the bay of Lamai Beach. Their body's were washed ashore to create the rocks."
   mapLocation: grandmother&grandvater_loc
   postingDate: 2009-09-06
