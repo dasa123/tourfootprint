@@ -17,6 +17,12 @@
 		padding: 20px 0;
 		text-align: center;
 	}
+	
+	.postimage {
+		max-width: 100px;
+		max-height: 100px;
+		overflow: hidden;
+	}
 }
 
 #my_post_middle_div {
@@ -38,6 +44,25 @@
 		    vertical-align: top;
 		    width: 120px;
 		}
+		
+		.post-metadata {
+			padding-top: 10px;
+			.post-desc {
+				word-wrap: break-word;
+			}
+		}
+		
+		.postimage {
+			float: left;
+			max-width: 92px;
+			overflow: hidden;
+		}
+		
+		.post-image-1, .post-image-2, .post-image-3 {
+			input {	
+				margin-right: 5px;
+			}
+		}
 	}
 }
 
@@ -46,10 +71,4 @@
 	float: right;
 	height: 386px;
 	width: 386x;
-}
-
-.postimage {
-	max-width: 100px;
-	max-height: 100px;
-	overflow: hidden;
 }

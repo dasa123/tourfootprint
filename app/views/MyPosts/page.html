@@ -114,13 +114,13 @@ function refreshTags(){
 						<span class="post-date"> Posted at: ${myPost.postingDate} </span>
 					</div>
 
-					#{list items:myPost.content.pictures, as:'picutre'}
-					<div class="post-image">
+					#{list items:myPost.content.pictures, as:'picture'}
+					<div class="post-image post-image-${picture_index}">
 						<input type="image" class="postimage"
-							src="@{RequestUtils.renderImage(picutre.id)}" alt="Edit Pic" />
+							src="@{RequestUtils.renderImage(picture.id)}" alt="Edit Pic" />
 					</div>
 					#{/list}
-
+					<div class="clear"></div>
                     
                     <div class="post-metadata">
                         <span class="post-desc">
@@ -135,7 +135,7 @@ function refreshTags(){
             #{/list}
             #{else}
 			    <div class="empty">
-			        You havn't publish any post .
+			        You haven't published any post.
 			    </div>
 			#{/else}
         </div>
