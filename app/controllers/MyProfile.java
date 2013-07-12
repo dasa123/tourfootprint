@@ -52,12 +52,12 @@ public class MyProfile extends Controller
 					user.birthday = birthday;
 				}
 
-				System.out.println("Photo :" + photoData);
+				/*System.out.println("Photo :" + photoData);
 				if (photoData != null)
 				{
 					user.image = new Image(photoData);
 					user.image.save();
-				}
+				}*/
 
 				if (tags != null)
 				{

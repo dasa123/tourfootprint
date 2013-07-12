@@ -71,5 +71,45 @@ public class Bootstrap extends Job {
           post.addContent(content);
           post.save();
         }
+        
+        List<User> users = User.findAll();
+		
+		for (User user: users) {
+	          Logger.info("Looking for files for user: [" + user.email + "]");
+	          
+	          LinkedList<Image> pictures = new LinkedList<Image>();
+	          
+	          for (int i=0; i < pictures.size(); i++) {
+	            
+	            String imageFile = "public/uploads/user"+ user.email + "-" + i + ".jpg";
+
+	              try {
+	            	Blob blobImage = new Blob();
+	                blobImage.set(new FileInputStream(imageFile), MimeTypes.getContentType(imageFile));
+	                Image image = new Image(blobImage, imageFile);
+	                image.save();
+	                pictures.add(image);
+	                
+	                Logger.info("File: [%s] Loaded", imageFile);
+	              } catch (FileNotFoundException e) {
+	            	  Logger.info(e.toString());
+	            	  Logger.info("File: [%s] Not Loaded", imageFile);
+	              }
+	           
+	            }
+	          
+	          PostContent content = new PostContent(null,pictures);
+	          
+	          content.save();
+	          
+	          for(Image img: pictures){
+	        	  
+	        	  img.content = content;
+	        	  img.save();
+	        	  }
+	          
+	          user.addContent(content);
+	          user.save();
+		}
     }
 }
