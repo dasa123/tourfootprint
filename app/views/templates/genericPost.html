@@ -264,18 +264,17 @@
 
     <div id="new_post_right_div">
     	<div id="newpost-map-canvas" style="height:386px;width:386px"></div>
-		<p>
-	        #{if mode != 'view'}
-	        <br>
-	        <label for="add_tag_input">Tags: </label>
-	        <input type="text" id="add_tag_input"/>
-	        
-	        <button id="add_tag_button">Add</button>
-	        #{/if}
-	    </p>
-	    <br>
-	    Added Tags:
-        <div id="added_tags_div"></div>
+    	<div id="tags_div">
+		    #{if mode != 'view'}
+		    <p>
+		        <label for="add_tag_input">Tags: </label>
+		        <input type="text" id="add_tag_input"/>
+		        <button id="add_tag_button">Add</button>
+		    </p>
+		    #{/if}
+		    Added Tags:
+	        <div id="added_tags_div"></div>
+        </div>
 	</div>
 	
 </div>
