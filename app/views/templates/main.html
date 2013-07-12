@@ -15,7 +15,10 @@
         #{get 'moreStyles' /}
         <link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/navigationBar.less'}">
         <link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/template.less'}">
-        
+		#{if userToShow}
+			<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/leftVerticalBar.less'}">
+		#{/if}
+		        
         <!-- Javascript -->
         #{get 'moreScripts' /}
         <script src="@{'/public/javascripts/jquery-1.10.1.min.js'}" type="text/javascript"></script>
@@ -26,6 +29,8 @@
         
     </head>
     <body>
+    <div>
+    </div>	
     	<div id="template_top">
     		<div id="template_content">
     			<div id="template_navigation_bar">
@@ -54,7 +59,15 @@
 						#{navigationBarNotAuth /}
 					#{/else}
     			</div>
-    			#{doLayout /}
+    			
+    			#{if userToShow}
+    				#{set user : user /}
+    				#{leftVerticalBar /}
+    			#{/if}
+
+    			<div id="main_dolayout_div">
+    				#{doLayout /}
+    			</div>
     		</div>
     		<div style="clear:both; height: 10px;"></div>
     		<div id="template_push">

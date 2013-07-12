@@ -1,5 +1,8 @@
 #{extends 'templates/main.html'/}
 #{set title:'My Posts'/}
+
+#{set userToShow: user /}
+
 #{set 'moreStyles'}
 	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/myPosts.less'}">
 #{/set}
@@ -71,30 +74,6 @@ function refreshTags(){
 }
         
 </script>
-
-<div id="my_post_left_div">
-	<h3>${user.fullname}</h3>
-	<div class="image">
-	<input type="image" class="postimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <input
-		type="file" id="photo" name="photoData" style="display: none;" />
-	</div>
-
-	<h3>Followed</h3>
-	#{list items:user.followed, as:'followed'}
-	<div class="followed">
-		<h2 class="myfollowed-fullname">
-			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
-		</h2>
-		<div>
-			<img class="postimage"
-				src="@{RequestUtils.renderImage(user.image.id)}">
-		</div>
-		<a href="@{ViewProfile.page(followed.id)}">more</a>
-	</div>
-	#{/list}
-</div>
-
 
 <div id="my_post_middle_div">
 	<div class="myposts">

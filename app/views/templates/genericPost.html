@@ -9,6 +9,14 @@
 #{set title:'New Post'/}
 #{/else}
 
+#{if post}
+	#{set userToShow: post.sender /}
+#{/if}
+#{else}
+	#{set userToShow: user /}
+#{/else}
+
+
 #{set 'moreStyles'}
 	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/genericPost.less'}">
 #{/set}

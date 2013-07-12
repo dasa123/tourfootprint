@@ -112,31 +112,12 @@ public class MyProfile extends Controller
 			User user = User.findById(Long.parseLong(userId));
 			if (user != null)
 			{
-				// renderArgs.put("ajax", "true");
-				// renderTemplate("tags/ajax.html");
 				String tagString = getTags(user.tags);
 				render(user, tagString);
 			}
 		}
+		
 		MainPage.index();
-	}
-
-	// public static void partialUpdate() {
-	// String userId = session.get("userId");
-	// if (userId != null) {
-	// User user = User.findById(Long.parseLong(userId));
-	// if (user != null) {
-	// //String tagString = getTags(user.tags);
-	// //render(user, tagString);
-	//
-	// }
-	// }
-	// MainPage.index();
-	// }
-
-	public static void forwardToMyProfile()
-	{
-		MyProfile.page();
 	}
 
 	public static String getTags(List<String> tags)

@@ -15,28 +15,35 @@ public class ViewProfile extends Controller
 
 	public static void page(Long Id)
 	{
-		Long userId = Long.parseLong(session.get("userId"));
-		boolean followed = false;
-		if (userId == Id)
+		String userId = session.get("userId");
+		if (userId != null)
 		{
-			MyProfile.page();
-		}
-		if (Id != null)
-		{
-			User user = User.findById(Id);
-			User me = User.findById(userId);
+			User user = User.findById(Long.parseLong(userId));
+			
 			if (user != null)
 			{
-				if (me.followed.contains(user))
+				if (Long.parseLong(userId) == Id)
 				{
-					followed = true;
-					System.out.println(user.fullname + " has been followed ");
-
+					MyProfile.page();
 				}
-				render(user, followed);
+				else if (Id != null)
+				{
+					boolean followed = false;
+					User otherUser = User.findById(Id);
+					if (otherUser != null)
+					{
+						if (user.followed.contains(otherUser))
+						{
+							followed = true;
+						}
+						
+						user = otherUser;
+						render(user, followed);
+					}
+				}
 			}
 		}
-		// MainPage.index();
+		
 		MyProfile.page();
 	}
 
