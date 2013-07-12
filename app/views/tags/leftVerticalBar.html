@@ -1,0 +1,91 @@
+<script>
+$(function(){
+
+	#{if user != userToShow}
+		$("#follow").click(function(){
+			$.post("@{MyProfile.submit()}",
+				  {
+				   	folloUserid:"${userToShow.id}"
+				  },
+				  //success(alert("success followed"))
+				  function(data){
+					  //$("#added_tags_div").reload();
+					  //alert(data);
+					  $("#follow").css("display","none");
+					  $("#followed").css("display","inline");				  
+					  $(".unfollow").css("display","inline");
+				  } 
+			);
+		});	
+		
+		
+		$(".unfollow").click(function(){
+			$.post("@{MyProfile.submit()}",
+				  {
+					unFollowUserid:"${userToShow.id}"
+				  },
+				  //success(alert("success followed"))
+				  function(data){
+					  //$("#added_tags_div").reload();
+					  //alert(data);
+					  $("#follow").css("display","inline");
+					  $("#followed").css("display","none");				  
+					  $(".unfollow").css("display","none");
+				  }
+			);
+		});
+		
+	#{/if}
+
+
+
+
+	});
+</script>
+
+
+<div id="main_left_vertical_bar_div">
+	#{if userToShow.id != user.id}
+	<h3>${userToShow.fullname}</h3>
+	<div class="image">
+	<img id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(userToShow.image.id)}" alt="Edit Pic" />
+		</div> <br> <br>
+	<div class="follow">
+	
+	<button id="follow">Follow ${userToShow.fullname}</button>
+
+	<input id="followed" value="Followed ${userToShow.fullname}" readonly>
+	<button class="unfollow" style="display: none;">Unfollow ${userToShow.fullname}</button>
+	</div>
+
+	#{/if}
+	
+	#{else}
+	<h3>${userToShow.fullname}</h3>
+	<div class="image">
+	<img id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(userToShow.image.id)}" alt="Edit Pic" />
+	<input type="file" id="photo" class="photo" name="photoData"
+		style="display: none;"> </input> </br>
+	</div>
+
+
+	<h3>Followed</h3>
+		#{list items:userToShow.followed, as:'followed'}
+		<div class="followed">
+			<h2 class="myfollowed-fullname">
+				<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
+			</h2>
+			<div>
+				<img class="userimage"
+					src="@{RequestUtils.renderImage(followed.image.id)}">
+	
+			</div>
+			<a href="@{ViewProfile.page(followed.id)}">more</a>
+		</div>
+		#{/list} 
+	#{/else}
+	
+	
+</div>
