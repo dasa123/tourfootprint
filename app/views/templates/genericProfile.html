@@ -86,18 +86,17 @@ function setMarkers(){
 
 			var location = new google.maps.LatLng(lati, longi);
 			map.panTo(location);
-			map.setZoom(1);		  
+			map.setZoom(1);	  
 			
-		   	var position = new google.maps.LatLng(lati, longi);
 			var marker = new google.maps.Marker({
-		      position: position,
+		      position: location,
 		      map: map
 		    });
 		  #{/list}
 }
 
 
-		  function addTag(newTagText){
+function addTag(newTagText){
 				var newElementID = "tag_span_id" + profileAddTagCounter;
 				var newElementHTML = "<span id='" 
 				+ newElementID + "'>" 

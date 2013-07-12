@@ -34,31 +34,33 @@
 </style>
 
 <script>
+
 $(function() {      
-   initialize("mypost-map-canvas");
+   initialize();
    setMarkers();
 });
 
-
-function initialize(div) {
-	mapOptions = {
+//initial a Google map
+var myPostScope = {};
+function initialize() {
+	myPostScope.mapOptions = {
           center: new google.maps.LatLng(0, 0),
           zoom: 1,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-	map = new google.maps.Map(document.getElementById(div),
-			mapOptions);
+	myPostScope.map = new google.maps.Map(document.getElementById("mypost-map-canvas"),
+			myPostScope.mapOptions);
 }
 
 //setMarkerPosition
 function setMarkerPosition(lat, lng){
 	var location = new google.maps.LatLng(lat, lng);
 	
-   	map.panTo(location);
-   	map.setZoom(16);
+	myPostScope.map.panTo(location);
+	myPostScope.map.setZoom(16);
    	
    	var marker = new google.maps.Marker({
-	            map: map,
+	            map: myPostScope.map,
 	            position: location
 	        });
 }
@@ -71,11 +73,10 @@ function setMarkers(){
 
 			var location = new google.maps.LatLng(lati, longi);
 			map.panTo(location);
-			map.setZoom(1);		  
+			map.setZoom(1);	  
 			
-		   	var position = new google.maps.LatLng(lati, longi);
 			var marker = new google.maps.Marker({
-		      position: position,
+		      position: location,
 		      map: map
 		    });
 		  #{/list}
