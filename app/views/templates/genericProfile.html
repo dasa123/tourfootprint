@@ -1,13 +1,10 @@
 #{extends 'templates/main.html'/}
-
-#{if mode == "myProfile"} 
-#{set title:'My Profile'/} 
-#{/if} 
-#{else} 
+#{if mode == "myProfile"}
+#{set title:'My Profile'/}
+#{/if}
+#{else}
 #{set title:'view Profile'/}
 #{/else}
-
-#{set userToShow: user /}
 
 
 <style type="text/css">
@@ -66,9 +63,9 @@ function initialize() {
         };
 	profileScope.map = new google.maps.Map(document.getElementById("profile-map-canvas"),
 											profileScope.mapOptions);
-	
+
 	profileScope.tags = {};
-	
+
 	setMarkers();
 }
 
@@ -94,7 +91,7 @@ function setMarkers(){
 			var location = new google.maps.LatLng(lati, longi);
 			profileScope.map.panTo(location);
 			profileScope.map.setZoom(1);		  
-			
+
 		   	var position = new google.maps.LatLng(lati, longi);
 			var marker = new google.maps.Marker({
 		      position: position,
@@ -125,26 +122,26 @@ $(function(){
 	  $("p.edit").mouseout(function(){
 	    $(this).css("background-color","white");
 	  });
-	  
+
 
 	  $("input.r").click(function(){
 		 $(this).removeAttr("readonly");
 		 $(this).attr("class", "t");
 		 $("input.w").css("display","inline");
 	  });
-	  
+
 	  $("input.w").click(function(){
 			 $("input.t").attr("readonly", "true");
 			 $("input.t").attr("class", "r");
 			 $("input.w").css("display","none");
 	  });
-	  
+
 	  $(".userimage").click(function(){
 			 $("#photo").click();
 			 $("input.w").css("display","inline");
 	  });
-	  
-	  
+
+
 	  $("div.tag").mouseover(function(){
 		  	$(this).css("background-color","#E9E9E4");
 			}
@@ -153,9 +150,9 @@ $(function(){
 		  	$(this).css("background-color","white");
 			}
 	  );
-	  
-	  
-	  
+
+
+
 	  $("div.tag").click(function(){
 			$(this).attr("class", "tag_to_be_del");
 			//var newElementHTML = "<button id=\"del_tag_button\" >Del</button>";	
@@ -163,15 +160,15 @@ $(function(){
 			$("#del_tag_button").css("display","inline");
 			}
 	  );
-	  
-	  
-	  
+
+
+
 	  $("#add_tag_button").click(function(){		  
 		    var tag = "${tagString}";
 			var newTagText = $("#add_tag_input").val();
 			newTagText = $.trim(newTagText);
 			$("#add_tag_input").val("");
-			
+
 			if(newTagText != ""){
 				tag = tag+";"+newTagText;
 				$.post("@{MyProfile.submit()}",
@@ -184,7 +181,7 @@ $(function(){
 				);
 			}
 	  });
-	  
+
 	  $("#del_tag_button").click(function(){
 		  var deltag = $(".tag_to_be_del").text();
 		  $.post("@{MyProfile.submit()}",
@@ -197,18 +194,107 @@ $(function(){
 						  $("#del_tag_button").css("display","none");
 					  }
 				);
-		  
+
 	  });
 
 #{/if}
+
+
+#{if mode == "viewProfile"}
+    var tag = ${followed};
+    if(tag == true){
+    	$("#follow").css("display","none");
+		$("#followed").css("display","inline");				  
+        $(".unfollow").css("display","inline");
+    }else{
+		$("#follow").css("display","inline");
+    	$("#followed").css("display","none");
+        $(".unfollow").css("display","none");
+    }
+	$("#follow").click(function(){
+		$.post("@{MyProfile.submit()}",
+			  {
+			   	folloUserid:"${user.id}"
+			  },
+			  //success(alert("success followed"))
+			  function(data){
+				  //$("#added_tags_div").reload();
+				  //alert(data);
+				  $("#follow").css("display","none");
+				  $("#followed").css("display","inline");				  
+				  $(".unfollow").css("display","inline");
+			  } 
+		);
+	});	
+
+
+	$(".unfollow").click(function(){
+		$.post("@{MyProfile.submit()}",
+			  {
+				unFollowUserid:"${user.id}"
+			  },
+			  //success(alert("success followed"))
+			  function(data){
+				  //$("#added_tags_div").reload();
+				  //alert(data);
+				  $("#follow").css("display","inline");
+				  $("#followed").css("display","none");				  
+				  $(".unfollow").css("display","none");
+			  }
+		);
+	});
+
+#{/if}
+
+
+
 
 });
 </script>
 
 
+<div id="my_profile_left_div">
+
+	#{if mode == "viewProfile"}
+	<h3>${user.fullname}</h3>
+	<input type="image" id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> </br> </br>
+	<div class="follow">
+		<button id="follow">Follow ${user.fullname}</button>
+
+		<input id="followed" value="Followed ${user.fullname}" readonly>
+		<button class="unfollow" style="display: none;">Unfollow
+			${user.fullname}</button>
+	</div>
+
+	#{/if} #{form @MyProfile.submit(), enctype:"multipart/form-data"} #{if
+	mode == "myProfile"}
+	<h3>${user.fullname}</h3>
+	</br> <img id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" />
+	<input type="file" id="photo" class="photo" name="photoData"
+		style="display: none;"> </input> </br>
+
+
+	<h3>Followed</h3>
+	#{list items:user.followed, as:'followed'}
+	<div class="followed">
+		<h2 class="myfollowed-fullname">
+			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
+		</h2>
+		<div>
+			<img class="userimage"
+				src="@{RequestUtils.renderImage(followed.image.id)}">
+
+		</div>
+		<a href="@{ViewProfile.page(followed.id)}">more</a>
+	</div>
+	#{/list} #{/if}
+</div>
+
+
+
 <div id="my_profile_middle_div">
-	#{form @MyProfile.submit(), enctype:"multipart/form-data"} 
-	
 	<h3>User's info:</h3>
 
 	<p class="edit">
@@ -236,11 +322,7 @@ $(function(){
 			readonly="true" />
 	</p>
 	</br> <input class="w" type="submit" value="save" style="display: none;" />
-	#{/form}
-	
-	 </br> </br> 
-	 
-	#{if mode == "myProfile"}
+	#{/form} </br> </br> #{if mode == "myProfile"}
 	<h3>My tags:</h3>
 	<br> <label for="add_tag_input">Tags: </label> <input type="text"
 		name="tag" id="add_tag_input" />
@@ -250,27 +332,29 @@ $(function(){
 	<button id="add_tag_button">Add Tag</button>
 	<button id="del_tag_button" style="display: none;">Del Tag</button>
 
+
+
+
+
 	<div id="added_tags_div">
-		</br> 
-		#{list items:user.tags, as:'tag'}
+		</br> #{list items:user.tags, as:'tag'}
 		<div class="mytags">
 			<div class="tag">${tag}</div>
 		</div>
 		#{/list}
+
 	</div>
 
-	#{/if} 
-	
-	#{if mode == "viewProfile"}
-		<h3>${user.fullname} 's tags:</h3>
-		<br> 
-		#{list items:user.tags, as:'tag'}
-		<div class="tag">
-			<div class="mytags">${tag}</div>
-		</div>
-		#{/list}
-	#{/if}
+	#{/if} #{if mode == "viewProfile"}
+	<h3>${user.fullname} 's tags:</h3>
+	<br> #{list items:user.tags, as:'tag'}
+	<div class="tag">
+		<div class="mytags">${tag}</div>
+	</div>
+	#{/list} #{/if}
 </div>
+
+
 
 <div id="my_profile_right_div">
 	<div id="profile-map-canvas" style="height: 400px; width: 400px">

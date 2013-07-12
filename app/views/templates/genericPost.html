@@ -234,7 +234,7 @@
 
 	
      #{/form}
-     #{if mode != 'new'}
+     #{if mode != 'new' && user != nil}
      <div id="comments_div">
 		<b>Comments:</b> <br>
 			#{list items:post.comments, as:'comment'}

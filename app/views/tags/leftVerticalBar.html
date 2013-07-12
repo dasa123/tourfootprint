@@ -45,7 +45,7 @@ $(function(){
 
 
 <div id="main_left_vertical_bar_div">
-	#{if userToShow.id != user.id}
+	#{if user != nill && userToShow != user}
 	<h3>${userToShow.fullname}</h3>
 	<div class="image">
 	<img id="userimage" class="userimage"
