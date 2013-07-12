@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                                       MainPage.index
+#GET     /test.html         staticFile:/public/html/test.html
 
 # New Post page
 GET     /newPost                             	NewPost.page
@@ -34,6 +35,9 @@ GET     /public/                                staticDir:public
 
 GET     /about_us                          		Company.aboutUs
 GET     /privacy_policy                     	Company.privacyPolicy
+GET     /channel.html         staticFile:/public/html/channel.html
+#GET     /			          staticFile:/public/html/test.html
+
 GET     /tos			                     	Company.tos
 
 *       /admin                                  module:crud
