@@ -4,9 +4,9 @@
 	<div id="liked">
 		#{list items:allPostsOrderedByLikes, as:'post'}
 			<div class="post">
-				<h1>${post.title.raw()}</h1>
+				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
 				<p>
-					${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
+					${post.description.raw()}
 				</p>
 			</div>
 		#{/list}
@@ -14,9 +14,9 @@
 	<div id="personalized">
 		#{list items:allPostsOrderedByTags, as:'post'}
 			<div class="post">
-				<h1>${post.title.raw()}</h1>
+				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
 				<p>
-					${post.description.raw()} <a href="/viewPost?postId=${post.getId()}">Read more ...</a>
+					${post.description.raw()}
 				</p>
 			</div>
 		#{/list}

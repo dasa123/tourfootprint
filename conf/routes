@@ -15,7 +15,7 @@ GET     /viewPost                            	ViewPost.page					#done
 # My Posts page
 GET     /myPosts                            	MyPosts.page					#done
 # Post Stream page
-GET     /postStream                            	PostStream.page					#difference?
+GET     /postStream                            	PostStream.page					#difference to newPost?
 
 # Search Results page
 GET     /searchResults                          SearchResults.page				#done
@@ -23,7 +23,7 @@ GET     /searchResults                          SearchResults.page				#done
 # My Profle page
 GET     /myProfile                            	MyProfile.page					#done
 # View Profle page
-GET     /viewProfile                            ViewProfile.page 				#follow todo
+GET     /viewProfile                            ViewProfile.page 				#follow button todo
 
 
 # Ignore favicon requests

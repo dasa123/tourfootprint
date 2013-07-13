@@ -9,7 +9,25 @@
 
 #liked, #personalized {
 	.bottom_box_mixin();
+	padding: 5px;
 	overflow-y: auto;
+	width: 456px;
+	
+	h2 {
+		margin-top: 5px;
+		
+		a {
+			color: @default_font_color;
+			
+			&:hover {
+				color: @default_font_color_blue;
+			}
+		}
+	}
+	
+	p {
+		margin: 10px 0;
+	}
 }
 
 #personalized {
