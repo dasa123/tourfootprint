@@ -45,6 +45,16 @@
 	.navigation_bar_triangle_mixin(0px; #ffffff);
 }
 
+#navigation_bar_profile_box .navigation_bar_triangle {
+	.navigation_bar_triangle_mixin(2px; @default_border_color);
+	margin: -16px 0 0 91px;
+}
+
+#navigation_bar_profile_box .navigation_bar_triangle2 {
+	.navigation_bar_triangle_mixin(0px; #ffffff);
+	margin: -14px 0 0 93px;
+}
+
 /*
 	BOX
 */
@@ -64,7 +74,8 @@
 	
 #navigation_bar_profile_box {
 	.navigation_bar_box_mixin;
-	margin: 52px 0 0 709px;
+	margin: 52px 0 0 789px;
+	width: @box_width - 80px;
 }
 	
 #navigation_bar_register_box {
@@ -75,12 +86,20 @@
 /*
 	Box content
 */
-#navigation_bar_login_box_content, #navigation_bar_profile_box_content, #navigation_bar_register_box_content {
+#navigation_bar_login_box_content, #navigation_bar_register_box_content {
 	background: #ffffff;
 	border-radius: @default_radius - @default_border_width;
 	float: left;
 	padding: 0 0 9px 0;
 	width: @box_width;
+}
+
+#navigation_bar_profile_box_content {
+	background: #ffffff;
+	border-radius: @default_radius - @default_border_width;
+	float: left;
+	padding: 0 0 9px 0;
+	width: @box_width - 80px;
 }
 
 .navigation_bar_form_mixin {
