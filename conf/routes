@@ -6,14 +6,14 @@
 GET     /                                       MainPage.index
 
 # New Post page
-GET     /newPost                             	NewPost.page
+GET     /newPost                             	NewPost.page	#done
 # Edit Post page
-GET     /editPost                            	EditPost.page
+GET     /editPost                            	EditPost.page	#done
 # View Post page
-GET     /viewPost                            	ViewPost.page
+GET     /viewPost                            	ViewPost.page	#done
 
 # My Posts page
-GET     /myPosts                            	MyPosts.page
+GET     /myPosts                            	MyPosts.page	#done
 # Post Stream page
 GET     /postStream                            	PostStream.page
 
