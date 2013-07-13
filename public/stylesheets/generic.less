@@ -17,6 +17,10 @@
 #new_post_left_div, #my_profile_middle_div {
 	float: left;
 	width: 140px;
+	
+	h3 {
+		margin-bottom: 10px !important;
+	}
 		
 	border: @default_border_width @default_border_style @default_border_color;
 	float: left;
@@ -24,7 +28,7 @@
 	width: 386px;
 	padding: 10px 5px 10px 5px;
 	
-	#comment_button_input, button {
+	#comment_button_input, button, #user_info_button {
 		background-color: #EDEDED;
 	    border: 2px solid #A8A8A8;
 	    border-radius: 10px 10px 10px 10px;
@@ -55,6 +59,10 @@
 		padding-bottom: 10px;
 	}
 	
+	p.edit_last {
+		padding-bottom: 0;
+	}
+	
 	#photo_data_2, #photo_data_3, #photo_data_4 {
 		margin-top: 5px;
 	}
@@ -82,6 +90,18 @@
 	
 	#description_input {
 		height: 200px !important;
+	}
+	
+	#add_tag_button, #del_tag_button {
+		float: right;
+	}
+	
+	#add_tag_button {
+		margin-left: 5px;
+	}
+	
+	#added_tags_div {
+		clear: both;
 	}
 }
 
