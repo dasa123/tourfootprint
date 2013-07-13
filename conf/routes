@@ -23,7 +23,7 @@ GET     /searchResults                          SearchResults.page
 # My Profle page
 GET     /myProfile                            	MyProfile.page	#done
 # View Profle page
-GET     /viewProfile                            ViewProfile.page
+GET     /viewProfile                            ViewProfile.page #follow todo
 
 
 # Ignore favicon requests

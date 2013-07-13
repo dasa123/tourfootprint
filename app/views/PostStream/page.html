@@ -77,12 +77,10 @@ function refreshTags(){
 <div id="my_post_middle_div">
 	<div class="myposts">
 	        <h3>Post Stream</h3>
-        	<br>
         	
         	#{form @NewPost.page()}
             	<button>Add New Post </button>
             #{/form}
-			<br>
 			    
             #{list items:posts, as:'myPost'}
                 <div class="post" >                
