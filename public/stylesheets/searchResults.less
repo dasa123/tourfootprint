@@ -1,0 +1,36 @@
+// Import default values
+@import "template.less";
+
+#search_results_upper_div {
+	
+	#newpost-map-canvas {
+		border: @default_border_width @default_border_style @default_border_color;
+		
+		span a {
+			color: @default_font_color;
+			font-weight: bold;
+			font-size: @default_font_size_big;
+			line-height: @default_line_height_big;
+		}
+	}
+}
+
+#search_results_lower_div {
+
+	margin-top: 10px;
+
+	span {
+		text-align: justify;
+	
+		a {
+			color: @default_font_color;
+			font-weight: bold;
+			font-size: @default_font_size_big;
+			line-height: @default_line_height_big;
+			
+			&:hover {
+				color: @default_font_color_blue;
+			}
+		}
+	}
+}

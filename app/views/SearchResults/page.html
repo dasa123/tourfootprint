@@ -4,6 +4,10 @@
 #{set searchString: searchString /}
 #{/if}
 
+#{set 'moreStyles'}
+	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/searchResults.less'}">
+#{/set}
+
 <style type="text/css">
 	.postImage{height:50px;}
 </style>
@@ -192,10 +196,9 @@ function setMarkerPosition(lat, lng){
 </script>
 
 <h3>Search Results  for : #{if searchString} ${searchString.raw()}  #{/if}</h3>
-<br>
 
 <div id="search_results_upper_div">
-    <div id="newpost-map-canvas" style="height:400px;width:100%">  </div>
+    <div id="newpost-map-canvas" style="height:400px;width:946px;">  </div>
 </div>
 
 <div id="search_results_lower_div">
