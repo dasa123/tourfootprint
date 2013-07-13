@@ -21,7 +21,7 @@ GET     /postStream                            	PostStream.page
 GET     /searchResults                          SearchResults.page
 
 # My Profle page
-GET     /myProfile                            	MyProfile.page
+GET     /myProfile                            	MyProfile.page	#done
 # View Profle page
 GET     /viewProfile                            ViewProfile.page
 

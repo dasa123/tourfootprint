@@ -254,11 +254,11 @@
 					<option value="2">2</option>
 					<option value="1">1</option>
 				</select>
-				#{if showEditButton}
-					<a href="@{EditPost.page(post.id)}"><button id="editButton">Edit Post</button></a>
-				#{/if}
 				<input type="submit" id="comment_button_input" name="postComment" value="Post Comment"/>
 			#{/form}
+			#{if showEditButton}
+				<a href="@{EditPost.page(post.id)}"><button id="editButton">Edit Post</button></a>
+			#{/if}
 		</div>
 		#{/if}
     </div>
