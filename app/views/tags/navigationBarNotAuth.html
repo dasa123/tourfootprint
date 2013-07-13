@@ -68,7 +68,7 @@ function signinCallback(authResult) {
 	  	    	    // Shows profile information
 	    	    	//console.log(response.email);
 	  	    	    //console.log(response2.displayName);
-	  	    	    console.log(authResult['access_token']);
+	  	    	    //console.log(authResult['access_token']);
 	  	    		var googleAction = #{jsRoute @MainPage.google(':email', ':fullname', ':accessToken') /};
 	  		      	$.ajax({
 	  		      		url: googleAction.url({email: response.email, fullname: response2.displayName, accessToken: authResult['access_token']}),
@@ -76,7 +76,7 @@ function signinCallback(authResult) {
 	  				    			window.location = "/myPosts";
 	  				              },
 	  		            error:	 function (xhr, ajaxOptions, thrownError) {
-	  			                	alert(thrownError);
+	  			                	/*alert(thrownError);*/
 	  		            		  }
 	  			    });
 	  	    	  })
