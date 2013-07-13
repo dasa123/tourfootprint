@@ -9,7 +9,7 @@
 
 #liked, #personalized {
 	.bottom_box_mixin();
-	padding: 5px;
+	padding: 25px 5px 5px 5px;
 	overflow-y: auto;
 	width: 456px;
 	
@@ -22,6 +22,14 @@
 			&:hover {
 				color: @default_font_color_blue;
 			}
+		}
+	}
+	
+	div.infoBox {
+		margin: -25px 0 0 -5px;
+		
+		p {
+			margin-top: 0;
 		}
 	}
 	
@@ -39,6 +47,10 @@
 	
 	p {
 		margin: 10px 0;
+	}
+	
+	.post {
+		clear: both;
 	}
 }
 

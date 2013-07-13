@@ -2,6 +2,9 @@
 #{if ( allPostsOrderedByLikes != null && allPostsOrderedByTags != null ) }
 <div id="posts">
 	<div id="liked">
+		<div class="infoBox">
+			<p>Most liked posts</p>
+		</div>
 		#{list items:allPostsOrderedByLikes, as:'post'}
 			<div class="post">
 				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
@@ -15,6 +18,9 @@
 		#{/list}
 	</div>
 	<div id="personalized">
+		<div class="infoBox">
+			<p>Personalized posts</p>
+		</div>
 		#{list items:allPostsOrderedByTags, as:'post'}
 			<div class="post">
 				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
