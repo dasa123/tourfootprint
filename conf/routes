@@ -3,22 +3,22 @@
 # ~~~~
 
 # Home page
-GET     /                                       MainPage.index
+GET     /                                       MainPage.index					#done
 
 # New Post page
-GET     /newPost                             	NewPost.page					#done
+GET     /newPost                             	NewPost.page					#DONE
 # Edit Post page
-GET     /editPost                            	EditPost.page					#done
+GET     /editPost                            	EditPost.page					#DONE
 # View Post page
-GET     /viewPost                            	ViewPost.page					#done
+GET     /viewPost                            	ViewPost.page					#DONE
 
 # My Posts page
-GET     /myPosts                            	MyPosts.page					#done
+GET     /myPosts                            	MyPosts.page					#DONE
 # Post Stream page
 GET     /postStream                            	PostStream.page					#difference to newPost?
 
 # Search Results page
-GET     /searchResults                          SearchResults.page				#done
+GET     /searchResults                          SearchResults.page				#DONE
 
 # My Profle page
 GET     /myProfile                            	MyProfile.page					#done
