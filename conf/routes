@@ -18,7 +18,7 @@ GET     /myPosts                            	MyPosts.page					#done
 GET     /postStream                            	PostStream.page					#difference?
 
 # Search Results page
-GET     /searchResults                          SearchResults.page
+GET     /searchResults                          SearchResults.page				#done
 
 # My Profle page
 GET     /myProfile                            	MyProfile.page					#done
