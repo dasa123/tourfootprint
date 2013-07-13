@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -36,8 +37,10 @@ public class User extends Model
 
 	@ElementCollection
 	public List<String> tags;
-	@OneToMany
+	
+	@ManyToMany
 	public List<User> followed;
+	
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
 

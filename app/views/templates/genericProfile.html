@@ -267,7 +267,7 @@ $(function(){
 	mode == "myProfile"}
 	<h3>${user.fullname}</h3>
 	</br> <img id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" />
+		src="@{RequestUtils.renderUserImage(user)}" alt="Edit Pic" />
 	<input type="file" id="photo" class="photo" name="photoData"
 		style="display: none;"> </input> </br>
 

@@ -1,4 +1,4 @@
-  User(claudia):
+User(claudia):
   email: "ckonopka@leenox.de"
   password: "password"
   fullname: "Claudia Konopka"
@@ -10,12 +10,7 @@
   tags: [nature,outdoor,beach,ancient,culture]
   posts: [albena_panorama,zinnowitz,albena_Villa_West,bhundhari,big_buddha,ButterflyGarden,CentaraVillasSamui,cisowka,creteHeraklion,cretePreveli,creteSitia,disneylandParis,dresden,geneva,grandmother&grandvater,istanbul,london,yugoslavia,lugano,morocco,namuangwaterfall1,neualpenreuth,rittersgruen_oberhof,ruegen,rilaMountains,tenerife,tunisiaMediSea,turkeyBelek,turkeySunriseQueen,watKunaramTemple,wisla,zanka]
   
-  MapLocation(claudia_address):
-  address: "Wasserturmstraße 59b, 85737 Ismaning"
-  latitude: 48.220498
-  longitude: 11.666125
-  
-  User(david):
+User(david):
   email: "david@sardari.eu"
   password: "qwertz"
   fullname: "David Sardari"
@@ -25,14 +20,10 @@
   religion: "none"
   birthday: 23.07.
   tags: [Hamburg,Munich,culture,movies,Asia]
+  followed: [claudia]
   posts: [oktoberfest]
   
-  MapLocation(david_address):
-  address: "Christoph-Probst-Straße 16, 80805 München"
-  latitude: 48.184012
-  longitude: 11.611229
-  
-  User(vova):
+User(vova):
   email: "cherniivv@gmail.com"
   password: "pravda"
   fullname: "Volodymyr Chernii"
@@ -42,12 +33,8 @@
   religion: "orthodox"
   birthday: 31.08.
   tags: [hiking,sailing,windsurfing,bike&hike,mountains]
+  followed: [claudia,david]
   posts: [garda_2012]
-  
-  MapLocation(vova_address):
-  address: "Kyiv, Ukraine"
-  latitude: 50,443640
-  longitude: 30,546270
   
   MapLocation(garda_loc):
   address: "Malcesine, Veneto, Italy"
@@ -63,7 +50,7 @@
   sender: vova
   tags: [Italy,Garda,sun,windsurfing,sweet_sunset]
   
-  MapLocation(oktoberfest_loc):
+MapLocation(oktoberfest_loc):
   address: "Theresienwiese, München"
   latitude: 48.133499
   longitude: 11.550139
@@ -77,12 +64,12 @@
   sender: david
   tags: [party,culture,bavaria,munich,beer]
   
-  MapLocation(albena_panorama_loc):
+MapLocation(albena_panorama_loc):
   address: ""
   latitude: 43.369
   longitude: 28.077
   
-  Post(albena_panorama):
+Post(albena_panorama):
   title: "Albena Panorama"
   description: "I went there together with my friends and would always travel to again. It's a nice place for young people."
   mapLocation: albena_panorama_loc
@@ -91,12 +78,12 @@
   sender: claudia
   tags: [Sun,Beach,Party,Black Sea]
   
-  MapLocation(albena_Villa_West_loc):
+MapLocation(albena_Villa_West_loc):
   address: ""
   latitude: 43.383928
   longitude: 28.100538
   
-  Post(albena_Villa_West):
+Post(albena_Villa_West):
   title: "Albena Villa West"
   description: "I went there together with to have just for relaxing a week. I can really recommend the restaurant 'Waldkönig'. It's a point of interest for young people, because there's also a discotheque. There I got the best Frozen Strawberry Magharita ever."
   mapLocation: albena_Villa_West_loc
@@ -105,12 +92,12 @@
   sender: claudia
   tags: [Sun,Beach,holiday flat,Black Sea,family]
   
-  MapLocation(bhundhari_loc):
+MapLocation(bhundhari_loc):
   address: ""
   latitude: 9.554455
   longitude: 100.078529
   
-  Post(bhundhari):
+Post(bhundhari):
   title: "Bhundhari"
   description: "I was there after changing from the hotel Centara Villas Samui, because of noisy buildings. I cannot recommend it. It tries to be high classes but failed. Ok, it was built new, but all the way that's right up my alley."
   mapLocation: bhundhari_loc
@@ -119,12 +106,12 @@
   sender: claudia
   tags: [deluxe,snobbish,night life,Chaweng Beach]
   
-  MapLocation(Big_Buddha_loc):
+MapLocation(Big_Buddha_loc):
   address: ""
   latitude: 9.570528000000000000
   longitude: 100.060494000000060000
   
-  Post(big_buddha):
+Post(big_buddha):
   title: "Big Buddha"
   description: "It is one of the famoust sights of Koh Samui. The Big Buddha is all-gold."
   mapLocation: Big_Buddha_loc
@@ -133,12 +120,12 @@
   sender: claudia
   tags: [sigths,religious,Buddhism]
   
-  MapLocation(ButterflyGarden_loc):
+MapLocation(ButterflyGarden_loc):
   address: ""
   latitude: 9.486737
   longitude: 100.039115
   
-  Post(ButterflyGarden):
+Post(ButterflyGarden):
   title: "Butterfly Garden"
   description: "The butterfly garden is next to hotel centara Villas Samui, you need just to cross the street. You can see lots of butterflies and flowers."
   mapLocation: ButterflyGarden_loc
@@ -147,12 +134,12 @@
   sender: claudia
   tags: [garden,butterfly,flowers,tropical]
   
-  MapLocation(CentaraVillasSamui_loc):
+MapLocation(CentaraVillasSamui_loc):
   address: ""
   latitude: 9.422195
   longitude: 100.013123
   
-  Post(CentaraVillasSamui):
+Post(CentaraVillasSamui):
   title: "Centara Villas Samui"
   description: "This hotels meets almost everything what I wanted for my honeymoon holiday. It's not too big and cozy. The hotel is situated in a tropical garden with separated bungalows, all with a own furnished terraces. Very tasty and versatile breakfast! I have never seen something like this."
   mapLocation: CentaraVillasSamui_loc
@@ -161,12 +148,12 @@
   sender: claudia
   tags: [honeymoon,Asia,amazing,tropical,private]
   
-  MapLocation(Cisowka_loc):
+MapLocation(Cisowka_loc):
   address: ""
   latitude: 49.66000
   longitude: 18.87000
   
-  Post(cisowka):
+Post(cisowka):
   title: "Cisowka"
   description: "We rent this hotel for our wedding party. How it can looks like you can see at the pictures. I can recommend it.It's situated at the top of a mountain, where you can't disturb someone."
   mapLocation: Cisowka_loc
@@ -175,12 +162,12 @@
   sender: claudia
   tags: [wedding,hiking,nature,traditional,Poland]
   
-  MapLocation(creteHeraklion_loc):
+MapLocation(creteHeraklion_loc):
   address: ""
   latitude: 35.3333333333
   longitude: 25.1333333333
   
-  Post(creteHeraklion):
+Post(creteHeraklion):
   title: "Crete Heraklion"
   description: "I was there in my autumn holidays together with my grandmother. There was really nice whether. I had a nice time."
   mapLocation: creteHeraklion_loc
@@ -189,12 +176,12 @@
   sender: claudia
   tags: [sea,sunny,holiday,beach,Greece]
   
-  MapLocation(cretePreveli_loc):
+MapLocation(cretePreveli_loc):
   address: ""
   latitude: 35.194504
   longitude: 24.463732
   
-  Post(cretePreveli):
+Post(cretePreveli):
   title: "Crete Preveli"
   description: "Preveli ist ein beliebtes Ausflugszeil an der Südküste Kretas, da sich dort ein von Palmen gesäumter Sandstrand mit einem lagunenhaften kleinen See befindet. Auf dem ersten Bild sieht man den Blick auf den Strand. Dort muss man mühselig runter klettern. Nicht geeignet für körperlich Beeinträchtigte und Familien mit Kleinkindern."
   mapLocation: cretePreveli_loc
@@ -203,12 +190,12 @@
   sender: claudia
   tags: [palm trees,beach,laguna,cumbersome to reach]
   
-  MapLocation(creteSitia_loc):
+MapLocation(creteSitia_loc):
   address: ""
   latitude: 35.216099
   longitude: 26.101299
   
-  Post(creteSitia):
+Post(creteSitia):
   title: "Crete Sitia"
   description: "My friends and me rented a holiday flat in Crete. You will need a car to reach Sitia. The location was very nice but you have to go by car to the beach of Sitia. When you are able to climb over the hills you can have a private beach for you own on the opposite side of the street."
   mapLocation: creteSitia_loc
@@ -217,12 +204,12 @@
   sender: claudia
   tags: [Mediterranean Sea,Greece,holiday house,beach far away,well furnished]
   
-  MapLocation(disneylandParis_loc):
+MapLocation(disneylandParis_loc):
   address: ""
   latitude: 48.876077
   longitude: 2.79646
   
-  Post(disneylandParis):
+Post(disneylandParis):
   title: "Disneyland Paris"
   description: "I was there for an expedition with colleagues from other travel agencies to be the first visitors of the new Walt Disney Studios. Please don't go there during the Frensh holidays, because then you will spend more time with waiting instead of using the attractions. Stay minimum 3 days for utilization the amazing offer."
   mapLocation: disneylandParis_loc
@@ -231,12 +218,12 @@
   sender: claudia
   tags: [entertainment,amazing,very big area,attractions,must-see]
   
-  MapLocation(dresden_loc):
+MapLocation(dresden_loc):
   address: ""
   latitude: 51.05
   longitude: 13.7333
   
-  Post(dresden):
+Post(dresden):
   title: "Dresden"
   description: "It's a must-see when you like sightseeing (UNESCO world cultural heritage) and are interested in history and cultural offers. Dresden, also called Elbflorenz, is the area where the white gold (Meissen porcelain) was invented."
   mapLocation: dresden_loc
@@ -245,12 +232,12 @@
   sender: claudia
   tags: [entertainment,amazing,very big area,attractions,must-see]
   
-  MapLocation(geneva_loc):
+MapLocation(geneva_loc):
   address: ""
   latitude: 46.198392
   longitude: 6.142296
   
-  Post(geneva):
+Post(geneva):
   title: "Geneva"
   description: "I spent two months in Geneva to visit my fiancé at CERN. It's a very expensive city, so take a lot of money with you. At the pictures you can see a detector which catches the particles that fly round in the large hadron collider."
   mapLocation: geneva_loc
@@ -259,12 +246,12 @@
   sender: claudia
   tags: [Switzerland,France,expensive,CERN,LHC]
   
-  MapLocation(grandmother&grandvater_loc):
+MapLocation(grandmother&grandvater_loc):
   address: ""
   latitude: 9.476504
   longitude: 100.043439
   
-  Post(grandmother&grandvater):
+Post(grandmother&grandvater):
   title: "Grandmother & Grandvater"
   description: "Hin Ta (Grandpa) and Hin Yai (Grandma) are rock formations on Koh Samui’s south coast. A local story tells of an old couple whose ship was wrecked in the bay of Lamai Beach. Their body's were washed ashore to create the rocks."
   mapLocation: grandmother&grandvater_loc
@@ -273,12 +260,12 @@
   sender: claudia
   tags: [sight,Lamai Beach,fascinating,source of mirth,wonder]
   
-  MapLocation(istanbul_loc):
+MapLocation(istanbul_loc):
   address: ""
   latitude: 41.005270
   longitude: 28.976960
   
-  Post(istanbul):
+Post(istanbul):
   title: "Istanbul"
   description: "Istanbul (formerly Constantinople) is devided by the Bosporus in an European and Asian district. The Golden Horn devides Europe from Asia. It's an impressive city which was formed over time by Greeks, Romans, Byzantine, Ottoman and Turks. The historic city center is UNESCO world cultural heritage. You must visit the Topkapi Palace of the former Sultan."
   mapLocation: istanbul_loc
@@ -287,12 +274,12 @@
   sender: claudia
   tags: [point of interest,history,Ottoman Empire,culture,must-see]
   
-  MapLocation(london_loc):
+MapLocation(london_loc):
   address: ""
   latitude: 51.511214
   longitude: -0.119824
   
-  Post(london):
+Post(london):
   title: "London"
   description: "I was there with my school class. We stayed in guest families. For this we had firsthand impressions how the English live. Our sightseeing tour contained Madame Tussauds and the London Dungeon."
   mapLocation: london_loc
@@ -301,12 +288,12 @@
   sender: claudia
   tags: [big city,England,nice,point of interest]
   
-  MapLocation(yugoslavia_loc):
+MapLocation(yugoslavia_loc):
   address: ""
   latitude: 41.005270
   longitude: 28.976960
   
-  Post(yugoslavia):
+Post(yugoslavia):
   title: "Yugoslavia"
   description: "The formerly Yugoslavia is now devided in several countries like Croatia, Serbia-Montenegro and Bosnia-Herzegovina. I was one of the last tourists of this country. Sadly, later in this year the war began."
   mapLocation: yugoslavia_loc
@@ -315,12 +302,12 @@
   sender: claudia
   tags: [wood,shingle beach,lovely,Adriatic Sea]
   
-  MapLocation(lugano_location):
+MapLocation(lugano_location):
   address: ""
   latitude: 45.986254400000000000
   longitude: 8.969988899999976000
   
-  Post(lugano):
+Post(lugano):
   title: "Silvester in Lugano"
   description: "My grandmother had the idea to celebrate Silvester 1997 in Lugano. Really nice city with a promenade at the Lake of Lugano. Lots of interesting places and good for shopping. We had a trip by train and bus and visited St. Moritz."
   mapLocation: lugano_location
@@ -329,12 +316,12 @@
   sender: claudia
   tags: [Italia,promenade,lake of Lugano,St. Moritz]
   
-  MapLocation(morocco_location):
+MapLocation(morocco_location):
   address: ""
   latitude: 30.433333
   longitude: -9.600000
   
-  Post(morocco):
+Post(morocco):
   title: "Morocco"
   description: "Once and never again. Maybe my parents choosed the wrong location. I don't like the public beach. The hotel was not good."
   mapLocation: morocco_location
@@ -343,7 +330,7 @@
   sender: claudia
   tags: [hot,closeness,little flora,Sahara]
   
-  MapLocation(namuangwaterfall1_location):
+MapLocation(namuangwaterfall1_location):
   address: ""
   latitude: 9.4651
   longitude: 99.9886

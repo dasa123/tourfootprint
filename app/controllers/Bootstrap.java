@@ -19,21 +19,19 @@ import models.*;
 
 @OnApplicationStart
 public class Bootstrap extends Job {
-    /*public void doJob() {
-        
-    	// Check if the database is empty
-        if(User.count() == 0) {
-            Fixtures.loadModels("initial-data.yml");
-        }*/
-    
     @Override
-    public void doJob() {
-      // Check if the database is empty
-      if(User.count() == 0) {
+	public void doJob() {
+    // Check if the database is empty
+     
+	if(User.count() == 0) {
         Logger.info("Loading Initial Data.");
-        Fixtures.loadModels("initial-data2.yml");
+        Fixtures.loadModels("initial-data.yml");
+        
+        System.out.println("yaml-file loaded!");
+        
         }
         List<Post> posts = Post.findAll();
+        System.out.println("Found all users!");
         
         for (Post post: posts) {
             Logger.info("Looking for files for post: [" + post.title + "]");
@@ -82,20 +80,24 @@ public class Bootstrap extends Job {
 	          Logger.info("Looking for files for user: [" + user.email + "]");
 	          
 	            
-	            String imageFile = "public/uploads/user"+ user.email + ".jpg";
+	            String imageFile = "public/images/user/"+ user.email + ".jpg";
 
 	              try {
 	            	Blob blobImage = new Blob();
 	                blobImage.set(new FileInputStream(imageFile), MimeTypes.getContentType(imageFile));
 	                user.image = new Image(blobImage, imageFile);
 	                user.image.save();
-	                user.save();
+	                System.out.println("Saved user image!");
+	                
 	                
 	                Logger.info("File: [%s] Loaded", imageFile);
 	              } catch (FileNotFoundException e) {
 	            	  Logger.info(e.toString());
 	            	  Logger.info("File: [%s] Not Loaded", imageFile);
 	              }
+	              
+	              user.save();
+	              System.out.println("User saved!");
 		}
     }
 }

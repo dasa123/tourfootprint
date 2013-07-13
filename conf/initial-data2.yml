@@ -1,4 +1,4 @@
-  User(claudia):
+User(claudia):
   email: "ckonopka@leenox.de"
   password: "password"
   fullname: "Claudia Konopka"
@@ -10,12 +10,12 @@
   tags: [nature, outdoor, beach, ancient, culture]
   posts: [test]
   
-  MapLocation(claudia_address):
+MapLocation(claudia_address):
   address: "Wasserturmstraße 59b, 85737 Ismaning"
   latitude: 48.220498
   longitude: 11.666125
   
-  Post(test):
+Post(test):
   title: "test_title"
   description: "test test test test"
   mapLocation: claudia_address
