@@ -6,24 +6,24 @@
 GET     /                                       MainPage.index
 
 # New Post page
-GET     /newPost                             	NewPost.page	#done
+GET     /newPost                             	NewPost.page					#done
 # Edit Post page
-GET     /editPost                            	EditPost.page	#done
+GET     /editPost                            	EditPost.page					#done
 # View Post page
-GET     /viewPost                            	ViewPost.page	#done
+GET     /viewPost                            	ViewPost.page					#done
 
 # My Posts page
-GET     /myPosts                            	MyPosts.page	#done
+GET     /myPosts                            	MyPosts.page					#done
 # Post Stream page
-GET     /postStream                            	PostStream.page
+GET     /postStream                            	PostStream.page					#difference?
 
 # Search Results page
 GET     /searchResults                          SearchResults.page
 
 # My Profle page
-GET     /myProfile                            	MyProfile.page	#done
+GET     /myProfile                            	MyProfile.page					#done
 # View Profle page
-GET     /viewProfile                            ViewProfile.page #follow todo
+GET     /viewProfile                            ViewProfile.page 				#follow todo
 
 
 # Ignore favicon requests
@@ -32,9 +32,9 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
-GET     /about_us                          		Company.aboutUs
-GET     /privacy_policy                     	Company.privacyPolicy
-GET     /tos			                     	Company.tos
+GET     /about_us                          		Company.aboutUs					#done
+GET     /privacy_policy                     	Company.privacyPolicy			#done
+GET     /tos			                     	Company.tos						#done
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
