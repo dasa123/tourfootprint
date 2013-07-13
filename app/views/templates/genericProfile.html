@@ -8,47 +8,8 @@
 
 #{set 'moreStyles'}
 	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/generic.less'}">
+	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/leftVerticalBar.less'}">
 #{/set}
-
-<style type="text/css">
-#my_profile_left_div {
-	border: 1px solid #A9C9E2;
-	width: 150px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_middle_div {
-	border: 1px solid #A90000;
-	width: 380px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_right_div {
-	border: 1px solid #F9B3D5;
-	width: 400px;
-	float: left;
-	position: relative;
-	top: 10px;
-}
-
-.userimage {
-	max-width: 100px;
-	max-height: 100px;
-	overflow: hidden;
-}
-
-input.r {
-	border: 1px solid #fff;
-}
-
-input.w {
-	border: 1px solid #369;
-}
-</style>
 
 <script>
 var profileScope = {};
@@ -273,10 +234,12 @@ $(function(){
 	#{/if} #{form @MyProfile.submit(), enctype:"multipart/form-data"} #{if
 	mode == "myProfile"}
 	<h3>${user.fullname}</h3>
-	</br> <img id="userimage" class="userimage"
+	<div class="image">
+	<img id="userimage" class="userimage"
 		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" />
+		</div>
 	<input type="file" id="photo" class="photo" name="photoData"
-		style="display: none;"> </input> </br>
+		style="display: none;"> </input>
 
 
 	<h3>Followed</h3>
@@ -360,7 +323,7 @@ $(function(){
 
 
 <div id="my_profile_right_div">
-	<div id="profile-map-canvas" style="height: 400px; width: 400px">
+	<div id="profile-map-canvas" style="height: 386px; width: 386px">
 	</div>
 	#{list items:user.posts, as:'myPost'}
 	<div class="post">
