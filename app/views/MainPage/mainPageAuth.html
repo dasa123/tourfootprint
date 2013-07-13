@@ -5,6 +5,9 @@
 		#{list items:allPostsOrderedByLikes, as:'post'}
 			<div class="post">
 				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
+				<div class="userImage">
+					<img src="@{RequestUtils.renderUserImageByPostId(post.getId())}" alt="User Pic" />
+				</div>
 				<p>
 					${post.description.raw()}
 				</p>
@@ -15,6 +18,9 @@
 		#{list items:allPostsOrderedByTags, as:'post'}
 			<div class="post">
 				<h2><a href="/viewPost?postId=${post.getId()}">${post.title.raw()}</a></h2>
+				<div class="userImage">
+					<img src="@{RequestUtils.renderUserImageByPostId(post.getId())}" alt="User Pic" />
+				</div>
 				<p>
 					${post.description.raw()}
 				</p>

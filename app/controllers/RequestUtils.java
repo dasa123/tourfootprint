@@ -22,4 +22,13 @@ public class RequestUtils extends Controller
 		response.setContentTypeIfNotSet(image.imageDate.type());
 		renderBinary(image.imageDate.get());
 	}
+	
+	public static void renderUserImageByPostId(Long postId)
+	{
+		Post post = Post.findById(postId);
+		User user = User.findById(post.sender.getId());
+		Image image = Image.findById(user.image.getId());
+		response.setContentTypeIfNotSet(image.imageDate.type());
+		renderBinary(image.imageDate.get());
+	}
 }
