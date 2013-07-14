@@ -129,6 +129,8 @@ public class MainPage extends Controller {
 			System.out.println("logout: Google access token :" + token);
 		try {
 			new URL("https://accounts.google.com/o/oauth2/revoke?token=" + token).openConnection().getInputStream();
+			new URL("https://accounts.google.com/o/oauth2/revoke?token=" + token).openConnection().getInputStream();
+			new URL("https://accounts.google.com/o/oauth2/revoke?token=" + token).openConnection().getInputStream();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,8 +164,12 @@ public class MainPage extends Controller {
 			Post post = Post.findById(postId);
 			List<Image> images = post.content.pictures;
 			Random generator = new Random();
-			Long id = images.get(generator.nextInt(images.size())).getId();
-			RequestUtils.renderImage(id);
+			// Long id = images.get(generator.nextInt(images.size())).getId();
+			// RequestUtils.renderImage(id);
+			Image image = images.get(generator.nextInt(images.size()));
+			// Image.findById(user.image.getId());
+			response.setContentTypeIfNotSet(image.imageDate.type());
+			renderBinary(image.imageDate.get());
 		}
 	}
 	
@@ -184,6 +190,6 @@ public class MainPage extends Controller {
 		session.put("userId", user.id);
 		System.out.println("new token: " + accessToken);
 		session.put("googleAccessToken", accessToken);
-		MyPosts.page();
+		//MyPosts.page();
 	}
 }

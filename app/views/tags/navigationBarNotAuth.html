@@ -73,7 +73,7 @@ function signinCallback(authResult) {
 	  		      	$.ajax({
 	  		      		url: googleAction.url({email: response.email, fullname: response2.displayName, accessToken: authResult['access_token']}),
 	  				    success: function (data) {
-	  				    			window.location = "/myPosts";
+	  				    			window.location = "/";
 	  				              },
 	  		            error:	 function (xhr, ajaxOptions, thrownError) {
 	  			                	/*alert(thrownError);*/
